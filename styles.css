@@ -82,6 +82,11 @@ button:focus {
     outline-offset: 2px;
 }
 
+/* Remove blue outline for mouse users, keep for keyboard users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
 /* Header & Navigation */
 header {
     position: fixed;
