@@ -26,7 +26,12 @@ for fname in os.listdir(big_dir):
             h_size = int(float(img.height) * w_percent)
             img_small = img.resize((300, h_size), Image.LANCZOS)
             name, ext = os.path.splitext(fname)
-            small_fname = f"{name}_small{ext}"
+            # Replace _big with _small in the filename
+            if "_big" in name:
+                small_name = name.replace("_big", "_small")
+            else:
+                small_name = f"{name}_small"
+            small_fname = f"{small_name}{ext}"
             small_path = os.path.join(small_dir, small_fname)
             img_small.save(small_path)
     except Exception as e:
