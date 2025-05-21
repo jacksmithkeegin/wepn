@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const currentYearElement = document.getElementById('current-year');
     const playerBar = document.querySelector('.player-bar');
+    const navLinks = document.querySelector('.nav-links');
 
     // Set current year in footer
     currentYearElement.textContent = new Date().getFullYear();
@@ -200,6 +201,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Mobile nav toggle button
+    const mobileNavToggle = document.createElement('button');
+    mobileNavToggle.className = 'mobile-nav-toggle';
+    mobileNavToggle.setAttribute('aria-label', 'Toggle navigation');
+    mobileNavToggle.innerHTML = '&#9776;'; // Hamburger icon
+
+    // Insert toggle button before nav links
+    const navContainer = document.querySelector('.top-nav .container');
+    navContainer.insertBefore(mobileNavToggle, navLinks);
+
+    // Toggle nav links on mobile
+    mobileNavToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileNavToggle.classList.toggle('active');
+    });
+
+    // Close nav on link click (for better UX)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                mobileNavToggle.classList.remove('active');
+            }
+        });
+    });
 
     // Initialize the application
     function init() {
