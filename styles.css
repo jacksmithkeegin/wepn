@@ -179,7 +179,7 @@ header {
     width: 100%;
     background-color: var(--secondary-color);
     z-index: 999;
-    padding: var(--spacing-md) 0;
+    padding: min(2.5vw, 0.25rem) 0; /* Responsive vertical padding, max 2.5vw, min 0.25rem */
     display: none;
     height: 0;
     overflow: hidden;
@@ -209,13 +209,13 @@ header {
 
 /* Main Content */
 main {
-    /* Remove static padding-top, add only when player is visible */
-    padding-top: 70px; /* Only header height by default */
+    /* Responsive padding below header (and player bar if visible) */
+    padding-top: min(12vw, 70px);
     transition: padding-top 0.3s;
 }
 
 body.player-bar-visible main {
-    padding-top: calc(70px + 180px); /* Header + Player height when visible */
+    padding-top: min(25vw, 180px); /* Responsive: up to 180px, but shrinks on small screens */
 }
 
 section {
@@ -496,7 +496,7 @@ footer p {
     }
     
     .player-bar {
-        padding: var(--spacing-sm) 0;
+        padding: min(2vw, 0.25rem) 0; /* Responsive vertical padding, max 2vw, min 0.25rem */
     }
     
     .now-playing {
@@ -504,10 +504,10 @@ footer p {
     }
     
     main {
-        padding-top: 70px;
+        padding-top: min(5vw, 70px);
     }
     body.player-bar-visible main {
-        padding-top: calc(70px + 150px);
+        padding-top: min(5vw, 150px);
     }
 }
 
