@@ -13,7 +13,7 @@ const translations = {
         "releases.buyOn": "Buy on Bandcamp",
         
         "about.title": "About WEPN",
-        "about.para1": "WEPN (Welsh Electronic Producers Network) is a collective of electronic music producers based in Wales, UK. Founded in 2020, WEPN aims to showcase the diverse electronic music scene in Wales and provide a platform for emerging talent.",
+        "about.para1": "WEPN (Wales Electronic Producers Network) is a collective of electronic music producers based in Wales, UK. Founded in 2020, WEPN aims to showcase the diverse electronic music scene in Wales and provide a platform for emerging talent.",
         "about.para2": "Through releases, events, and community initiatives, WEPN connects artists and audiences, fostering collaboration and creative exchange in the electronic music community.",
         "about.para3": "All proceeds from WEPN compilations go directly to supporting the artists and relevant causes, including community venues and humanitarian efforts.",
         
