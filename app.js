@@ -228,6 +228,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Tab switching logic
+    const tabSections = document.querySelectorAll('.tab-content');
+    const navTabLinks = document.querySelectorAll('.nav-links a');
+
+    function showTab(tabId) {
+        tabSections.forEach(section => {
+            if (section.id === tabId) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+        navTabLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${tabId}`) {
+                link.classList.add('active');
+                link.setAttribute('aria-selected', 'true');
+                link.setAttribute('tabindex', '0');
+            } else {
+                link.classList.remove('active');
+                link.setAttribute('aria-selected', 'false');
+                link.setAttribute('tabindex', '-1');
+            }
+        });
+    }
+
+    // Intercept nav link clicks for tab switching
+    navTabLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const tabId = link.getAttribute('href').replace('#', '');
+            showTab(tabId);
+            history.replaceState(null, null, `#${tabId}`);
+            e.preventDefault();
+        });
+    });
+
+    // On page load, show tab from hash or default
+    function initTabs() {
+        let initialTab = window.location.hash.replace('#', '') || 'releases';
+        if (![...tabSections].some(s => s.id === initialTab)) {
+            initialTab = 'releases';
+        }
+        showTab(initialTab);
+    }
+
     // Initialize the application
     function init() {
         // Set initial language based on browser settings
@@ -240,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setupLanguageToggle();
         loadReleasesData();
+        initTabs();
         
         // Handle window resize for responsive layout adjustments
         window.addEventListener('resize', () => {
