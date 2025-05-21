@@ -181,10 +181,15 @@ header {
     z-index: 999;
     padding: var(--spacing-md) 0;
     display: none;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s;
 }
 
 .player-bar.visible {
     display: block;
+    height: auto;
+    overflow: visible;
 }
 
 .player-wrapper {
@@ -204,7 +209,13 @@ header {
 
 /* Main Content */
 main {
-    padding-top: calc(70px + 180px); /* Header + Player height */
+    /* Remove static padding-top, add only when player is visible */
+    padding-top: 70px; /* Only header height by default */
+    transition: padding-top 0.3s;
+}
+
+body.player-bar-visible main {
+    padding-top: calc(70px + 180px); /* Header + Player height when visible */
 }
 
 section {
@@ -473,7 +484,10 @@ footer p {
     }
     
     main {
-        padding-top: calc(70px + 150px); /* Adjust for smaller player on mobile */
+        padding-top: 70px;
+    }
+    body.player-bar-visible main {
+        padding-top: calc(70px + 150px);
     }
 }
 

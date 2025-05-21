@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show player bar if hidden
         if (playerBar && !playerBar.classList.contains('visible')) {
             playerBar.classList.add('visible');
+            document.body.classList.add('player-bar-visible');
         }
         
         // Update UI
@@ -285,6 +286,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setupLanguageToggle();
         loadReleasesData();
         initTabs();
+        
+        // Hide player bar and remove body class on load
+        playerBar.classList.remove('visible');
+        document.body.classList.remove('player-bar-visible');
         
         // Handle window resize for responsive layout adjustments
         window.addEventListener('resize', () => {
