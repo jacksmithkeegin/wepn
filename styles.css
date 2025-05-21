@@ -241,7 +241,7 @@ section h2::after {
 /* Releases Grid */
 .releases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: var(--spacing-lg);
 }
 
@@ -251,8 +251,15 @@ section h2::after {
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform var(--transition-speed) ease;
-    height: 0;
-    padding-bottom: 100%; /* Create a square aspect ratio */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding-bottom: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
 }
 
 .release-item:hover {
@@ -269,7 +276,12 @@ section h2::after {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    background: #222;
 }
 
 .release-overlay {
@@ -478,6 +490,10 @@ footer p {
     .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+    .release-item, .release-image {
+        min-height: 220px;
+        max-height: 350px;
+    }
     
     .player-bar {
         padding: var(--spacing-sm) 0;
@@ -497,8 +513,12 @@ footer p {
 
 @media (max-width: 480px) {
     .releases-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-md);
+    }
+    .release-item, .release-image {
+        min-height: 120px;
+        max-height: 200px;
     }
     
     .release-title {

@@ -22,9 +22,9 @@ for fname in os.listdir(big_dir):
         continue
     try:
         with Image.open(big_path) as img:
-            w_percent = 300 / float(img.width)
+            w_percent = 500 / float(img.width)
             h_size = int(float(img.height) * w_percent)
-            img_small = img.resize((300, h_size), Image.LANCZOS)
+            img_small = img.resize((500, h_size), Image.LANCZOS)
             name, ext = os.path.splitext(fname)
             # Replace _big with _small in the filename
             if "_big" in name:
