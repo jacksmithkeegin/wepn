@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const releaseId = e.target.dataset.id;
                 loadReleaseInPlayer(releaseId);
                 e.stopPropagation();
+                // Prevent URL hash change
+                history.replaceState(null, null, '#releases');
             });
         });
 
@@ -138,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update state
         currentReleaseId = releaseId;
         
-        // Update URL fragment
-        history.replaceState(null, null, `#${releaseId}`);
+        // Remove hash update here so it doesn't change URL
+        // history.replaceState(null, null, `#${releaseId}`);
     }
 
     // Check URL fragment for direct linking

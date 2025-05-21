@@ -259,6 +259,10 @@ section h2::after {
     transform: translateY(-5px);
 }
 
+.release-item:focus {
+    outline: none;
+}
+
 .release-image {
     position: absolute;
     top: 0;
