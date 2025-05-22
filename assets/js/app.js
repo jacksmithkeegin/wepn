@@ -221,9 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update UI with translations
         updateUILanguage();
         
-        // Redisplay releases with new language
-        displayReleases();
-        displayFeaturedRelease(featuredReleaseId);
+        // Update only text content for releases and featured release
+        updateReleaseTexts();
         
         // Update current track if one is playing
         if (currentReleaseId) {
@@ -252,6 +251,44 @@ document.addEventListener('DOMContentLoaded', () => {
         // Featured release title
         const featuredTitle = document.querySelector('.featured-release-title');
         if (featuredTitle) featuredTitle.textContent = translations[currentLanguage]['hero.featured'];
+    }
+
+    // Update only text content for releases and featured release when switching language
+    function updateReleaseTexts() {
+        // Update featured release texts
+        const featuredContainer = document.getElementById('featured-release');
+        if (featuredContainer) {
+            const featured = releases.find(r => r.id === (featuredReleaseId || releases[0]?.id));
+            if (featured) {
+                // Update featured release text fields only
+                const titleMain = featuredContainer.querySelector('.featured-release-title-main');
+                if (titleMain) titleMain.textContent = featured[`title_${currentLanguage}`];
+                const artist = featuredContainer.querySelector('.featured-artist.prominent');
+                if (artist) artist.textContent = featured.artist;
+                const desc = featuredContainer.querySelector('.featured-description');
+                if (desc) desc.textContent = featured[`description_${currentLanguage}`];
+                const listenBtn = featuredContainer.querySelector('.featured-listen-btn');
+                if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
+                const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
+                if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
+            }
+        }
+        // Update releases grid texts
+        document.querySelectorAll('.release-item').forEach(item => {
+            const release = releases.find(r => r.id === item.id);
+            if (!release) return;
+            const title = item.querySelector('.release-title');
+            if (title) title.textContent = release[`title_${currentLanguage}`];
+            const artist = item.querySelector('.release-artist');
+            if (artist) artist.textContent = release.artist;
+            const listenBtn = item.querySelector('.listen-btn');
+            if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
+            const buyBtn = item.querySelector('.buy-link');
+            if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
+            // Update alt attribute for image
+            const img = item.querySelector('.release-image');
+            if (img) img.alt = release[`title_${currentLanguage}`];
+        });
     }
 
     // Mobile nav toggle button
