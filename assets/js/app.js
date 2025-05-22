@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLanguage = 'en';
     let releases = [];
     let currentReleaseId = null;
+    let featuredReleaseId = null;
 
     // Cache DOM elements
     const releasesGrid = document.getElementById('releases-grid');
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 release_date_en: r.release_date.en,
                 release_date_cy: r.release_date.cy || r.release_date.en
             }));
+            displayFeaturedRelease(); // Show hero featured
             displayReleases();
             checkUrlFragment();
         } catch (error) {
@@ -53,11 +55,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Render the hero featured release (now always shows, does not affect releases grid)
+    function displayFeaturedRelease(featuredId) {
+        const featuredContainer = document.getElementById('featured-release');
+        if (!featuredContainer) return;
+        let featured = null;
+        if (featuredId) {
+            featured = releases.find(r => r.id === featuredId);
+        }
+        if (!featured) {
+            // Default to most recent (first in array)
+            featured = releases[0];
+        }
+        if (!featured) return;
+        // Build featured release HTML
+        featuredContainer.innerHTML = `
+            <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+            <div class="featured-info">
+                <h2 class="featured-title">${featured[`title_${currentLanguage}`]}</h2>
+                <div class="featured-artist">${featured.artist}</div>
+                <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
+                <div class="featured-buttons">
+                    <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
+                    <a href="${featured.buyUrl}" class="featured-bandcamp-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['releases.buyOn']}</a>
+                </div>
+            </div>
+        `;
+        // Listen button event
+        featuredContainer.querySelector('.featured-listen-btn').addEventListener('click', (e) => {
+            loadReleaseInPlayer(featured.id);
+            document.querySelector('.player-bar').scrollIntoView({behavior: 'smooth'});
+        });
+    }
+
     // Display releases in the grid
     function displayReleases() {
         releasesGrid.innerHTML = '';
         
         releases.forEach(release => {
+            // No longer skip featured release
+            
             const releaseItem = document.createElement('div');
             releaseItem.className = 'release-item';
             releaseItem.id = release.id;
@@ -186,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Redisplay releases with new language
         displayReleases();
+        displayFeaturedRelease(featuredReleaseId);
         
         // Update current track if one is playing
         if (currentReleaseId) {
@@ -204,6 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.textContent = translations[currentLanguage][key];
             }
         });
+        // Hero section translations
+        const heroHeading = document.querySelector('.hero-heading');
+        if (heroHeading) heroHeading.textContent = translations[currentLanguage]['hero.heading'];
+        const heroTagline = document.querySelector('.hero-tagline');
+        if (heroTagline) heroTagline.textContent = translations[currentLanguage]['hero.tagline'];
+        const heroCta = document.querySelector('.hero-cta-btn');
+        if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];
     }
 
     // Mobile nav toggle button
@@ -269,9 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // On page load, show tab from hash or default
     function initTabs() {
-        let initialTab = window.location.hash.replace('#', '') || 'releases';
+        let initialTab = window.location.hash.replace('#', '') || 'home';
         if (![...tabSections].some(s => s.id === initialTab)) {
-            initialTab = 'releases';
+            initialTab = 'home';
         }
         showTab(initialTab);
     }
