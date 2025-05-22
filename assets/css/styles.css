@@ -480,12 +480,41 @@ footer p {
     font-size: 2rem;
     margin-left: 1rem;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1200;
+}
+
+.mobile-nav-toggle.active {
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 1200;
+}
+
+/* Optionally, add a slight border for visibility */
+.mobile-nav-toggle.active {
+    border: 1px solid #222;
+}
+
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.92);
+    z-index: 1099; /* Just below the nav and hamburger */
+    transition: opacity 0.3s;
+}
+.mobile-nav-overlay.active {
+    display: block;
 }
 
 @media (max-width: 768px) {
     .mobile-nav-toggle {
         display: block;
+        z-index: 1200;
     }
     .nav-links {
         display: none;
@@ -497,6 +526,7 @@ footer p {
         flex-direction: column;
         align-items: center;
         padding: var(--spacing-md) 0;
+        z-index: 1101;
     }
     .nav-links.active {
         display: flex;
