@@ -2,7 +2,7 @@
 title: WEPN - Wales Electronic Producers Network
 description: Wales Electronic Producers Network (WEPN) - Electronic music from Wales
 baseurl: "/wepn" # the subpath of your site, e.g. /blog
-url: "https://jacksmithkeegin.github.io/wepn" # Use your GitHub Pages URL
+url: "https://jacksmithkeegin.github.io" # Use your GitHub Pages URL
 
 # Build settings
 markdown: kramdown
