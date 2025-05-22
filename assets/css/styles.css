@@ -617,25 +617,27 @@ footer p {
     flex-direction: row;
     align-items: center;
     gap: var(--spacing-xl);
-    background: rgba(0,0,0,0.45);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    padding: var(--spacing-lg);
-    max-width: 900px;
     width: 100%;
 }
 .featured-artwork {
-    width: 260px;
+    width: 500px;
     max-width: 40vw;
     border-radius: var(--border-radius);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
     background: #222;
 }
-.featured-info {
-    flex: 1;
+.featured-release-panel {
+    background: rgba(0,0,0,0.45);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: var(--spacing-lg);
+    width: 100%;
+    max-width: 100%; /* Make as wide as .container */
+    margin-top: var(--spacing-lg);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    align-items: stretch;
+    gap: var(--spacing-lg);
 }
 .featured-label {
     font-size: 1.1rem;
@@ -678,36 +680,10 @@ footer p {
     background: #1e7fdb;
     color: #fff;
 }
-.featured-release-panel {
-    background: rgba(0,0,0,0.45);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    padding: var(--spacing-lg);
-    max-width: 900px;
-    width: 100%;
-    margin-top: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--spacing-lg);
-}
-.featured-release-title {
-    font-size: 2rem;
-    margin-bottom: var(--spacing-lg);
-    position: relative;
-    color: #fff;
-    text-align: left;
-}
-.featured-release-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary-color);
-}
 @media (max-width: 900px) {
+    .featured-release-panel {
+        padding: var(--spacing-md);
+    }
     .featured-release {
         flex-direction: column;
         align-items: stretch;
@@ -715,14 +691,8 @@ footer p {
     }
     .featured-artwork {
         margin: 0 auto var(--spacing-md) auto;
-        width: 60vw;
-        max-width: 320px;
-    }
-    .featured-release-panel {
-        padding: var(--spacing-md);
-    }
-    .featured-release-title {
-        font-size: 1.3rem;
+        width: 70vw;
+        max-width: 420px;
     }
 }
 @media (max-width: 600px) {
@@ -733,11 +703,8 @@ footer p {
         font-size: 1.3rem;
     }
     .featured-artwork {
-        width: 90vw;
+        width: 95vw;
         max-width: 98vw;
-    }
-    .featured-release {
-        padding: var(--spacing-md);
     }
 }
 
