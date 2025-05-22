@@ -3,9 +3,14 @@ Need to review Welsh text
 Maybe add individual pages for releases?
 Need to allow embedding on Bandcamp and then set up player
 Will need to update tags for new domain
-Padding doesn't work when player pops up (at least on mobile) 
 Review SEO
 Add mailing list / join us section
-Need hero section for initial impact, featured release (could have this automatically on OG tags) 
 Could add artist bios / links
 Add structured data for music releases using Schema.org markup
+Deal with warning:
+          Conflict: The following destination is shared by multiple files.
+                    The written file may end up with unexpected contents.
+                    C:/Users/User/Music/wepn/_site/assets/js/releases-data.json
+                     - releases-data.html
+                     - C:/Users/User/Music/wepn/assets/js/releases-data.json
+Deal with warning on github about gems not being available (they don't seem to be used, so it still builds)
