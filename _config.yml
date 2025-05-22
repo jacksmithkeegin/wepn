@@ -1,0 +1,32 @@
+# Site settings
+title: WEPN - Wales Electronic Producers Network
+description: Wales Electronic Producers Network (WEPN) - Electronic music from Wales
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://wepn.org" # Change to your domain when ready
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Collections
+collections:
+  releases:
+    output: false
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .sass-cache/
+  - .jekyll-cache/
+  - todo.md
+  - resources/releases/makeSmallImages.py

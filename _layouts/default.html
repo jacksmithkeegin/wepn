@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+  {% include head.html %}
+  <body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    {% include header.html %}
+    
+    <!-- Bandcamp player bar -->
+    {% include player-bar.html %}
+
+    <!-- Main content area -->
+    <main id="main-content">
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/translations.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+  </body>
+</html>

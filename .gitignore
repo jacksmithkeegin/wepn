@@ -1,0 +1,18 @@
+# Jekyll generated files
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby dependencies
+.bundle/
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+
+# Specific files to exclude
+rubyinstaller.exe
