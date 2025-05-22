@@ -2,13 +2,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ site.description }}">
-  <title>{{ site.title }}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>{{ site.title }}</title>  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-  <link rel="icon" type="image/jpeg" href="{{ '/assets/images/logo_icon.jpg' | relative_url }}">
-
+  
+  <!-- Favicons -->
+  <link rel="icon" href="{{ '/assets/images/favicons/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicons/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
+  <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">
+  
   <!-- Social media meta tags for Discord, Facebook, Twitter, Bluesky -->
   <meta property="og:title" content="{{ site.title }}">
   <meta property="og:description" content="{{ site.description }}">

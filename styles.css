@@ -96,22 +96,41 @@ header {
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: 60px; /* Fixed header height */
 }
 
 .top-nav {
-    /* Remove padding to allow logo to fill full height */
+    height: 60px; /* Match header height */
     padding: 0;
 }
 
 .top-nav .container {
+    height: 60px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Center items vertically */
 }
 
+.logo {
+    height: 60px;
+    width: 150px; /* Match the width in the HTML */
+}
+
+.logo a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-image: url('../resources/images/logo_transparent.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+    font-size: 0; /* Hide any text */
+    text-indent: -9999px; /* Hide any text */
+}
+
+/* Hide the actual image since we're using a background image */
 .logo img {
-    height: 60px; /* Match the height of the nav bar */
-    width: auto;
+    display: none;
 }
 
 .nav-links {
@@ -119,6 +138,8 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center; /* Center links vertically */
+    height: 100%; /* Fill the height */
 }
 
 .nav-links li {
@@ -148,13 +169,16 @@ header {
 .language-toggle {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .language-toggle button {
     background: transparent;
     border: 1px solid var(--text-color);
     color: var(--text-color);
-    padding: 0.3rem 0.6rem;
+    height: 36px; /* or adjust as needed */
+    line-height: 36px;
+    padding: 0 0.6rem;
     margin-left: 0.5rem;
     border-radius: var(--border-radius);
     font-size: 0.8rem;
