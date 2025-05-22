@@ -577,7 +577,7 @@ footer p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg); /* Halved from var(--spacing-xl) to var(--spacing-lg) */
 }
 .hero-panel {
     text-align: center;
