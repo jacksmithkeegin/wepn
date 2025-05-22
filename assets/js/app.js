@@ -17,12 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerBar = document.querySelector('.player-bar');
     const navLinks = document.querySelector('.nav-links');
 
+    // Get baseurl from a meta tag or data attribute
+    const baseurl = document.documentElement.getAttribute('data-baseurl') || '';
+
     // Set current year in footer
     currentYearElement.textContent = new Date().getFullYear();    // Load releases data
     async function loadReleasesData() {
         try {
-            // Use relative path for better compatibility with various deployment scenarios
-            const response = await fetch('assets/js/releases-data.json');
+            // Use baseurl for compatibility with GitHub Pages and local builds
+            const response = await fetch(`${baseurl}/assets/js/releases-data.json`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

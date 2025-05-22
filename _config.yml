@@ -1,8 +1,8 @@
 # Site settings
 title: WEPN - Wales Electronic Producers Network
 description: Wales Electronic Producers Network (WEPN) - Electronic music from Wales
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://wepn.org" # Change to your domain when ready
+baseurl: "/wepn" # the subpath of your site, e.g. /blog
+url: "https://jacksmithkeegin.github.io" # Use your GitHub Pages URL
 
 # Build settings
 markdown: kramdown
