@@ -429,7 +429,7 @@ section h2::after {
     text-decoration: none;
 }
 
-.contact-info p {
+contact-info p {
     margin-bottom: var(--spacing-sm);
 }
 
@@ -637,15 +637,20 @@ footer p {
     flex-direction: column;
     gap: var(--spacing-md);
 }
-.featured-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.2em;
-}
-.featured-artist {
+.featured-label {
     font-size: 1.1rem;
-    color: #b3e0ff;
-    margin-bottom: 0.5em;
+    font-weight: 700;
+    color: #ffe082;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+.featured-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+    color: #fff;
 }
 .featured-description {
     font-size: 1.1rem;
@@ -673,6 +678,35 @@ footer p {
     background: #1e7fdb;
     color: #fff;
 }
+.featured-release-panel {
+    background: rgba(0,0,0,0.45);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: var(--spacing-lg);
+    max-width: 900px;
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-lg);
+}
+.featured-release-title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    color: #fff;
+    text-align: left;
+}
+.featured-release-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
 @media (max-width: 900px) {
     .featured-release {
         flex-direction: column;
@@ -683,6 +717,12 @@ footer p {
         margin: 0 auto var(--spacing-md) auto;
         width: 60vw;
         max-width: 320px;
+    }
+    .featured-release-panel {
+        padding: var(--spacing-md);
+    }
+    .featured-release-title {
+        font-size: 1.3rem;
     }
 }
 @media (max-width: 600px) {

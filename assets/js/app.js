@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         featuredContainer.innerHTML = `
             <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
             <div class="featured-info">
-                <h2 class="featured-title">${featured[`title_${currentLanguage}`]}</h2>
                 <div class="featured-artist">${featured.artist}</div>
                 <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
                 <div class="featured-buttons">
@@ -249,6 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroTagline) heroTagline.textContent = translations[currentLanguage]['hero.tagline'];
         const heroCta = document.querySelector('.hero-cta-btn');
         if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];
+        // Featured release title
+        const featuredTitle = document.querySelector('.featured-release-title');
+        if (featuredTitle) featuredTitle.textContent = translations[currentLanguage]['hero.featured'];
     }
 
     // Mobile nav toggle button
