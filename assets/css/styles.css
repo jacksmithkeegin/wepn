@@ -96,22 +96,40 @@ header {
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: 60px; /* Set explicit height to match logo height */
 }
 
 .top-nav {
     /* Remove padding to allow logo to fill full height */
     padding: 0;
+    height: 100%;
 }
 
 .top-nav .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
+    height: 100%; /* Ensure container takes full height of header */
+    line-height: 0; /* Remove line height spacing */
+}
+
+.logo {
+    display: flex;
+    height: 100%;
+    align-items: flex-start; /* Align to the top */
+}
+
+.logo a {
+    display: block;
+    height: 100%;
+    line-height: 0; /* Remove any line-height spacing */
 }
 
 .logo img {
-    height: 60px; /* Match the height of the nav bar */
+    height: 60px; /* Set exact height to match header */
     width: auto;
+    display: block; /* Change from inline to block */
+    object-fit: contain; /* Maintain aspect ratio */
 }
 
 .nav-links {
@@ -119,6 +137,9 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
+    height: 100%;
+    align-items: center; /* Center vertically */
+    line-height: normal; /* Restore normal line height for text */
 }
 
 .nav-links li {
@@ -148,6 +169,8 @@ header {
 .language-toggle {
     display: flex;
     align-items: center;
+    height: 100%;
+    line-height: normal; /* Restore normal line height for text */
 }
 
 .language-toggle button {
@@ -174,7 +197,7 @@ header {
 /* Player Bar */
 .player-bar {
     position: fixed;
-    top: 70px;
+    top: 60px; /* Exactly match the header height */
     left: 0;
     width: 100%;
     background-color: var(--secondary-color);
