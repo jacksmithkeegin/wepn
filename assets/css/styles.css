@@ -196,8 +196,8 @@ header {
 
 /* Player Bar */
 .player-bar {
-    position: fixed;
-    top: 60px; /* Exactly match the header height */
+    position: absolute; /* Changed from fixed to absolute */
+    top: 60px;
     left: 0;
     width: 100%;
     background-color: var(--secondary-color);
@@ -211,6 +211,7 @@ header {
 
 .player-bar.visible {
     display: block;
+    position: fixed; /* Only fixed when visible */
     height: auto;
     overflow: visible;
 }
@@ -232,13 +233,12 @@ header {
 
 /* Main Content */
 main {
-    /* Responsive padding below header (and player bar if visible) */
-    padding-top: min(12vw, 70px);
+    padding-top: 60px; /* Always match header height */
     transition: padding-top 0.3s;
 }
 
 body.player-bar-visible main {
-    padding-top: min(25vw, 180px); /* Responsive: up to 180px, but shrinks on small screens */
+    padding-top: 180px; /* Header (60px) + Player bar (120px) */
 }
 
 section {
@@ -527,10 +527,10 @@ footer p {
     }
     
     main {
-        padding-top: min(5vw, 70px);
+        padding-top: 60px; /* Always match header height */
     }
     body.player-bar-visible main {
-        padding-top: min(5vw, 150px);
+        padding-top: 150px; /* Header (60px) + Player bar (90px) */
     }
 }
 
