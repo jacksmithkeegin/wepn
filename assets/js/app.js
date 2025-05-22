@@ -321,7 +321,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (![...tabSections].some(s => s.id === initialTab)) {
             initialTab = 'home';
         }
+        // Redirect old #releases hash to #music for backward compatibility
+        if (initialTab === 'releases') {
+            initialTab = 'music';
+            history.replaceState(null, null, '#music');
+        }
         showTab(initialTab);
+    }
+
+    // Hero CTA button tab switch
+    const heroCtaBtn = document.querySelector('.hero-cta-btn');
+    if (heroCtaBtn) {
+        heroCtaBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showTab('music');
+            history.replaceState(null, null, '#music');
+        });
     }
 
     // Initialize the application

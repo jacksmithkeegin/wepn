@@ -5,6 +5,7 @@ const translations = {
         "nav.about": "About",
         "nav.contact": "Contact",
         "nav.home": "Home",
+        "nav.music": "Music",
         
         "player.nowPlaying": "Now Playing: ",
         "player.selectRelease": "Select a release",
@@ -28,13 +29,15 @@ const translations = {
         "hero.heading": "Wales Electronic Producers Network",
         "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2020",
         "hero.cta": "Discover Our Music",
-        "hero.featured": "Featured Release"
+        "hero.featured": "Featured Release",
+        "music.title": "Music"
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
         "nav.about": "Amdanom",
         "nav.contact": "Cysylltu",
         "nav.home": "Hafan",
+        "nav.music": "Cerddoriaeth",
         
         "player.nowPlaying": "Yn Chwarae Nawr: ",
         "player.selectRelease": "Dewiswch ryddhad",
@@ -58,6 +61,7 @@ const translations = {
         "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
         "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2020",
         "hero.cta": "Darganfod Ein Cerddoriaeth",
-        "hero.featured": "Rhyddhad dan Sylw"
+        "hero.featured": "Rhyddhad dan Sylw",
+        "music.title": "Cerddoriaeth"
     }
 };
