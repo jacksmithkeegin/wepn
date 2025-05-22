@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentYearElement.textContent = new Date().getFullYear();    // Load releases data
     async function loadReleasesData() {
         try {
-            const response = await fetch('/assets/js/releases-data.json');
+            // Use relative path for better compatibility with various deployment scenarios
+            const response = await fetch('assets/js/releases-data.json');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -32,9 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 title_en: r.title.en,
                 title_cy: r.title.cy || r.title.en,
                 artist: r.artists.en,
-                artwork_url: r.artwork_url || '',
-                // Update to use new Jekyll path pattern
-                artwork_small_url: r.artwork_small_url || `/assets/images/releases/small/${r.release_code.en}_small.jpg`,
+                artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
+                artwork_small_url: r.artwork_small_url || `assets/images/releases/small/${r.release_code.en}_small.jpg`,
                 bandcampEmbedUrl: r.bandcampEmbedUrl || '',
                 buyUrl: (r.link && r.link.en) || '',
                 description_en: r.description.en,
