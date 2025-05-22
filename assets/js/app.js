@@ -356,6 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.setAttribute('tabindex', '-1');
             }
         });
+        // Instantly scroll to top when switching tabs
+        window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
     // Intercept nav link clicks for tab switching
