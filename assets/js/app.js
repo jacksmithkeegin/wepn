@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         featuredContainer.innerHTML = `
             <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
             <div class="featured-info">
-                <div class="featured-artist">${featured.artist}</div>
+                <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
+                <div class="featured-artist prominent">${featured.artist}</div>
                 <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
                 <div class="featured-buttons">
                     <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
