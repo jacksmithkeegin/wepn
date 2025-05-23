@@ -652,6 +652,8 @@ footer p {
 .featured-artwork {
     width: 500px;
     max-width: 40vw;
+    height: auto;
+    object-fit: contain;
     border-radius: var(--border-radius);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
     background: #222;
@@ -733,23 +735,48 @@ footer p {
         flex-direction: column;
         align-items: stretch;
         text-align: center;
+        gap: var(--spacing-md); /* Reduce gap between items */
     }
     .featured-artwork {
         margin: 0 auto var(--spacing-md) auto;
         width: 70vw;
         max-width: 420px;
     }
+    .featured-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 @media (max-width: 600px) {
     .hero-heading {
         font-size: 2rem;
     }
+    .hero-section {
+        min-height: auto;
+        padding-top: calc(var(--spacing-lg) + 2rem);
+    }
     .featured-title {
         font-size: 1.3rem;
     }
     .featured-artwork {
-        width: 95vw;
-        max-width: 98vw;
+        width: 85vw;
+        max-width: 350px;
+        margin: 0 auto var(--spacing-md) auto;
+    }
+    .featured-release-title-main {
+        font-size: 1.7rem;
+        text-align: center;
+    }
+    .featured-artist.prominent {
+        text-align: center;
+    }
+    .featured-description {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .featured-buttons {
+        justify-content: center;
     }
 }
 
