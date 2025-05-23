@@ -597,7 +597,7 @@ footer p {
     background: none;
     color: #fff;
     padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
-    position: relative;
+    position: static; /* Changed from relative to static */
     min-height: 520px;
     display: flex;
     align-items: center;

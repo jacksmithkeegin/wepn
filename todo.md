@@ -16,3 +16,5 @@ Deal with warning:
 Deal with warning on github about gems not being available (they don't seem to be used, so it still builds)
 Getting scrolling left to right on mobile on home tab
 Work out why OG tags work on Facebook but not Discord
+WEPN doesn't actually change tab
+Home tab on mobile loses header slightly
