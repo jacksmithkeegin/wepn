@@ -14,3 +14,4 @@ Deal with warning:
                      - releases-data.html
                      - C:/Users/User/Music/wepn/assets/js/releases-data.json
 Deal with warning on github about gems not being available (they don't seem to be used, so it still builds)
+Work out why OG tags work on Facebook but not Discord

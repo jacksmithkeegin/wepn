@@ -370,6 +370,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add logo click handler to switch to home tab
+    const logoLink = document.querySelector('.logo a');
+    if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = 'home';
+            showTab(tabId);
+            history.replaceState(null, null, `#${tabId}`);
+        });
+    }
+
     // On page load, show tab from hash or default
     function initTabs() {
         let initialTab = window.location.hash.replace('#', '') || 'home';
