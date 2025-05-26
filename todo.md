@@ -7,4 +7,3 @@ Review SEO
 Add mailing list / join us section
 Could add artist bios / links
 Add structured data for music releases using Schema.org markup
-Work out why OG tags work on Facebook but not Discord

@@ -1,0 +1,31 @@
+<!-- _includes/baseurl-script.html -->
+<script>
+  // Helper function to determine if we're on Netlify or GitHub Pages
+  // and handle asset paths accordingly
+  document.addEventListener('DOMContentLoaded', function() {
+    // Only apply path fixes on Netlify production
+    // Do not run this script for local development or GitHub Pages
+    const isProduction = window.location.hostname !== 'localhost' && 
+                         window.location.hostname !== '127.0.0.1';
+    const isNetlify = isProduction && !window.location.hostname.includes('github.io');
+    
+    // If on Netlify production, update all asset links to remove the /wepn prefix
+    if (isNetlify) {
+      console.log('Netlify environment detected, adjusting asset paths');
+      
+      // Dynamically fix CSS links if needed
+      document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        if (link.href.includes('/wepn/assets/')) {
+          link.href = link.href.replace('/wepn/assets/', '/assets/');
+        }
+      });
+      
+      // Fix image sources
+      document.querySelectorAll('img').forEach(img => {
+        if (img.src.includes('/wepn/assets/')) {
+          img.src = img.src.replace('/wepn/assets/', '/assets/');
+        }
+      });
+    }
+  });
+</script>

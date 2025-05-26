@@ -16,17 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const currentYearElement = document.getElementById('current-year');
     const playerBar = document.querySelector('.player-bar');
-    const navLinks = document.querySelector('.nav-links');
-
-    // Get baseurl from a meta tag or data attribute
+    const navLinks = document.querySelector('.nav-links');    // Get baseurl from a meta tag or data attribute
     const baseurl = document.documentElement.getAttribute('data-baseurl') || '';
+    
+    // Helper to determine environment
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const isNetlify = !window.location.hostname.includes('github.io') && !isLocalhost;
+    
+    // Build proper asset paths for all environments
+    function getAssetPath(path) {
+        // Make sure path starts with /
+        const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+        return isNetlify ? normalizedPath : `${baseurl}${normalizedPath}`;
+    }
 
     // Set current year in footer
     currentYearElement.textContent = new Date().getFullYear();    // Load releases data
     async function loadReleasesData() {
-        try {
-            // Use baseurl for compatibility with GitHub Pages and local builds
-            const response = await fetch(`${baseurl}/assets/js/releases-data.json`);
+        try {            // Use baseurl for compatibility with GitHub Pages and local builds
+            const response = await fetch(getAssetPath('/assets/js/releases-data.json'));
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -36,9 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: r.release_code.en,
                 title_en: r.title.en,
                 title_cy: r.title.cy || r.title.en,
-                artist: r.artists.en,
-                artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
-                artwork_small_url: r.artwork_small_url || `assets/images/releases/small/${r.release_code.en}_small.jpg`,
+                artist: r.artists.en,                artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
+                artwork_small_url: r.artwork_small_url || getAssetPath(`/assets/images/releases/small/${r.release_code.en}_small.jpg`),
                 bandcampEmbedUrl: r.bandcampEmbedUrl || '',
                 buyUrl: (r.link && r.link.en) || '',
                 description_en: r.description.en,

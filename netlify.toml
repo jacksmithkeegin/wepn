@@ -1,6 +1,15 @@
 [build]
-  command = "bundle exec jekyll build"
+  command = "bundle exec jekyll build --config _config.yml,_config_netlify.yml && cp _redirects _site/"
   publish = "_site"
 
 [build.environment]
   RUBY_VERSION = "3.2.0"
+  JEKYLL_ENV = "production"
+  NETLIFY_DEPLOYMENT = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"

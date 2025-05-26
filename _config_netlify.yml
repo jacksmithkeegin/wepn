@@ -1,0 +1,6 @@
+# Netlify-specific config overrides
+baseurl: "" # blank for Netlify (no subpath)
+url: "" # Netlify will use relative URLs
+
+# Additional settings for Netlify deployment
+netlify: true # flag we can check in templates
