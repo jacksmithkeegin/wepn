@@ -1,9 +1,18 @@
+# Big
+Need to allow embedding on Bandcamp and then set up player
+Add individual pages for releases
+Add artist bios / links
+Add structured data for music releases using Schema.org markup
+
+# Medium
+Add optional 'upcoming' section to replace featured release with a time limit (i.e. after release date reverts to featured release) 
 Need image 1200x630 for OG tags
 Need to review Welsh text
-Maybe add individual pages for releases?
-Need to allow embedding on Bandcamp and then set up player
-Will need to update tags for new domain
 Review SEO
 Add mailing list / join us section
-Could add artist bios / links
-Add structured data for music releases using Schema.org markup
+
+# Small
+Will need to update tags for new domain
+Update about page once Sunbane provides text
+Show catalogue numbers for all releases (should include in names for consistency)
+Add youtube and instagram links once Sunbane provides
