@@ -9,7 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cache DOM elements
     const releasesGrid = document.getElementById('releases-grid');
     const bandcampPlayer = document.getElementById('bandcamp-player');
-    const currentTrackElement = document.getElementById('current-track');
+    // Patch: If currentTrackElement is null (because Now Playing was removed), create a dummy span to avoid errors
+    let currentTrackElement = document.getElementById('current-track');
+    if (!currentTrackElement) {
+        currentTrackElement = document.createElement('span');
+        currentTrackElement.id = 'current-track';
+        // Optionally, keep it hidden
+        currentTrackElement.style.display = 'none';
+        // Insert into DOM for compatibility
+        if (bandcampPlayer && bandcampPlayer.parentNode) {
+            bandcampPlayer.parentNode.insertBefore(currentTrackElement, bandcampPlayer);
+        }
+    }
     const languageButtons = {
         en: document.getElementById('lang-en'),
         cy: document.getElementById('lang-cy')

@@ -196,11 +196,11 @@ header {
 
 /* Player Bar */
 .player-bar {
-    position: absolute; /* Changed from fixed to absolute */
+    position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: var(--secondary-color);
+    background-color:rgba(0, 0, 0, 0.9);
     z-index: 999;
     padding: min(2.5vw, 0.25rem) 0; /* Responsive vertical padding, max 2.5vw, min 0.25rem */
     display: none;
@@ -211,7 +211,7 @@ header {
 
 .player-bar.visible {
     display: block;
-    position: fixed; /* Only fixed when visible */
+    position: fixed;
     height: auto;
     overflow: visible;
 }
@@ -219,16 +219,27 @@ header {
 .player-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 700px; /* Limit width to 700px */
+    margin: 0 auto;
+    /* Ensures the player matches the width of other main elements */
 }
 
+.player-bar iframe#bandcamp-player {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    background: #ffffff;
+}
+
+/* Remove Now Playing styles */
 .now-playing {
-    font-size: 1rem;
-    margin-bottom: var(--spacing-sm);
-    font-weight: 500;
-}
-
-#current-track {
-    color: var(--primary-color);
+    display: none !important;
 }
 
 /* Main Content */
