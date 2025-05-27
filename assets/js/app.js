@@ -423,6 +423,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Close player bar logic
+    const closePlayerBtn = document.querySelector('.close-player-bar');
+    if (closePlayerBtn) {
+        closePlayerBtn.addEventListener('click', () => {
+            playerBar.classList.remove('visible');
+            document.body.classList.remove('player-bar-visible');
+            // Optionally pause/clear the player
+            bandcampPlayer.src = '';
+            currentReleaseId = null;
+        });
+    }
+
     // Initialize the application
     function init() {
         // Set initial language based on browser settings

@@ -224,6 +224,7 @@ header {
     max-width: 700px; /* Limit width to 700px */
     margin: 0 auto;
     /* Ensures the player matches the width of other main elements */
+    position: relative;
 }
 
 .player-bar iframe#bandcamp-player {
@@ -842,4 +843,40 @@ footer p {
 
 .home-section-bg {
     background-color: rgba(255, 255, 255, 0.05);
+}
+.close-player-bar {
+    position: absolute;
+    top: 0;
+    right: -48px; /* Move button outside the player to the right */
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 2.1rem;
+    line-height: 36px;
+    text-align: center;
+    padding: 0 0 6px 2px; /* Nudge right and up for visual centering */
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, right 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close-player-bar:hover, .close-player-bar:focus {
+    background: var(--primary-color);
+    color: #fff;
+    outline: none;
+}
+.player-wrapper {
+    position: relative;
+}
+@media (max-width: 900px) {
+    .close-player-bar {
+        right: 0;
+        top: -48px;
+    }
 }
