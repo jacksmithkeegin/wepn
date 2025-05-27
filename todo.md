@@ -1,10 +1,10 @@
 # Big
-Need to allow embedding on Bandcamp and then set up player
 Add individual pages for releases
 Add artist bios / links
 Add structured data for music releases using Schema.org markup
 
 # Medium
+Make player smaller and add close player button on mobile
 Add optional 'upcoming' section to replace featured release with a time limit (i.e. after release date reverts to featured release) 
 Need image 1200x630 for OG tags
 Need to review Welsh text
