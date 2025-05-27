@@ -19,7 +19,7 @@
     en: https://wales-epn.bandcamp.com/album/sunbane-eigengrau
   artwork_url: assets/images/releases/big/PRODUCT_S002_EIGNENGRAU_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_S002_EIGNENGRAU_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=424674946/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=424674946/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_005_COMFORT
@@ -37,7 +37,7 @@
     en: https://wales-epn.bandcamp.com/album/product-005-comfort
   artwork_url: assets/images/releases/big/PRODUCT_005_COMFORT_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_005_COMFORT_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=3879464307/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=307507743/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_004_UNITY
@@ -55,7 +55,7 @@
     en: https://wales-epn.bandcamp.com/album/product-004-unity
   artwork_url: assets/images/releases/big/PRODUCT_004_UNITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_004_UNITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2771548797/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2983030470/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_003_05_TRANSIENT
@@ -73,7 +73,7 @@
     en: https://wales-epn.bandcamp.com/album/product-003-05-transient
   artwork_url: assets/images/releases/big/PRODUCT_003_05_TRANSIENT_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_05_TRANSIENT_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=547340651/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1806755848/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_003_04_LARYNX
@@ -91,7 +91,7 @@
     en: https://wales-epn.bandcamp.com/album/product-003-04-larynx
   artwork_url: assets/images/releases/big/PRODUCT_003_04_LARYNX_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_04_LARYNX_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=324244044/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4079767905/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_003_03_TRINITY
@@ -109,7 +109,7 @@
     en: https://wales-epn.bandcamp.com/album/product-003-03-trinity
   artwork_url: assets/images/releases/big/PRODUCT_003_03_TRINITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_03_TRINITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1293128428/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=864813109/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_003_02_NOSTALGIA
@@ -127,7 +127,7 @@
     en: https://wales-epn.bandcamp.com/album/product-003-02-nostalgia
   artwork_url: assets/images/releases/big/PRODUCT_003_02_NOSTALGIA_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_02_NOSTALGIA_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=3059820855/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1355110797/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_003_01_SINGULAR
@@ -145,7 +145,7 @@
     en: https://wales-epn.bandcamp.com/album/product-003-01-singular
   artwork_url: assets/images/releases/big/PRODUCT_003_01_SINGULAR_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_01_SINGULAR_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1598476965/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1149959447/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_002_COMMUNITY
@@ -163,7 +163,7 @@
     en: https://wales-epn.bandcamp.com/album/product-002-community
   artwork_url: assets/images/releases/big/PRODUCT_002_COMMUNITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_002_COMMUNITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=3033900455/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=562378794/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
     en: PRODUCT_001_LUNAR
@@ -181,4 +181,4 @@
     en: https://wales-epn.bandcamp.com/album/product-001-lunar
   artwork_url: assets/images/releases/big/PRODUCT_001_LUNAR_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_001_LUNAR_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2452431345/size=large/bgcol=333333/linkcol=0f91ff/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2300872844/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
