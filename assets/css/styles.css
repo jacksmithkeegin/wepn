@@ -739,27 +739,137 @@ footer p {
     margin-bottom: 0.7em;
     text-align: left;
 }
+
+/* Upcoming Release Panel - Different styling from featured */
+.upcoming-release-panel {
+    background: rgba(76, 175, 80, 0.15); /* Green tint to distinguish from featured */
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: var(--spacing-lg);
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-lg);
+    border: 2px solid rgba(76, 175, 80, 0.3); /* Subtle green border */
+}
+
+.upcoming-release {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xl);
+    width: 100%;
+}
+
+.upcoming-artwork {
+    width: 500px;
+    max-width: 40vw;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    background: #222;
+}
+
+.upcoming-release-panel .upcoming-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.1;
+    text-align: left;
+    position: relative;
+}
+
+.upcoming-release-panel .upcoming-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #4caf50; /* Green accent color for upcoming */
+}
+
+.upcoming-release-title-main {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.3em;
+    line-height: 1.1;
+    text-align: left;
+}
+
+.upcoming-artist.prominent {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #c8e6c9; /* Light green tint for artist name */
+    margin-bottom: 0.7em;
+    text-align: left;
+}
+
+.upcoming-description {
+    font-size: 1.1rem;
+    color: #f3f3f3;
+    margin-bottom: 0.7em;
+}
+
+.upcoming-release-date {
+    font-size: 1rem;
+    color: #4caf50; /* Green color for release date */
+    font-weight: 600;
+    margin-bottom: 0.7em;
+}
+
+.upcoming-buttons {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 0.5em;
+}
+
+.upcoming-preorder-btn {
+    background: #4caf50; /* Green background for upcoming */
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.7rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.upcoming-preorder-btn:hover {
+    background: #388e3c; /* Darker green on hover */
+    color: #fff;
+}
+
 @media (max-width: 900px) {
-    .featured-release-panel {
+    .featured-release-panel, .upcoming-release-panel {
         padding: var(--spacing-md);
     }
-    .featured-release {
+    .featured-release, .upcoming-release {
         flex-direction: column;
         align-items: stretch;
         text-align: center;
         gap: var(--spacing-md); /* Reduce gap between items */
     }
-    .featured-artwork {
+    .featured-artwork, .upcoming-artwork {
         margin: 0 auto var(--spacing-md) auto;
         width: 70vw;
         max-width: 420px;
     }
-    .featured-info {
+    .featured-info, .upcoming-info {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 }
+
 @media (max-width: 600px) {
     .hero-heading {
         font-size: 2rem;
@@ -771,23 +881,23 @@ footer p {
     .featured-title {
         font-size: 1.3rem;
     }
-    .featured-artwork {
+    .featured-artwork, .upcoming-artwork {
         width: 85vw;
         max-width: 350px;
         margin: 0 auto var(--spacing-md) auto;
     }
-    .featured-release-title-main {
+    .featured-release-title-main, .upcoming-release-title-main {
         font-size: 1.7rem;
         text-align: center;
     }
-    .featured-artist.prominent {
+    .featured-artist.prominent, .upcoming-artist.prominent {
         text-align: center;
     }
-    .featured-description {
+    .featured-description, .upcoming-description {
         font-size: 1rem;
         text-align: center;
     }
-    .featured-buttons {
+    .featured-buttons, .upcoming-buttons {
         justify-content: center;
     }
 }

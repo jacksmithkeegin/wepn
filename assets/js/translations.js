@@ -30,6 +30,7 @@ const translations = {
         "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2020",
         "hero.cta": "Discover Our Music",
         "hero.featured": "Featured Release",
+        "hero.upcoming": "Upcoming Release",
         "music.title": "Music"
     },
     cy: {
@@ -62,6 +63,7 @@ const translations = {
         "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2020",
         "hero.cta": "Darganfod Ein Cerddoriaeth",
         "hero.featured": "Rhyddhad dan Sylw",
+        "hero.upcoming": "Rhyddhad i Ddod",
         "music.title": "Cerddoriaeth"
     }
 };

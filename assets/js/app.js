@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 description_en: r.description.en,
                 description_cy: r.description.cy || r.description.en,
                 release_date_en: r.release_date.en,
-                release_date_cy: r.release_date.cy || r.release_date.en
-            }));
+                release_date_cy: r.release_date.cy || r.release_date.en            }));
+            displayUpcomingRelease(); // Show upcoming release if any
             displayFeaturedRelease(); // Show hero featured
             displayReleases();
             checkUrlFragment();
@@ -90,9 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         return null;
-    }
-
-    // Find the most recent release with a release date in the past
+    }    // Find the most recent release with a release date in the past
     function getMostRecentPastRelease() {
         const now = new Date();
         const pastReleases = releases.filter(release => {
@@ -113,6 +111,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         return pastReleases[0];
+    }
+
+    // Find the earliest future release
+    function getEarliestFutureRelease() {
+        const now = new Date();
+        const futureReleases = releases.filter(release => {
+            const releaseDate = parseReleaseDate(release.release_date_en);
+            return releaseDate && releaseDate > now;
+        });
+        
+        if (futureReleases.length === 0) {
+            return null;
+        }
+        
+        // Sort by release date ascending and return the earliest
+        futureReleases.sort((a, b) => {
+            const dateA = parseReleaseDate(a.release_date_en);
+            const dateB = parseReleaseDate(b.release_date_en);
+            return dateA - dateB;
+        });
+        
+        return futureReleases[0];
+    }
+
+    // Render the upcoming release panel
+    function displayUpcomingRelease() {
+        const upcomingContainer = document.getElementById('upcoming-release');
+        const upcomingPanel = document.getElementById('upcoming-release-panel');
+        
+        if (!upcomingContainer || !upcomingPanel) return;
+        
+        const upcoming = getEarliestFutureRelease();
+        
+        if (!upcoming) {
+            // Hide the panel if no upcoming releases
+            upcomingPanel.style.display = 'none';
+            return;
+        }
+        
+        // Show the panel
+        upcomingPanel.style.display = 'flex';
+        
+        // Build upcoming release HTML
+        upcomingContainer.innerHTML = `
+            <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+            <div class="upcoming-info">
+                <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
+                <div class="upcoming-artist prominent">${upcoming.artist}</div>
+                <div class="upcoming-release-date">Release Date: ${upcoming[`release_date_${currentLanguage}`]}</div>
+                <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
+                <div class="upcoming-buttons">
+                    ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">Pre-order on Bandcamp</a>` : ''}
+                </div>
+            </div>
+        `;
     }
 
     // Render the hero featured release (now always shows, does not affect releases grid)
@@ -311,14 +364,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // Featured release title
         const featuredTitle = document.querySelector('.featured-release-title');
         if (featuredTitle) featuredTitle.textContent = translations[currentLanguage]['hero.featured'];
-    }
-
-    // Update only text content for releases and featured release when switching language
+    }    // Update only text content for releases and featured release when switching language
     function updateReleaseTexts() {
+        // Update upcoming release texts
+        const upcomingContainer = document.getElementById('upcoming-release');
+        if (upcomingContainer) {
+            const upcoming = getEarliestFutureRelease();
+            if (upcoming) {
+                // Update upcoming release text fields only
+                const titleMain = upcomingContainer.querySelector('.upcoming-release-title-main');
+                if (titleMain) titleMain.textContent = upcoming[`title_${currentLanguage}`];
+                const artist = upcomingContainer.querySelector('.upcoming-artist.prominent');
+                if (artist) artist.textContent = upcoming.artist;
+                const desc = upcomingContainer.querySelector('.upcoming-description');
+                if (desc) desc.textContent = upcoming[`description_${currentLanguage}`];
+                const releaseDate = upcomingContainer.querySelector('.upcoming-release-date');
+                if (releaseDate) releaseDate.textContent = `Release Date: ${upcoming[`release_date_${currentLanguage}`]}`;
+                const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
+                if (preorderBtn) preorderBtn.textContent = 'Pre-order on Bandcamp';
+            }
+        }
+        
         // Update featured release texts
         const featuredContainer = document.getElementById('featured-release');
         if (featuredContainer) {
-            const featured = releases.find(r => r.id === (featuredReleaseId || releases[0]?.id));
+            const featured = releases.find(r => r.id === (featuredReleaseId || getMostRecentPastRelease()?.id));
             if (featured) {
                 // Update featured release text fields only
                 const titleMain = featuredContainer.querySelector('.featured-release-title-main');
