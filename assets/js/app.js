@@ -166,12 +166,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-    }
-
-    // Render the hero featured release (now always shows, does not affect releases grid)
+    }    // Render the hero featured release (hidden when upcoming release is showing)
     function displayFeaturedRelease(featuredId) {
         const featuredContainer = document.getElementById('featured-release');
-        if (!featuredContainer) return;
+        const featuredPanel = document.getElementById('featured-release-panel');
+        if (!featuredContainer || !featuredPanel) return;
+        
+        // Hide featured release panel if there's an upcoming release
+        const upcomingRelease = getEarliestFutureRelease();
+        if (upcomingRelease) {
+            featuredPanel.style.display = 'none';
+            return;
+        }
+        
+        // Show featured release panel if no upcoming release
+        featuredPanel.style.display = 'flex';
+        
         let featured = null;
         if (featuredId) {
             featured = releases.find(r => r.id === featuredId);
