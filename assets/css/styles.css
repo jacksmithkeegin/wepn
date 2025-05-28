@@ -742,7 +742,7 @@ footer p {
 
 /* Upcoming Release Panel - Different styling from featured */
 .upcoming-release-panel {
-    background: rgba(76, 175, 80, 0.15); /* Green tint to distinguish from featured */
+    background: rgba(33, 150, 243, 0.15); /* Blue tint to distinguish from featured */
     border-radius: var(--border-radius);
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
     padding: var(--spacing-lg);
@@ -753,7 +753,7 @@ footer p {
     flex-direction: column;
     align-items: stretch;
     gap: var(--spacing-lg);
-    border: 2px solid rgba(76, 175, 80, 0.3); /* Subtle green border */
+    border: 2px solid rgba(33, 150, 243, 0.3); /* Subtle blue border */
 }
 
 .upcoming-release {
@@ -791,7 +791,7 @@ footer p {
     left: 0;
     width: 60px;
     height: 3px;
-    background-color: #4caf50; /* Green accent color for upcoming */
+    background-color: var(--primary-color); /* Use same blue accent as featured */
 }
 
 .upcoming-release-title-main {
@@ -806,7 +806,7 @@ footer p {
 .upcoming-artist.prominent {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #c8e6c9; /* Light green tint for artist name */
+    color: #b3e0ff; /* Same light blue tint as featured artist */
     margin-bottom: 0.7em;
     text-align: left;
 }
@@ -819,7 +819,7 @@ footer p {
 
 .upcoming-release-date {
     font-size: 1rem;
-    color: #4caf50; /* Green color for release date */
+    color: var(--primary-color); /* Use primary blue color for release date */
     font-weight: 600;
     margin-bottom: 0.7em;
 }
@@ -831,7 +831,7 @@ footer p {
 }
 
 .upcoming-preorder-btn {
-    background: #4caf50; /* Green background for upcoming */
+    background: var(--primary-color); /* Use primary blue background */
     color: #fff;
     border: none;
     border-radius: var(--border-radius);
@@ -844,7 +844,7 @@ footer p {
 }
 
 .upcoming-preorder-btn:hover {
-    background: #388e3c; /* Darker green on hover */
+    background: #1e7fdb; /* Same hover color as other buttons */
     color: #fff;
 }
 
