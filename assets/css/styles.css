@@ -341,6 +341,11 @@ section h2::after {
     opacity: 1;
 }
 
+.release-item:hover .upcoming-badge,
+.release-item:focus-within .upcoming-badge {
+    opacity: 0;
+}
+
 .release-title {
     color: white;
     font-weight: 600;
@@ -864,6 +869,7 @@ footer p {
     letter-spacing: 0.05em;
     z-index: 2;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: opacity var(--transition-speed) ease;
 }
 
 .preorder-btn {
