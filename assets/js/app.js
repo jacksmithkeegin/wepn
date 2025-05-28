@@ -209,9 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadReleaseInPlayer(featured.id);
             document.querySelector('.player-bar').scrollIntoView({behavior: 'smooth'});
         });
-    }
-
-    // Display releases in the grid
+    }    // Display releases in the grid
     function displayReleases() {
         releasesGrid.innerHTML = '';
         
@@ -226,6 +224,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (release.id === currentReleaseId) {
                 releaseItem.classList.add('active');
             }
+              // Check if this is a future release
+            const releaseDate = parseReleaseDate(release.release_date_en);
+            const now = new Date();
+            const isFutureRelease = releaseDate && releaseDate > now;
+            
+            // Add upcoming badge and different button layout for future releases
+            let upcomingBadge = '';
+            let buttonsHtml = '';
+            
+            if (isFutureRelease) {
+                releaseItem.classList.add('upcoming-release');
+                upcomingBadge = '<div class="upcoming-badge">Upcoming</div>';
+                buttonsHtml = `
+                    <a href="${release.buyUrl}" class="preorder-btn" target="_blank" rel="noopener noreferrer">
+                        Pre-order on Bandcamp
+                    </a>
+                `;
+            } else {
+                buttonsHtml = `
+                    <button class="listen-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}">
+                        ${translations[currentLanguage]['releases.listenButton']}
+                    </button>
+                    <a href="${release.buyUrl}" class="buy-link" target="_blank" rel="noopener noreferrer">
+                        ${translations[currentLanguage]['releases.buyOn']}
+                    </a>
+                `;
+            }
             
             releaseItem.innerHTML = `
                 <img 
@@ -234,24 +259,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     class="release-image"
                     loading="lazy"
                 >
+                ${upcomingBadge}
                 <div class="release-overlay">
                     <h3 class="release-title">${release[`title_${currentLanguage}`]}</h3>
                     <p class="release-artist">${release.artist}</p>
                     <div class="release-buttons">
-                        <button class="listen-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}">
-                            ${translations[currentLanguage]['releases.listenButton']}
-                        </button>
-                        <a href="${release.buyUrl}" class="buy-link" target="_blank" rel="noopener noreferrer">
-                            ${translations[currentLanguage]['releases.buyOn']}
-                        </a>
+                        ${buttonsHtml}
                     </div>
                 </div>
             `;
             
             releasesGrid.appendChild(releaseItem);
-        });
-        
-        // Add event listeners to listen buttons
+        });        
+        // Add event listeners to listen buttons (only for available releases)
         document.querySelectorAll('.listen-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const releaseId = e.target.dataset.id;
@@ -266,8 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.release-item').forEach(item => {
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                    const releaseId = item.id;
-                    loadReleaseInPlayer(releaseId);
+                    // Only load in player if it's not an upcoming release
+                    if (!item.classList.contains('upcoming-release')) {
+                        const releaseId = item.id;
+                        loadReleaseInPlayer(releaseId);
+                    }
                     e.preventDefault();
                 }
             });
@@ -412,8 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
                 if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
             }
-        }
-        // Update releases grid texts
+        }        // Update releases grid texts
         document.querySelectorAll('.release-item').forEach(item => {
             const release = releases.find(r => r.id === item.id);
             if (!release) return;
@@ -425,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
             const buyBtn = item.querySelector('.buy-link');
             if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
+            // Note: .preorder-btn text "Pre-order on Bandcamp" is intentionally not translated as it's platform-specific
             // Update alt attribute for image
             const img = item.querySelector('.release-image');
             if (img) img.alt = release[`title_${currentLanguage}`];

@@ -849,6 +849,52 @@ footer p {
     color: #fff;
 }
 
+/* Upcoming release styling for grid items */
+.release-item.upcoming-release {
+    background: rgba(33, 150, 243, 0.1); /* Subtle blue tint for upcoming releases */
+}
+
+.upcoming-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.preorder-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.preorder-btn:hover {
+    background-color: #1e7fdb;
+    color: white;
+    text-decoration: none;
+}
+
+/* Adjust upcoming release button layout */
+.release-item.upcoming-release .release-buttons {
+    align-items: center;
+}
+
 @media (max-width: 900px) {
     .featured-release-panel, .upcoming-release-panel {
         padding: var(--spacing-md);
