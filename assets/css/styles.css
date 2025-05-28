@@ -478,10 +478,6 @@ footer p {
 
 /* Remove old contact section spacing if any */
 .contact-section { display: none; }
-/* Highlight selected release */
-.release-item.active {
-    box-shadow: 0 0 0 3px var(--primary-color);
-}
 
 /* Mobile Navigation */
 .mobile-nav-toggle {
