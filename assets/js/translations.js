@@ -24,14 +24,16 @@ const translations = {
         "contact.soundcloud": "SoundCloud",
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
-        "contact.email": "Email: ",
-
-        "hero.heading": "Wales Electronic Producers Network",
+        "contact.email": "Email: ",        "hero.heading": "Wales Electronic Producers Network",
         "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2020",
         "hero.cta": "Discover Our Music",
         "hero.featured": "Featured Release",
         "hero.upcoming": "Upcoming Release",
-        "music.title": "Music"
+        "music.title": "Music",
+        
+        "upcoming.badge": "Upcoming",
+        "upcoming.releaseDate": "Release Date:",
+        "upcoming.preorderButton": "Pre-order on Bandcamp"
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -57,13 +59,15 @@ const translations = {
         "contact.soundcloud": "SoundCloud",
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
-        "contact.email": "E-bost: ",
-
-        "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
+        "contact.email": "E-bost: ",        "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
         "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2020",
         "hero.cta": "Darganfod Ein Cerddoriaeth",
         "hero.featured": "Rhyddhad dan Sylw",
         "hero.upcoming": "Rhyddhad i Ddod",
-        "music.title": "Cerddoriaeth"
+        "music.title": "Cerddoriaeth",
+        
+        "upcoming.badge": "I Ddod",
+        "upcoming.releaseDate": "Dyddiad Rhyddhau:",
+        "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp"
     }
 };

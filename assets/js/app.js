@@ -152,17 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show the panel
         upcomingPanel.style.display = 'flex';
-        
-        // Build upcoming release HTML
+          // Build upcoming release HTML
         upcomingContainer.innerHTML = `
             <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
             <div class="upcoming-info">
                 <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
                 <div class="upcoming-artist prominent">${upcoming.artist}</div>
-                <div class="upcoming-release-date">Release Date: ${upcoming[`release_date_${currentLanguage}`]}</div>
+                <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
                 <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
                 <div class="upcoming-buttons">
-                    ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">Pre-order on Bandcamp</a>` : ''}
+                    ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['upcoming.preorderButton']}</a>` : ''}
                 </div>
             </div>
         `;
@@ -232,13 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add upcoming badge and different button layout for future releases
             let upcomingBadge = '';
             let buttonsHtml = '';
-            
-            if (isFutureRelease) {
+              if (isFutureRelease) {
                 releaseItem.classList.add('upcoming-release');
-                upcomingBadge = '<div class="upcoming-badge">Upcoming</div>';
+                upcomingBadge = `<div class="upcoming-badge">${translations[currentLanguage]['upcoming.badge']}</div>`;
                 buttonsHtml = `
                     <a href="${release.buyUrl}" class="preorder-btn" target="_blank" rel="noopener noreferrer">
-                        Pre-order on Bandcamp
+                        ${translations[currentLanguage]['upcoming.preorderButton']}
                     </a>
                 `;
             } else {
@@ -408,13 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const titleMain = upcomingContainer.querySelector('.upcoming-release-title-main');
                 if (titleMain) titleMain.textContent = upcoming[`title_${currentLanguage}`];
                 const artist = upcomingContainer.querySelector('.upcoming-artist.prominent');
-                if (artist) artist.textContent = upcoming.artist;
-                const desc = upcomingContainer.querySelector('.upcoming-description');
+                if (artist) artist.textContent = upcoming.artist;                const desc = upcomingContainer.querySelector('.upcoming-description');
                 if (desc) desc.textContent = upcoming[`description_${currentLanguage}`];
                 const releaseDate = upcomingContainer.querySelector('.upcoming-release-date');
-                if (releaseDate) releaseDate.textContent = `Release Date: ${upcoming[`release_date_${currentLanguage}`]}`;
+                if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
-                if (preorderBtn) preorderBtn.textContent = 'Pre-order on Bandcamp';
+                if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
             }
         }
         
@@ -442,12 +439,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = item.querySelector('.release-title');
             if (title) title.textContent = release[`title_${currentLanguage}`];
             const artist = item.querySelector('.release-artist');
-            if (artist) artist.textContent = release.artist;
-            const listenBtn = item.querySelector('.listen-btn');
+            if (artist) artist.textContent = release.artist;            const listenBtn = item.querySelector('.listen-btn');
             if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
             const buyBtn = item.querySelector('.buy-link');
             if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
-            // Note: .preorder-btn text "Pre-order on Bandcamp" is intentionally not translated as it's platform-specific
+            const preorderBtn = item.querySelector('.preorder-btn');
+            if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
+            const upcomingBadge = item.querySelector('.upcoming-badge');
+            if (upcomingBadge) upcomingBadge.textContent = translations[currentLanguage]['upcoming.badge'];
             // Update alt attribute for image
             const img = item.querySelector('.release-image');
             if (img) img.alt = release[`title_${currentLanguage}`];
