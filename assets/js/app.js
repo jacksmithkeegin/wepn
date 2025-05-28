@@ -71,6 +71,48 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading releases:', error);
             releasesGrid.innerHTML = '<p class="error">Failed to load releases. Please try again later.</p>';
         }
+    }    // Parse release date string to Date object
+    function parseReleaseDate(releaseDateStr) {
+        if (!releaseDateStr) return null;
+        
+        // Handle "Month Day, Year" format (e.g., "June 6, 2025")
+        const fullDateMatch = releaseDateStr.match(/^([A-Z][a-z]+)\s+(\d+),\s+(\d{4})$/);
+        if (fullDateMatch) {
+            const [, month, day, year] = fullDateMatch;
+            return new Date(`${month} ${day}, ${year}`);
+        }
+        
+        // Handle "Month Year" format (e.g., "November 2021") - assume first day of month
+        const monthYearMatch = releaseDateStr.match(/^([A-Z][a-z]+)\s+(\d{4})$/);
+        if (monthYearMatch) {
+            const [, month, year] = monthYearMatch;
+            return new Date(`${month} 1, ${year}`);
+        }
+        
+        return null;
+    }
+
+    // Find the most recent release with a release date in the past
+    function getMostRecentPastRelease() {
+        const now = new Date();
+        const pastReleases = releases.filter(release => {
+            const releaseDate = parseReleaseDate(release.release_date_en);
+            return releaseDate && releaseDate <= now;
+        });
+        
+        if (pastReleases.length === 0) {
+            // If no past releases, fall back to first release in array
+            return releases[0];
+        }
+        
+        // Sort by release date descending and return the most recent
+        pastReleases.sort((a, b) => {
+            const dateA = parseReleaseDate(a.release_date_en);
+            const dateB = parseReleaseDate(b.release_date_en);
+            return dateB - dateA;
+        });
+        
+        return pastReleases[0];
     }
 
     // Render the hero featured release (now always shows, does not affect releases grid)
@@ -82,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
             featured = releases.find(r => r.id === featuredId);
         }
         if (!featured) {
-            // Default to most recent (first in array)
-            featured = releases[0];
+            // Default to most recent release with past release date
+            featured = getMostRecentPastRelease();
         }
         if (!featured) return;
         // Build featured release HTML
