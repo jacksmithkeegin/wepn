@@ -15,4 +15,4 @@ Thumbs.db
 *.bak
 
 # Specific files to exclude
-rubyinstaller.exe
+node_modules/
