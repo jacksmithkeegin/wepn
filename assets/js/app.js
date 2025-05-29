@@ -1,8 +1,8 @@
 // app.js
-document.addEventListener('DOMContentLoaded', () => {
-    // State variables
+document.addEventListener('DOMContentLoaded', () => {    // State variables
     let currentLanguage = 'en';
     let releases = [];
+    let displayConfig = null;
     let currentReleaseId = null;
     let featuredReleaseId = null;
 
@@ -39,18 +39,41 @@ document.addEventListener('DOMContentLoaded', () => {
         // Make sure path starts with /
         const normalizedPath = path.startsWith('/') ? path : `/${path}`;
         return isNetlify ? normalizedPath : `${baseurl}${normalizedPath}`;
+    }    // Set current year in footer
+    currentYearElement.textContent = new Date().getFullYear();    // Load display configuration
+    async function loadDisplayConfig() {
+        try {
+            const response = await fetch(getAssetPath('/assets/js/display-config-data.json'));
+            if (!response.ok) {
+                throw new Error('Display config not found, using defaults');
+            }
+            displayConfig = await response.json();
+            console.log('Loaded display config:', displayConfig); // Debug log
+        } catch (error) {
+            console.warn('Using default display configuration:', error.message);
+            // Default configuration
+            displayConfig = {
+                upcomingRelease: {
+                    show: true,
+                    mode: 'nextUp',
+                    manualReleaseCode: null
+                },
+                featuredRelease: {
+                    mode: 'mostRecent',
+                    manualReleaseCode: null
+                }
+            };
+        }
     }
 
-    // Set current year in footer
-    currentYearElement.textContent = new Date().getFullYear();    // Load releases data
+    // Load releases data
     async function loadReleasesData() {
         try {            // Use baseurl for compatibility with GitHub Pages and local builds
             const response = await fetch(getAssetPath('/assets/js/releases-data.json'));
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const rawReleases = await response.json();
-            // Map release_info.json structure to expected fields
+            const rawReleases = await response.json();            // Map release_info.json structure to expected fields
             releases = rawReleases.map(r => ({
                 id: r.release_code.en,
                 title_en: r.title.en,
@@ -61,10 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 buyUrl: (r.link && r.link.en) || '',
                 description_en: r.description.en,
                 description_cy: r.description.cy || r.description.en,
+                detailed_description_en: r.detailed_description ? r.detailed_description.en : null,
+                detailed_description_cy: r.detailed_description ? (r.detailed_description.cy || r.detailed_description.en) : null,
                 release_date_en: r.release_date.en,
-                release_date_cy: r.release_date.cy || r.release_date.en            }));
-            displayUpcomingRelease(); // Show upcoming release if any
+                release_date_cy: r.release_date.cy || r.release_date.en            }));displayUpcomingRelease(); // Show upcoming release if any
             displayFeaturedRelease(); // Show hero featured
+            displayMiniReleases(); // Show mini releases on home page
             displayReleases();
             checkUrlFragment();
         } catch (error) {
@@ -133,82 +158,132 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         return futureReleases[0];
-    }
-
-    // Render the upcoming release panel
+    }    // Render the upcoming release panel
     function displayUpcomingRelease() {
         const upcomingContainer = document.getElementById('upcoming-release');
         const upcomingPanel = document.getElementById('upcoming-release-panel');
         
-        if (!upcomingContainer || !upcomingPanel) return;
+        if (!upcomingContainer || !upcomingPanel || !displayConfig) return;
         
-        const upcoming = getEarliestFutureRelease();
+        console.log('displayUpcomingRelease - config:', displayConfig.upcomingRelease); // Debug log
+        
+        // Check if upcoming release should be shown
+        if (!displayConfig.upcomingRelease.show) {
+            console.log('Hiding upcoming release panel'); // Debug log
+            upcomingPanel.style.display = 'none';
+            return;
+        }
+        
+        let upcoming = null;
+        
+        // Try to get upcoming release based on configuration
+        if (displayConfig.upcomingRelease.mode === 'manual') {
+            // Try manual release first
+            const manualCode = displayConfig.upcomingRelease.manualReleaseCode;
+            if (manualCode) {
+                upcoming = releases.find(r => r.id === manualCode);
+            }
+            // If manual release not found, fall back to next upcoming
+            if (!upcoming) {
+                upcoming = getEarliestFutureRelease();
+            }
+        } else {
+            // nextUp mode - show earliest future release
+            upcoming = getEarliestFutureRelease();
+        }
         
         if (!upcoming) {
-            // Hide the panel if no upcoming releases
+            // No upcoming release found - hide panel
             upcomingPanel.style.display = 'none';
             return;
         }
         
         // Show the panel
         upcomingPanel.style.display = 'flex';
-          // Build upcoming release HTML
+        
+        // Build upcoming release HTML
         upcomingContainer.innerHTML = `
-            <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
-            <div class="upcoming-info">
-                <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
-                <div class="upcoming-artist prominent">${upcoming.artist}</div>
-                <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
-                <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
-                <div class="upcoming-buttons">
-                    ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['upcoming.preorderButton']}</a>` : ''}
+            <div class="upcoming-top-section">
+                <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                <div class="upcoming-info">
+                    <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
+                    <div class="upcoming-artist prominent">${upcoming.artist}</div>
+                    <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
+                    <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
+                    <div class="upcoming-buttons">
+                        ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['upcoming.preorderButton']}</a>` : ''}
+                    </div>
                 </div>
             </div>
+            ${upcoming[`detailed_description_${currentLanguage}`] ? `<div class="upcoming-detailed-description">${upcoming[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>')}</div>` : ''}
         `;
-    }    // Render the hero featured release (hidden when upcoming release is showing)
+    }    // Render the hero featured release
     function displayFeaturedRelease(featuredId) {
         const featuredContainer = document.getElementById('featured-release');
         const featuredPanel = document.getElementById('featured-release-panel');
-        if (!featuredContainer || !featuredPanel) return;
+        if (!featuredContainer || !featuredPanel || !displayConfig) return;
         
-        // Hide featured release panel if there's an upcoming release
-        const upcomingRelease = getEarliestFutureRelease();
-        if (upcomingRelease) {
+        let featured = null;
+        
+        // Check if upcoming release is showing - if so, hide featured
+        if (displayConfig.upcomingRelease.show) {
+            const upcoming = displayConfig.upcomingRelease.mode === 'manual' && displayConfig.upcomingRelease.manualReleaseCode
+                ? releases.find(r => r.id === displayConfig.upcomingRelease.manualReleaseCode)
+                : getEarliestFutureRelease();
+            
+            if (upcoming) {
+                featuredPanel.style.display = 'none';
+                return;
+            }
+        }
+        
+        // Get featured release based on configuration
+        if (displayConfig.featuredRelease.mode === 'manual') {
+            // Show specific release
+            const manualCode = displayConfig.featuredRelease.manualReleaseCode;
+            if (manualCode) {
+                featured = releases.find(r => r.id === manualCode);
+            }
+            // If manual release not found, fall back to most recent
+            if (!featured) {
+                featured = getMostRecentPastRelease();
+            }
+        } else {
+            // mostRecent mode - show most recent past release
+            featured = featuredId ? releases.find(r => r.id === featuredId) : getMostRecentPastRelease();
+        }
+        
+        if (!featured) {
             featuredPanel.style.display = 'none';
             return;
         }
         
-        // Show featured release panel if no upcoming release
+        // Show featured release panel
         featuredPanel.style.display = 'flex';
         
-        let featured = null;
-        if (featuredId) {
-            featured = releases.find(r => r.id === featuredId);
-        }
-        if (!featured) {
-            // Default to most recent release with past release date
-            featured = getMostRecentPastRelease();
-        }
-        if (!featured) return;
         // Build featured release HTML
         featuredContainer.innerHTML = `
-            <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
-            <div class="featured-info">
-                <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
-                <div class="featured-artist prominent">${featured.artist}</div>
-                <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
-                <div class="featured-buttons">
-                    <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
-                    <a href="${featured.buyUrl}" class="featured-bandcamp-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['releases.buyOn']}</a>
+            <div class="featured-top-section">
+                <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                <div class="featured-info">
+                    <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
+                    <div class="featured-artist prominent">${featured.artist}</div>
+                    <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
+                    <div class="featured-buttons">
+                        <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
+                        <a href="${featured.buyUrl}" class="featured-bandcamp-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['releases.buyOn']}</a>
+                    </div>
                 </div>
             </div>
+            ${featured[`detailed_description_${currentLanguage}`] ? `<div class="featured-detailed-description">${featured[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>')}</div>` : ''}
         `;
+        
         // Listen button event
         featuredContainer.querySelector('.featured-listen-btn').addEventListener('click', (e) => {
             loadReleaseInPlayer(featured.id);
             document.querySelector('.player-bar').scrollIntoView({behavior: 'smooth'});
         });
-    }    // Display releases in the grid
+    }// Display releases in the grid
     function displayReleases() {
         releasesGrid.innerHTML = '';
         
@@ -292,6 +367,100 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                 }
             });
+        });    }
+
+    // Display mini releases grid on home page (excluding upcoming and featured releases)
+    function displayMiniReleases() {
+        const miniReleasesGrid = document.getElementById('mini-releases-grid');
+        if (!miniReleasesGrid) return;
+
+        // Get current featured release ID to exclude it
+        const upcomingRelease = getEarliestFutureRelease();
+        let featuredReleaseId = null;
+        
+        if (!upcomingRelease) {
+            // If no upcoming release, get the featured release
+            const featured = getMostRecentPastRelease();
+            featuredReleaseId = featured?.id;
+        }
+
+        // Filter releases: exclude upcoming releases and featured release
+        const filteredReleases = releases.filter(release => {
+            const releaseDate = parseReleaseDate(release.release_date_en);
+            const now = new Date();
+            const isFutureRelease = releaseDate && releaseDate > now;
+            
+            // Exclude future releases and the currently featured release
+            return !isFutureRelease && release.id !== featuredReleaseId;
+        });
+
+        // Clear existing content
+        miniReleasesGrid.innerHTML = '';
+
+        // Show only first 6-8 releases to keep it manageable
+        const displayReleases = filteredReleases.slice(0, 8);
+
+        displayReleases.forEach(release => {
+            const miniReleaseItem = document.createElement('div');
+            miniReleaseItem.className = 'mini-release-item';
+            miniReleaseItem.id = `mini-${release.id}`;
+            miniReleaseItem.setAttribute('tabindex', '0');
+            
+            if (release.id === currentReleaseId) {
+                miniReleaseItem.classList.add('active');
+            }            miniReleaseItem.innerHTML = `
+                <img 
+                    src="${release.artwork_small_url}" 
+                    alt="${release[`title_${currentLanguage}`]}" 
+                    class="mini-release-image"
+                    loading="lazy"
+                >
+                <div class="mini-release-overlay">
+                    <button class="mini-listen-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}">
+                        ${translations[currentLanguage]['releases.listenButton']}
+                    </button>
+                    <button class="mini-info-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['hero.moreInfo']} ${release[`title_${currentLanguage}`]}">
+                        ${translations[currentLanguage]['hero.moreInfo']}
+                    </button>
+                </div>
+            `;
+            
+            miniReleasesGrid.appendChild(miniReleaseItem);
+        });        // Add event listeners to mini listen buttons
+        document.querySelectorAll('.mini-listen-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const releaseId = e.target.dataset.id;
+                loadReleaseInPlayer(releaseId);
+                e.stopPropagation();
+            });
+        });
+
+        // Add event listeners to mini info buttons (placeholder for future functionality)
+        document.querySelectorAll('.mini-info-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // TODO: Implement individual release page navigation
+                console.log('More info for release:', e.target.dataset.id);
+                e.stopPropagation();
+            });
+        });
+
+        // Add keyboard support for mini release items
+        document.querySelectorAll('.mini-release-item').forEach(item => {
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    const releaseId = item.id.replace('mini-', '');
+                    loadReleaseInPlayer(releaseId);
+                    e.preventDefault();
+                }
+            });
+
+            // Click handler for the item itself (will play music when clicking on image)
+            item.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('mini-listen-btn') && !e.target.classList.contains('mini-info-btn')) {
+                    const releaseId = item.id.replace('mini-', '');
+                    loadReleaseInPlayer(releaseId);
+                }
+            });
         });
     }
 
@@ -309,15 +478,18 @@ document.addEventListener('DOMContentLoaded', () => {
             playerBar.classList.add('visible');
             document.body.classList.add('player-bar-visible');
         }
-        
-        // Update UI
+          // Update UI
         if (currentReleaseId) {
             const previousItem = document.getElementById(currentReleaseId);
             if (previousItem) previousItem.classList.remove('active');
+            const previousMiniItem = document.getElementById(`mini-${currentReleaseId}`);
+            if (previousMiniItem) previousMiniItem.classList.remove('active');
         }
         
         const currentItem = document.getElementById(releaseId);
         if (currentItem) currentItem.classList.add('active');
+        const currentMiniItem = document.getElementById(`mini-${releaseId}`);
+        if (currentMiniItem) currentMiniItem.classList.add('active');
         
         // Update state
         currentReleaseId = releaseId;
@@ -408,6 +580,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const artist = upcomingContainer.querySelector('.upcoming-artist.prominent');
                 if (artist) artist.textContent = upcoming.artist;                const desc = upcomingContainer.querySelector('.upcoming-description');
                 if (desc) desc.textContent = upcoming[`description_${currentLanguage}`];
+                const detailedDesc = upcomingContainer.querySelector('.upcoming-detailed-description');
+                if (detailedDesc && upcoming[`detailed_description_${currentLanguage}`]) {
+                    detailedDesc.innerHTML = upcoming[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>');
+                }
                 const releaseDate = upcomingContainer.querySelector('.upcoming-release-date');
                 if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
@@ -424,9 +600,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const titleMain = featuredContainer.querySelector('.featured-release-title-main');
                 if (titleMain) titleMain.textContent = featured[`title_${currentLanguage}`];
                 const artist = featuredContainer.querySelector('.featured-artist.prominent');
-                if (artist) artist.textContent = featured.artist;
-                const desc = featuredContainer.querySelector('.featured-description');
+                if (artist) artist.textContent = featured.artist;                const desc = featuredContainer.querySelector('.featured-description');
                 if (desc) desc.textContent = featured[`description_${currentLanguage}`];
+                const detailedDesc = featuredContainer.querySelector('.featured-detailed-description');
+                if (detailedDesc && featured[`detailed_description_${currentLanguage}`]) {
+                    detailedDesc.innerHTML = featured[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>');
+                }
                 const listenBtn = featuredContainer.querySelector('.featured-listen-btn');
                 if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
@@ -446,9 +625,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const preorderBtn = item.querySelector('.preorder-btn');
             if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
             const upcomingBadge = item.querySelector('.upcoming-badge');
-            if (upcomingBadge) upcomingBadge.textContent = translations[currentLanguage]['upcoming.badge'];
-            // Update alt attribute for image
+            if (upcomingBadge) upcomingBadge.textContent = translations[currentLanguage]['upcoming.badge'];            // Update alt attribute for image
             const img = item.querySelector('.release-image');
+            if (img) img.alt = release[`title_${currentLanguage}`];
+        });
+
+        // Update mini releases grid texts
+        document.querySelectorAll('.mini-release-item').forEach(item => {
+            const releaseId = item.id.replace('mini-', '');
+            const release = releases.find(r => r.id === releaseId);
+            if (!release) return;
+            
+            const title = item.querySelector('.mini-release-title');
+            if (title) title.textContent = release[`title_${currentLanguage}`];
+            
+            const artist = item.querySelector('.mini-release-artist');
+            if (artist) artist.textContent = release.artist;
+            
+            const listenBtn = item.querySelector('.mini-listen-btn');
+            if (listenBtn) {
+                listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
+                listenBtn.setAttribute('aria-label', `${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}`);
+            }
+            
+            // Update alt attribute for image
+            const img = item.querySelector('.mini-release-image');
             if (img) img.alt = release[`title_${currentLanguage}`];
         });
     }
@@ -497,9 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tab switching logic
     const tabSections = document.querySelectorAll('.tab-content');
-    const navTabLinks = document.querySelectorAll('.nav-links a');
-
-    function showTab(tabId) {
+    const navTabLinks = document.querySelectorAll('.nav-links a');    function showTab(tabId) {
         tabSections.forEach(section => {
             if (section.id === tabId) {
                 section.classList.remove('hidden');
@@ -518,9 +717,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.setAttribute('tabindex', '-1');
             }
         });
+        
+        // Clear all release selections when switching tabs
+        clearAllReleaseSelections();
+        
         // Instantly scroll to top when switching tabs
         window.scrollTo({ top: 0, behavior: 'auto' });
     }
+
+    // Clear all release selections (remove active states and hide overlays)
+    function clearAllReleaseSelections() {
+        // Clear main release selections
+        document.querySelectorAll('.release-item.active').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Clear mini release selections
+        document.querySelectorAll('.mini-release-item.active').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Reset current release ID
+        currentReleaseId = null;
+    }
+
+    // Add document-level click handler to clear selections when clicking outside releases
+    document.addEventListener('click', (e) => {
+        // Check if click is outside any release item or its children
+        const isReleaseClick = e.target.closest('.release-item') || 
+                              e.target.closest('.mini-release-item') || 
+                              e.target.closest('.player-bar') ||
+                              e.target.closest('.featured-listen-btn') ||
+                              e.target.closest('.upcoming-preorder-btn');
+        
+        // If click is outside all release-related elements, clear selections
+        if (!isReleaseClick && currentReleaseId) {
+            clearAllReleaseSelections();
+        }
+    });
 
     // Intercept nav link clicks for tab switching
     navTabLinks.forEach(link => {
@@ -567,6 +801,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Mini releases title link handler for tab switching
+    const miniReleasesTitle = document.querySelector('.mini-releases-title a');
+    if (miniReleasesTitle) {
+        miniReleasesTitle.addEventListener('click', function(e) {
+            e.preventDefault();
+            showTab('music');
+            history.replaceState(null, null, '#music');
+        });
+    }
+
     // Close player bar logic
     const closePlayerBtn = document.querySelector('.close-player-bar');
     if (closePlayerBtn) {
@@ -588,9 +832,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             updateUILanguage();
         }
+          setupLanguageToggle();
         
-        setupLanguageToggle();
-        loadReleasesData();
+        // Load display config first, then releases data
+        loadDisplayConfig().then(() => {
+            loadReleasesData();
+        }).catch(() => {
+            // Continue with releases even if config fails
+            loadReleasesData();
+        });
+        
         initTabs();
         
         // Hide player bar and remove body class on load

@@ -16,4 +16,4 @@ Update about page once Sunbane provides text
 Show catalogue numbers for all releases (should include in names for consistency)
 Add youtube and instagram links once Sunbane provides
 Listen button can be clicked when trying to select a release (needs to only respond once visible) 
-Set up preview deploys
+Add detailed descriptions for all releases

@@ -1,0 +1,31 @@
+# Display Configuration for WEPN Website
+# This file controls which releases are featured on the home page
+
+# Upcoming Release Settings
+upcoming_release:
+  # Show upcoming release panel (true/false)
+  show: true
+  
+  # Mode: 'nextUp' (show earliest future release) or 'manual' (show specific release)
+  mode: 'nextUp'
+  
+  # When mode is 'manual', specify the release code to show
+  # Example: 'PRODUCT_S003_SPARK'
+  manual_release_code: null
+
+# Featured Release Settings  
+featured_release:
+  # Mode: 'mostRecent' (show most recent past release) or 'manual' (show specific release)
+  mode: 'mostRecent'
+  
+  # When mode is 'manual', specify the release code to show
+  # Example: 'PRODUCT_005_COMFORT'
+  manual_release_code: null
+
+# Fallback Logic:
+# 1. If upcoming_release.show is true:
+#    - Try manual upcoming release if mode is 'manual' and code exists
+#    - Otherwise try next future release if mode is 'nextUp'
+#    - If no upcoming release found, fall back to featured release
+# 2. Featured release is only shown if no upcoming release is displayed
+# 3. Featured release follows same pattern: manual then mostRecent
