@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /assets/js/display-config-data.json
+---
+{
+  "upcomingRelease": {
+    "show": {{ site.data.display_config.upcoming_release.show }},
+    "mode": "{{ site.data.display_config.upcoming_release.mode | default: 'nextUp' }}",
+    "manualReleaseCode": {% if site.data.display_config.upcoming_release.manual_release_code %}"{{ site.data.display_config.upcoming_release.manual_release_code }}"{% else %}null{% endif %}
+  },
+  "featuredRelease": {
+    "mode": "{{ site.data.display_config.featured_release.mode | default: 'mostRecent' }}",
+    "manualReleaseCode": {% if site.data.display_config.featured_release.manual_release_code %}"{{ site.data.display_config.featured_release.manual_release_code }}"{% else %}null{% endif %}
+  }
+}
