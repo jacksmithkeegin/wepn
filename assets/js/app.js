@@ -49,8 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const rawReleases = await response.json();
-            // Map release_info.json structure to expected fields
+            const rawReleases = await response.json();            // Map release_info.json structure to expected fields
             releases = rawReleases.map(r => ({
                 id: r.release_code.en,
                 title_en: r.title.en,
@@ -61,8 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 buyUrl: (r.link && r.link.en) || '',
                 description_en: r.description.en,
                 description_cy: r.description.cy || r.description.en,
+                detailed_description_en: r.detailed_description ? r.detailed_description.en : null,
+                detailed_description_cy: r.detailed_description ? (r.detailed_description.cy || r.detailed_description.en) : null,
                 release_date_en: r.release_date.en,
-                release_date_cy: r.release_date.cy || r.release_date.en            }));            displayUpcomingRelease(); // Show upcoming release if any
+                release_date_cy: r.release_date.cy || r.release_date.en            }));displayUpcomingRelease(); // Show upcoming release if any
             displayFeaturedRelease(); // Show hero featured
             displayMiniReleases(); // Show mini releases on home page
             displayReleases();
@@ -151,19 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Show the panel
-        upcomingPanel.style.display = 'flex';
-          // Build upcoming release HTML
+        upcomingPanel.style.display = 'flex';          // Build upcoming release HTML
         upcomingContainer.innerHTML = `
-            <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
-            <div class="upcoming-info">
-                <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
-                <div class="upcoming-artist prominent">${upcoming.artist}</div>
-                <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
-                <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
-                <div class="upcoming-buttons">
-                    ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['upcoming.preorderButton']}</a>` : ''}
+            <div class="upcoming-top-section">
+                <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                <div class="upcoming-info">
+                    <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
+                    <div class="upcoming-artist prominent">${upcoming.artist}</div>
+                    <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
+                    <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
+                    <div class="upcoming-buttons">
+                        ${upcoming.buyUrl ? `<a href="${upcoming.buyUrl}" class="upcoming-preorder-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['upcoming.preorderButton']}</a>` : ''}
+                    </div>
                 </div>
             </div>
+            ${upcoming[`detailed_description_${currentLanguage}`] ? `<div class="upcoming-detailed-description">${upcoming[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>')}</div>` : ''}
         `;
     }    // Render the hero featured release (hidden when upcoming release is showing)
     function displayFeaturedRelease(featuredId) {
@@ -189,19 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // Default to most recent release with past release date
             featured = getMostRecentPastRelease();
         }
-        if (!featured) return;
-        // Build featured release HTML
+        if (!featured) return;        // Build featured release HTML
         featuredContainer.innerHTML = `
-            <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
-            <div class="featured-info">
-                <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
-                <div class="featured-artist prominent">${featured.artist}</div>
-                <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
-                <div class="featured-buttons">
-                    <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
-                    <a href="${featured.buyUrl}" class="featured-bandcamp-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['releases.buyOn']}</a>
+            <div class="featured-top-section">
+                <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                <div class="featured-info">
+                    <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
+                    <div class="featured-artist prominent">${featured.artist}</div>
+                    <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
+                    <div class="featured-buttons">
+                        <button class="featured-listen-btn" data-id="${featured.id}">${translations[currentLanguage]['releases.listenButton']}</button>
+                        <a href="${featured.buyUrl}" class="featured-bandcamp-btn" target="_blank" rel="noopener noreferrer">${translations[currentLanguage]['releases.buyOn']}</a>
+                    </div>
                 </div>
             </div>
+            ${featured[`detailed_description_${currentLanguage}`] ? `<div class="featured-detailed-description">${featured[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>')}</div>` : ''}
         `;
         // Listen button event
         featuredContainer.querySelector('.featured-listen-btn').addEventListener('click', (e) => {
@@ -505,6 +510,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const artist = upcomingContainer.querySelector('.upcoming-artist.prominent');
                 if (artist) artist.textContent = upcoming.artist;                const desc = upcomingContainer.querySelector('.upcoming-description');
                 if (desc) desc.textContent = upcoming[`description_${currentLanguage}`];
+                const detailedDesc = upcomingContainer.querySelector('.upcoming-detailed-description');
+                if (detailedDesc && upcoming[`detailed_description_${currentLanguage}`]) {
+                    detailedDesc.innerHTML = upcoming[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>');
+                }
                 const releaseDate = upcomingContainer.querySelector('.upcoming-release-date');
                 if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
@@ -521,9 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const titleMain = featuredContainer.querySelector('.featured-release-title-main');
                 if (titleMain) titleMain.textContent = featured[`title_${currentLanguage}`];
                 const artist = featuredContainer.querySelector('.featured-artist.prominent');
-                if (artist) artist.textContent = featured.artist;
-                const desc = featuredContainer.querySelector('.featured-description');
+                if (artist) artist.textContent = featured.artist;                const desc = featuredContainer.querySelector('.featured-description');
                 if (desc) desc.textContent = featured[`description_${currentLanguage}`];
+                const detailedDesc = featuredContainer.querySelector('.featured-detailed-description');
+                if (detailedDesc && featured[`detailed_description_${currentLanguage}`]) {
+                    detailedDesc.innerHTML = featured[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>');
+                }
                 const listenBtn = featuredContainer.querySelector('.featured-listen-btn');
                 if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
