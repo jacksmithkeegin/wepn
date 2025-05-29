@@ -4,7 +4,7 @@
 # Upcoming Release Settings
 upcoming_release:
   # Show upcoming release panel (true/false)
-  show: false
+  show: true
   
   # Mode: 'nextUp' (show earliest future release) or 'manual' (show specific release)
   mode: 'nextUp'
