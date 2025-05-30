@@ -37,7 +37,11 @@ const translations = {
         "upcoming.preorderButton": "Pre-order on Bandcamp",
         
         "privacy.title": "Privacy Policy",
-        "privacy.text": "We don't use cookies or process your data (beyond what your browser sends to our servers), but Bandcamp's embedded player does. Please see the Bandcamp site for more info."
+        "privacy.text": "We don't use cookies or process your data (beyond what your browser sends to our servers), but Bandcamp's embedded player does. Please see the Bandcamp site for more info.",
+        "bandcamp.cookies": "The Bandcamp player uses cookies. ",
+        "bandcamp.accept": "Accept",
+        "bandcamp.decline": "Decline",
+        "bandcamp.privacyLink": "Privacy Policy",
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -76,6 +80,10 @@ const translations = {
         "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp",
         
         "privacy.title": "Polisi Preifatrwydd",
-        "privacy.text": "Nid ydym yn defnyddio cwcis nac yn prosesu eich data (heblaw am yr hyn y mae eich porwr yn ei anfon i'n gweinyddwyr), ond mae chwaraewr Bandcamp wedi'i fewnosod yn gwneud hynny. Gweler gwefan Bandcamp am ragor o wybodaeth."
+        "privacy.text": "Nid ydym yn defnyddio cwcis nac yn prosesu eich data (heblaw am yr hyn y mae eich porwr yn ei anfon i'n gweinyddwyr), ond mae chwaraewr Bandcamp wedi'i fewnosod yn gwneud hynny. Gweler gwefan Bandcamp am ragor o wybodaeth.",
+        "bandcamp.cookies": "Mae chwaraewr Bandcamp yn defnyddio cwcis. ",
+        "bandcamp.accept": "Derbyn",
+        "bandcamp.decline": "Gwrthod",
+        "bandcamp.privacyLink": "Polisi Preifatrwydd",
     }
 };

@@ -455,6 +455,11 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
     // Load a release in the Bandcamp player
     function loadReleaseInPlayer(releaseId) {
+        // If cookie consent not given, show consent dialog first
+        if (!window.bandcampConsent) {
+            showBandcampConsentDialog(releaseId);
+            return;
+        }
         const release = releases.find(r => r.id === releaseId);
         if (!release) return;
         
@@ -485,6 +490,68 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         
         // Remove hash update here so it doesn't change URL
         // history.replaceState(null, null, `#${releaseId}`);
+    }
+
+    // Show Bandcamp cookie consent dialog
+    function showBandcampConsentDialog(releaseId) {
+        // Prevent multiple dialogs
+        if (document.getElementById('bandcamp-consent-dialog')) return;
+        if (playerBar) {
+            playerBar.classList.add('visible');
+            document.body.classList.add('player-bar-visible');
+            bandcampPlayer.style.display = 'none';
+            const prevDialog = playerBar.querySelector('#bandcamp-consent-dialog');
+            if (prevDialog) prevDialog.remove();
+            const dialog = document.createElement('div');
+            dialog.id = 'bandcamp-consent-dialog';
+            dialog.className = 'bandcamp-consent-dialog-inline';
+            // Add privacy link to the dialog text (no extra text, no full stop)
+            const privacyLink = `<a href="#privacy" class="bandcamp-privacy-link" tabindex="0">${translations[currentLanguage]['bandcamp.privacyLink'] || 'Privacy Policy'}</a>`;
+            dialog.innerHTML = `
+                <div class="bandcamp-consent-content">
+                    <p><span class="bandcamp-cookie-text">${translations[currentLanguage]['bandcamp.cookies'] || 'The Bandcamp player uses cookies'}</span> ${privacyLink}</p>
+                    <div class="bandcamp-consent-buttons">
+                        <button class="bandcamp-accept-btn">${translations[currentLanguage]['bandcamp.accept'] || 'Accept'}</button>
+                        <button class="bandcamp-decline-btn">${translations[currentLanguage]['bandcamp.decline'] || 'Decline'}</button>
+                    </div>
+                </div>
+            `;
+            playerBar.querySelector('.player-wrapper').appendChild(dialog);
+            dialog.querySelector('.bandcamp-accept-btn').focus();
+            // Accept
+            dialog.querySelector('.bandcamp-accept-btn').addEventListener('click', () => {
+                window.bandcampConsent = true;
+                dialog.remove();
+                bandcampPlayer.style.display = '';
+                loadReleaseInPlayer(releaseId);
+            });
+            // Decline
+            dialog.querySelector('.bandcamp-decline-btn').addEventListener('click', () => {
+                window.bandcampConsent = false;
+                dialog.remove();
+                bandcampPlayer.style.display = '';
+                playerBar.classList.remove('visible');
+                document.body.classList.remove('player-bar-visible');
+                bandcampPlayer.src = '';
+                currentReleaseId = null;
+            });
+            // Privacy link click handler
+            dialog.querySelector('.bandcamp-privacy-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showTab('privacy');
+                history.replaceState(null, null, '#privacy');
+            });
+        }
+    }
+
+    // Update consent dialog text on language switch
+    function updateConsentDialogLanguage() {
+        const dialog = document.getElementById('bandcamp-consent-dialog');
+        if (dialog) {
+            const privacyLink = `<a href=\"#privacy\" class=\"bandcamp-privacy-link\" tabindex=\"0\">${translations[currentLanguage]['bandcamp.privacyLink'] || 'Privacy Policy'}</a>`;
+            dialog.querySelector('.bandcamp-cookie-text').innerHTML = translations[currentLanguage]['bandcamp.cookies'] || 'The Bandcamp player uses cookies';
+            dialog.querySelector('.bandcamp-privacy-link').outerHTML = privacyLink;
+        }
     }
 
     // Check URL fragment for direct linking
@@ -528,6 +595,9 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         
         // Update only text content for releases and featured release
         updateReleaseTexts();
+        
+        // Update consent dialog if open
+        updateConsentDialogLanguage();
         
         // Update current track if one is playing
         if (currentReleaseId) {
