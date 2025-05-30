@@ -1160,8 +1160,7 @@ footer p {
     opacity: 1;
 }
 
-.mini-listen-btn,
-.mini-info-btn {
+.mini-listen-btn {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -1175,18 +1174,8 @@ footer p {
     text-align: center;
 }
 
-.mini-info-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
 .mini-listen-btn:hover {
     background-color: #1e7fdb;
-}
-
-.mini-info-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 768px) {
@@ -1199,8 +1188,7 @@ footer p {
         padding: var(--spacing-md);
     }
     
-    .mini-listen-btn,
-    .mini-info-btn {
+    .mini-listen-btn {
         padding: 0.3rem 0.6rem;
         font-size: 0.7rem;
     }

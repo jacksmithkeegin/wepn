@@ -408,7 +408,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             
             if (release.id === currentReleaseId) {
                 miniReleaseItem.classList.add('active');
-            }            miniReleaseItem.innerHTML = `
+            }
+            miniReleaseItem.innerHTML = `
                 <img 
                     src="${release.artwork_small_url}" 
                     alt="${release[`title_${currentLanguage}`]}" 
@@ -419,9 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     <button class="mini-listen-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}">
                         ${translations[currentLanguage]['releases.listenButton']}
                     </button>
-                    <button class="mini-info-btn" data-id="${release.id}" aria-label="${translations[currentLanguage]['hero.moreInfo']} ${release[`title_${currentLanguage}`]}">
-                        ${translations[currentLanguage]['hero.moreInfo']}
-                    </button>
                 </div>
             `;
             
@@ -431,15 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             button.addEventListener('click', (e) => {
                 const releaseId = e.target.dataset.id;
                 loadReleaseInPlayer(releaseId);
-                e.stopPropagation();
-            });
-        });
-
-        // Add event listeners to mini info buttons (placeholder for future functionality)
-        document.querySelectorAll('.mini-info-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                // TODO: Implement individual release page navigation
-                console.log('More info for release:', e.target.dataset.id);
                 e.stopPropagation();
             });
         });
@@ -456,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
             // Click handler for the item itself (will play music when clicking on image)
             item.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('mini-listen-btn') && !e.target.classList.contains('mini-info-btn')) {
+                if (!e.target.classList.contains('mini-listen-btn')) {
                     const releaseId = item.id.replace('mini-', '');
                     loadReleaseInPlayer(releaseId);
                 }
