@@ -812,6 +812,16 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         });
     }
 
+    // Footer privacy link tab switch
+    const footerPrivacyLink = document.querySelector('.footer-privacy-link');
+    if (footerPrivacyLink) {
+        footerPrivacyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showTab('privacy');
+            history.replaceState(null, null, '#privacy');
+        });
+    }
+
     // Initialize the application
     function init() {
         // Set initial language based on browser settings

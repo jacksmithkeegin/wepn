@@ -34,7 +34,10 @@ const translations = {
         
         "upcoming.badge": "Upcoming",
         "upcoming.releaseDate": "Release Date:",
-        "upcoming.preorderButton": "Pre-order on Bandcamp"
+        "upcoming.preorderButton": "Pre-order on Bandcamp",
+        
+        "privacy.title": "Privacy Policy",
+        "privacy.text": "We don't use cookies or process your data (beyond what your browser sends to our servers), but Bandcamp's embedded player does. Please see the Bandcamp site for more info."
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -70,6 +73,9 @@ const translations = {
         
         "upcoming.badge": "I Ddod",
         "upcoming.releaseDate": "Dyddiad Rhyddhau:",
-        "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp"
+        "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp",
+        
+        "privacy.title": "Polisi Preifatrwydd",
+        "privacy.text": "Nid ydym yn defnyddio cwcis nac yn prosesu eich data (heblaw am yr hyn y mae eich porwr yn ei anfon i'n gweinyddwyr), ond mae chwaraewr Bandcamp wedi'i fewnosod yn gwneud hynny. Gweler gwefan Bandcamp am ragor o wybodaeth."
     }
 };
