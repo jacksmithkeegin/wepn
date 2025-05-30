@@ -25,7 +25,7 @@ const translations = {
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
         "contact.email": "Email: ",        "hero.heading": "Wales Electronic Producers Network",
-        "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2020",
+        "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2015",
         "hero.cta": "Discover Our Music",        "hero.featured": "Featured Release",
         "hero.upcoming": "Upcoming Release",
         "hero.catalog": "Hear More",
@@ -34,7 +34,14 @@ const translations = {
         
         "upcoming.badge": "Upcoming",
         "upcoming.releaseDate": "Release Date:",
-        "upcoming.preorderButton": "Pre-order on Bandcamp"
+        "upcoming.preorderButton": "Pre-order on Bandcamp",
+        
+        "privacy.title": "Privacy Policy",
+        "privacy.text": "We don't use cookies or process your data (beyond what your browser sends to our servers), but Bandcamp's embedded player does. Please see the Bandcamp site for more info.",
+        "bandcamp.cookies": "The Bandcamp player uses cookies. ",
+        "bandcamp.accept": "Accept",
+        "bandcamp.decline": "Decline",
+        "bandcamp.privacyLink": "Privacy Policy",
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -61,7 +68,7 @@ const translations = {
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
         "contact.email": "E-bost: ",        "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
-        "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2020",
+        "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2015",
         "hero.cta": "Darganfod Ein Cerddoriaeth",        "hero.featured": "Rhyddhad dan Sylw",
         "hero.upcoming": "Rhyddhad i Ddod",
         "hero.catalog": "Clywch Fwy",
@@ -70,6 +77,13 @@ const translations = {
         
         "upcoming.badge": "I Ddod",
         "upcoming.releaseDate": "Dyddiad Rhyddhau:",
-        "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp"
+        "upcoming.preorderButton": "Archeb ymlaen llaw ar Bandcamp",
+        
+        "privacy.title": "Polisi Preifatrwydd",
+        "privacy.text": "Nid ydym yn defnyddio cwcis nac yn prosesu eich data (heblaw am yr hyn y mae eich porwr yn ei anfon i'n gweinyddwyr), ond mae chwaraewr Bandcamp wedi'i fewnosod yn gwneud hynny. Gweler gwefan Bandcamp am ragor o wybodaeth.",
+        "bandcamp.cookies": "Mae chwaraewr Bandcamp yn defnyddio cwcis. ",
+        "bandcamp.accept": "Derbyn",
+        "bandcamp.decline": "Gwrthod",
+        "bandcamp.privacyLink": "Polisi Preifatrwydd",
     }
 };
