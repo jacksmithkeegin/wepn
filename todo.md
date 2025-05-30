@@ -14,3 +14,4 @@ Show catalogue numbers for all releases (should include in names for consistency
 Add instagram link once Sunbane provides
 Listen button can be clicked when trying to select a release (needs to only respond once visible) 
 Add detailed descriptions for all releases
+Tweak Bandcamp player colours to match site
