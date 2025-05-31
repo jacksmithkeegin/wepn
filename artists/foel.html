@@ -1,0 +1,46 @@
+---
+layout: default
+title: Foel
+name: Foel
+slug: foel
+image: /assets/images/artists/foel/foel.webp
+banner: /assets/images/artists/foel/banner.webp
+bio:
+  en: >
+    Foel is an electronic music producer based in North Wales. A Welsh speaker from the North, he has spent a great deal of time exploring the region's wild areas.
+
+    His music runs from minimal ambient to frenetic electronic, its gradual transitions and use of space reflecting the local landscape.
+
+  cy: >
+    Cynhyrchydd cerddoriaeth electronig o Ogledd Cymru ydy Foel. Yn siaradwr Cymraeg o'r Gogledd, mae o wedi treulio lot o amser yn crwydro ardaloedd gwyllt y rhanbarth. Mae o'n rhannu ei anturiaethau efo'i wraig ac erbyn hyn ei ddau o blant.
+
+    Mae ei gerddoriaeth yn amrywio o ambient minimal i electronig gwyllt, efo trawsnewidiadau graddol a defnydd o ofod sy'n adlewyrchu'r tirwedd leol. Mae ei gerddoriaeth wedi helpu fo delio efo profiadau anodd o'i blentyndod, gan ddod ag elfen o dywyllwch ac weithiau dicter.
+
+    Mae o'n adeiladu systemau digidol cymhleth sy'n creu seiniau ailadroddus ond bob tro yn newid ac yn esblygu, gan daro cydbwysedd rhwng y peirianyddol a'r naturiol, trefn ac anrhefn.
+permalink: /artists/foel.html
+---
+
+{% if page.banner %}
+<div class="artist-banner">
+    <img src="{{ page.banner | relative_url }}" alt="Banner for {{ page.title }}" />
+</div>
+{% endif %}
+
+<section class="artist-bio">
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+
+        <img class="artist-photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+
+        <div class="artist-description">
+            {% if page.bio.en %}
+            <div class="bio-text" data-lang="en">{{ page.bio.en | markdownify }}</div>
+            {% endif %}
+            {% if page.bio.cy %}
+            <div class="bio-text" data-lang="cy" style="display: none;">{{ page.bio.cy | markdownify }}</div>
+            {% endif %}
+        </div>
+
+        <a class="back-to-artists" href="{{ site.baseurl }}/#artists">← Back to Artists</a>
+    </div>
+</section>
