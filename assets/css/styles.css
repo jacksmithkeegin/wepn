@@ -1378,6 +1378,7 @@ footer p {
 }
 
 .artist-banner img {
+    background-color: var(--background-color);
     width: 100%;
     height: auto;
     display: block;
