@@ -767,7 +767,6 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Tab switching logic
     const tabSections = document.querySelectorAll('.tab-content');
     const navTabLinks = document.querySelectorAll('.nav-links a');    function showTab(tabId) {
-        console.log("Showing tab:", tabId); // srp
         tabSections.forEach(section => {
             if (section.id === tabId) {
                 section.classList.remove('hidden');
@@ -866,7 +865,6 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
     // On page load, show tab from hash or default
     function initTabs() {
-        console.log("Hash at init:", window.location.hash); //srp
         let initialTab = window.location.hash.replace('#', '') || 'home';
         if (![...tabSections].some(s => s.id === initialTab)) {
             initialTab = 'home';
@@ -923,7 +921,6 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
     window.addEventListener("hashchange", () => {
         const hash = window.location.hash.substring(1);
-        console.log("Hash changed:", hash);
         showTab(hash);
     });
 
