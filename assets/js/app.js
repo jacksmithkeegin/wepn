@@ -921,6 +921,12 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         });
     }
 
+    window.addEventListener("hashchange", () => {
+        const hash = window.location.hash.substring(1);
+        console.log("Hash changed:", hash);
+        showTab(hash);
+    });
+
     // Initialize the application
     function init() {
         // Always run setup first
