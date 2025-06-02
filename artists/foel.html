@@ -4,7 +4,6 @@ title: Foel
 name: Foel
 slug: foel
 image: /assets/images/artists/foel/foel.webp
-banner: /assets/images/artists/foel/banner.webp
 bluesky: https://bsky.app/profile/foel.cymru
 website: https://foel.cymru/
 bio:
@@ -21,12 +20,6 @@ bio:
     Mae o'n adeiladu systemau digidol cymhleth sy'n creu seiniau ailadroddus ond bob tro yn newid ac yn esblygu, gan daro cydbwysedd rhwng y peirianyddol a'r naturiol, trefn ac anrhefn.
 permalink: /artists/foel.html
 ---
-
-{% if page.banner %}
-<div class="artist-banner">
-    <img src="{{ page.banner | relative_url }}" alt="Banner for {{ page.title }}"/>
-</div>
-{% endif %}
 
 <section class="artist-bio">
     <div class="container">
@@ -45,26 +38,15 @@ permalink: /artists/foel.html
             {% if page.bluesky or page.website %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if page.bluesky %}
-                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-icon">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky"
                          class="footer-icon">
-                    {{ page.bluesky | remove: "https://bsky.app/profile/" | remove: "/" }}
                 </a>
                 {% endif %}
 
                 {% if page.website %}
-                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor"
-                         width="20" height="20">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-                     10-4.48 10-10S17.52 2 12 2zm0 2c1.1 0 2 .9
-                     2 2h-4c0-1.1.9-2 2-2zm0 16c-1.1 0-2-.9-2-2h4c0
-                     1.1-.9 2-2 2zm6-6c0 1.1-.9 2-2 2v-4c1.1 0 2 .9
-                     2 2zm-12 0c0-1.1.9-2 2-2v4c-1.1 0-2-.9-2-2zm6-6c2.21
-                     0 4 1.79 4 4h-2c0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21
-                     1.79-4 4-4z"/>
-                    </svg>
-                    {{ page.website | remove: "https://" | remove: "http://" | remove: "/" }}
+                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-icon">
+                    <i class="fas fa-link artist-icon"></i>
                 </a>
                 {% endif %}
             </div>

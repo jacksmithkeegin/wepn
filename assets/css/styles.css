@@ -1387,12 +1387,14 @@ footer p {
 
 .artist-links {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    gap: 1rem; /* space between icons/links */
+    align-items: center;
 }
+
 .artist-links a {
     margin-right: 0.5rem;
 }
+
 .artist-links img {
     width: 24px;
     height: 24px;
@@ -1402,13 +1404,19 @@ footer p {
 .social-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
-    text-decoration: none;
-    color: var(--main-text-color);
-    font-size: 1rem;
-}
+    gap: 0.5em;}
 
 .social-link img {
     width: 20px;
     height: 20px;
+}
+
+.artist-icon {
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+    filter: none !important;
+    fill: currentColor !important;
+    box-shadow: none !important;
+    border: none !important;
 }
