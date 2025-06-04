@@ -14,20 +14,21 @@
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicons/favicon.svg' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
-  <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">  <!-- Social media meta tags for Discord, Facebook, Twitter, Bluesky -->
+  <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">
+    <!-- Social media meta tags for Discord, Facebook, Twitter, Bluesky -->
   <meta property="og:title" content="{{ site.title }}">
   <meta property="og:description" content="{{ site.description }}">
-  <meta property="og:image" content="https://wepn.wales/assets/images/WEPN_logo_1200x630.jpg">
-  <meta property="og:url" content="https://wepn.wales/">
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/WEPN_logo_1200x630.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:alt" content="WEPN Logo">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/">
   <meta property="og:type" content="website">  <!-- Twitter Card tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ site.title }}">
   <meta name="twitter:description" content="{{ site.description }}">
-  <meta name="twitter:image" content="https://wepn.wales/assets/images/WEPN_logo_1200x630.jpg">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/WEPN_logo_1200x630.jpg">
   <meta name="twitter:image:alt" content="WEPN Logo">
   <meta name="twitter:image:width" content="1200">
   <meta name="twitter:image:height" content="630">

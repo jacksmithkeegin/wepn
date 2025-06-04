@@ -38,15 +38,20 @@ permalink: /artists/foel.html
             {% if page.bluesky or page.website %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if page.bluesky %}
-                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-icon">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky"
-                         class="footer-icon">
+                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky">
                 </a>
                 {% endif %}
 
                 {% if page.website %}
                 <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
-                    <i class="fas fa-link artist-icon"></i>
+                    <i class="fas fa-link"></i>
+                </a>
+                {% endif %}
+
+                {% if page.soundcloud %}
+                <a href="{{ page.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <i class="fa fa-soundcloud"></i>
                 </a>
                 {% endif %}
             </div>
