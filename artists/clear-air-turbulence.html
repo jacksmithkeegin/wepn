@@ -5,6 +5,7 @@ name: Clear Air Turbulence
 slug: clear-air-turbulence
 image: /assets/images/artists/clear-air-turbulence/clear-air-turbulence.jpg
 bluesky: https://bsky.app/profile/caturbulence.bsky.social
+soundcloud: https://soundcloud.com/clear_air_turbluence
 bio:
   en: >
     Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris.
@@ -32,15 +33,20 @@ permalink: /artists/clear-air-turbulence.html
             {% if page.bluesky or page.website %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if page.bluesky %}
-                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-icon">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky"
-                         class="footer-icon">
+                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky">
                 </a>
                 {% endif %}
 
                 {% if page.website %}
-                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-icon">
-                    <i class="fas fa-link artist-icon"></i>
+                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <i class="fas fa-link"></i>
+                </a>
+                {% endif %}
+
+                {% if page.soundcloud %}
+                <a href="{{ page.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <i class="fa fa-soundcloud"></i>
                 </a>
                 {% endif %}
             </div>
