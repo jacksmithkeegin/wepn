@@ -1,0 +1,5 @@
+{% comment %}
+Renders a bio string with newlines as line breaks, matching the JS approach for releases.
+Usage: {% include bio-paragraphs.html text=artist.bio %}
+{% endcomment %}
+{{ include.text | newline_to_br }}

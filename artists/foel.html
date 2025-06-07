@@ -6,33 +6,26 @@ slug: foel
 image: /assets/images/artists/foel/foel.webp
 bluesky: https://bsky.app/profile/foel.cymru
 website: https://foel.cymru/
-bio:
-  en: >
-    Foel is an electronic music producer based in North Wales. A Welsh speaker from the North, he has spent a great deal of time exploring the region's wild areas.
-
-    His music runs from minimal ambient to frenetic electronic, its gradual transitions and use of space reflecting the local landscape.
-
-  cy: >
-    Cynhyrchydd cerddoriaeth electronig o Ogledd Cymru ydy Foel. Yn siaradwr Cymraeg o'r Gogledd, mae o wedi treulio lot o amser yn crwydro ardaloedd gwyllt y rhanbarth. Mae o'n rhannu ei anturiaethau efo'i wraig ac erbyn hyn ei ddau o blant.
-
-    Mae ei gerddoriaeth yn amrywio o ambient minimal i electronig gwyllt, efo trawsnewidiadau graddol a defnydd o ofod sy'n adlewyrchu'r tirwedd leol. Mae ei gerddoriaeth wedi helpu fo delio efo profiadau anodd o'i blentyndod, gan ddod ag elfen o dywyllwch ac weithiau dicter.
-
-    Mae o'n adeiladu systemau digidol cymhleth sy'n creu seiniau ailadroddus ond bob tro yn newid ac yn esblygu, gan daro cydbwysedd rhwng y peirianyddol a'r naturiol, trefn ac anrhefn.
 permalink: /artists/foel.html
 ---
 
-<section class="artist-bio">
-    <div class="container">
+<section class="artist-bio">    <div class="container">
         <h1>{{ page.title }}</h1>
 
-        <img class="artist-photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}"/>
+        {% assign artist = site.data.artists | where: "slug", page.slug | first %}
+        {% if artist.image %}
+            <img class="artist-photo" src="{{ artist.image | relative_url }}" alt="{{ page.title }}"/>
+        {% elsif artist.logo %}
+            <img class="artist-photo" src="{{ artist.logo | relative_url }}" alt="{{ page.title }}"/>
+        {% else %}
+            <img class="artist-photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}"/>
+        {% endif %}
 
         <div class="artist-description">
-            {% if page.bio.en %}
-            <div class="bio-text" data-lang="en">{{ page.bio.en | markdownify }}</div>
-            {% endif %}
-            {% if page.bio.cy %}
-            <div class="bio-text" data-lang="cy" style="display: none;">{{ page.bio.cy | markdownify }}</div>
+            {% if artist.bio %}
+            <div class="bio-text">
+                {% include bio-paragraphs.html text=artist.bio %}
+            </div>
             {% endif %}
 
             {% if page.bluesky or page.website %}

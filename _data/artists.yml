@@ -1,7 +1,8 @@
 - name: Foel
   slug: foel
+  logo: /assets/images/artists/foel/foel_logo.jpg
   image: /assets/images/artists/foel/foel.webp
-  bio: >
+  bio: |
     Foel is an electronic music producer based in North Wales. A Welsh speaker, he has spent a great deal of time exploring the region's wild areas. His adventures are shared with his wife and nowadays his two children.
 
     His music runs from minimal ambient to frenetic electronic, its gradual transitions and use of space reflecting the local landscape. His music has been an outlet for dealing with difficult childhood experiences, bringing an element of darkness and sometimes anger.
@@ -11,6 +12,7 @@
 - name: Clear Air Turbulence
   slug: clear-air-turbulence
   image: /assets/images/artists/clear-air-turbulence/clear-air-turbulence.jpg
-  bio: >
-    Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris. 
+  bio: |
+    Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris.
+
     Often the only thing holding a high altitude recording back is the length of the trailing cable.
