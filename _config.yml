@@ -30,3 +30,4 @@ exclude:
   - .jekyll-cache/
   - todo.md
   - resources/releases/makeSmallImages.py
+  - _config_local.yml

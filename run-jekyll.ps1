@@ -57,7 +57,8 @@ Write-Host "Your site will be available at http://localhost:4000" -ForegroundCol
 Write-Host "Press Ctrl+C to stop the server" -ForegroundColor Yellow
 Write-Host ""
 
-bundle exec jekyll serve
+# Use local config to override baseurl for development
+bundle exec jekyll serve --config _config.yml,_config_local.yml --livereload
 
 Write-Host "Press any key to exit..."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
