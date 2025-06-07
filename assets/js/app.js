@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     const playerBar = document.querySelector('.player-bar');
     const navLinks = document.querySelector('.nav-links');    // Get baseurl from a meta tag or data attribute
     const baseurl = document.documentElement.getAttribute('data-baseurl') || '';
-    
+
     // Helper to determine environment
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const isNetlify = !window.location.hostname.includes('github.io') && !isLocalhost;
-    
+
     // Build proper asset paths for all environments
     function getAssetPath(path) {
         // Make sure path starts with /
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 id: r.release_code.en,
                 title_en: r.title.en,
                 title_cy: r.title.cy || r.title.en,
-                artist: r.artists.en,                artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
+                artist: r.artists.en, artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
                 artwork_small_url: r.artwork_small_url || getAssetPath(`/assets/images/releases/small/${r.release_code.en}_small.jpg`),
                 bandcampEmbedUrl: r.bandcampEmbedUrl || '',
                 buyUrl: (r.link && r.link.en) || '',
@@ -87,11 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 detailed_description_en: r.detailed_description ? r.detailed_description.en : null,
                 detailed_description_cy: r.detailed_description ? (r.detailed_description.cy || r.detailed_description.en) : null,
                 release_date_en: r.release_date.en,
-                release_date_cy: r.release_date.cy || r.release_date.en            }));displayUpcomingRelease(); // Show upcoming release if any
+                release_date_cy: r.release_date.cy || r.release_date.en
+            }));
+            displayUpcomingRelease(); // Show upcoming release if any
             displayFeaturedRelease(); // Show hero featured
             displayMiniReleases(); // Show mini releases on home page
-            displayReleases();
-            checkUrlFragment();
+            if (releasesGrid) {
+                displayReleases();
+                checkUrlFragment();
+            }
+
         } catch (error) {
             console.error('Error loading releases:', error);
             releasesGrid.innerHTML = '<p class="error">Failed to load releases. Please try again later.</p>';
@@ -99,21 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     }    // Parse release date string to Date object
     function parseReleaseDate(releaseDateStr) {
         if (!releaseDateStr) return null;
-        
+
         // Handle "Month Day, Year" format (e.g., "June 6, 2025")
         const fullDateMatch = releaseDateStr.match(/^([A-Z][a-z]+)\s+(\d+),\s+(\d{4})$/);
         if (fullDateMatch) {
             const [, month, day, year] = fullDateMatch;
             return new Date(`${month} ${day}, ${year}`);
         }
-        
+
         // Handle "Month Year" format (e.g., "November 2021") - assume first day of month
         const monthYearMatch = releaseDateStr.match(/^([A-Z][a-z]+)\s+(\d{4})$/);
         if (monthYearMatch) {
             const [, month, year] = monthYearMatch;
             return new Date(`${month} 1, ${year}`);
         }
-        
+
         return null;
     }    // Find the most recent release with a release date in the past
     function getMostRecentPastRelease() {
@@ -122,19 +127,19 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             const releaseDate = parseReleaseDate(release.release_date_en);
             return releaseDate && releaseDate <= now;
         });
-        
+
         if (pastReleases.length === 0) {
             // If no past releases, fall back to first release in array
             return releases[0];
         }
-        
+
         // Sort by release date descending and return the most recent
         pastReleases.sort((a, b) => {
             const dateA = parseReleaseDate(a.release_date_en);
             const dateB = parseReleaseDate(b.release_date_en);
             return dateB - dateA;
         });
-        
+
         return pastReleases[0];
     }
 
@@ -145,37 +150,37 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             const releaseDate = parseReleaseDate(release.release_date_en);
             return releaseDate && releaseDate > now;
         });
-        
+
         if (futureReleases.length === 0) {
             return null;
         }
-        
+
         // Sort by release date ascending and return the earliest
         futureReleases.sort((a, b) => {
             const dateA = parseReleaseDate(a.release_date_en);
             const dateB = parseReleaseDate(b.release_date_en);
             return dateA - dateB;
         });
-        
+
         return futureReleases[0];
     }    // Render the upcoming release panel
     function displayUpcomingRelease() {
         const upcomingContainer = document.getElementById('upcoming-release');
         const upcomingPanel = document.getElementById('upcoming-release-panel');
-        
+
         if (!upcomingContainer || !upcomingPanel || !displayConfig) return;
-        
+
         console.log('displayUpcomingRelease - config:', displayConfig.upcomingRelease); // Debug log
-        
+
         // Check if upcoming release should be shown
         if (!displayConfig.upcomingRelease.show) {
             console.log('Hiding upcoming release panel'); // Debug log
             upcomingPanel.style.display = 'none';
             return;
         }
-        
+
         let upcoming = null;
-        
+
         // Try to get upcoming release based on configuration
         if (displayConfig.upcomingRelease.mode === 'manual') {
             // Try manual release first
@@ -191,16 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             // nextUp mode - show earliest future release
             upcoming = getEarliestFutureRelease();
         }
-        
+
         if (!upcoming) {
             // No upcoming release found - hide panel
             upcomingPanel.style.display = 'none';
             return;
         }
-        
+
         // Show the panel
         upcomingPanel.style.display = 'flex';
-        
+
         // Build upcoming release HTML
         upcomingContainer.innerHTML = `
             <div class="upcoming-top-section">
@@ -222,21 +227,21 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const featuredContainer = document.getElementById('featured-release');
         const featuredPanel = document.getElementById('featured-release-panel');
         if (!featuredContainer || !featuredPanel || !displayConfig) return;
-        
+
         let featured = null;
-        
+
         // Check if upcoming release is showing - if so, hide featured
         if (displayConfig.upcomingRelease.show) {
             const upcoming = displayConfig.upcomingRelease.mode === 'manual' && displayConfig.upcomingRelease.manualReleaseCode
                 ? releases.find(r => r.id === displayConfig.upcomingRelease.manualReleaseCode)
                 : getEarliestFutureRelease();
-            
+
             if (upcoming) {
                 featuredPanel.style.display = 'none';
                 return;
             }
         }
-        
+
         // Get featured release based on configuration
         if (displayConfig.featuredRelease.mode === 'manual') {
             // Show specific release
@@ -252,15 +257,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             // mostRecent mode - show most recent past release
             featured = featuredId ? releases.find(r => r.id === featuredId) : getMostRecentPastRelease();
         }
-        
+
         if (!featured) {
             featuredPanel.style.display = 'none';
             return;
         }
-        
+
         // Show featured release panel
         featuredPanel.style.display = 'flex';
-        
+
         // Build featured release HTML
         featuredContainer.innerHTML = `
             <div class="featured-top-section">
@@ -277,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             </div>
             ${featured[`detailed_description_${currentLanguage}`] ? `<div class="featured-detailed-description">${featured[`detailed_description_${currentLanguage}`].replace(/\n/g, '<br>')}</div>` : ''}
         `;
-        
+
         // Listen button event
         featuredContainer.querySelector('.featured-listen-btn').addEventListener('click', (e) => {
             loadReleaseInPlayer(featured.id);
@@ -286,27 +291,27 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     }// Display releases in the grid
     function displayReleases() {
         releasesGrid.innerHTML = '';
-        
+
         releases.forEach(release => {
             // No longer skip featured release
-            
+
             const releaseItem = document.createElement('div');
             releaseItem.className = 'release-item';
             releaseItem.id = release.id;
             releaseItem.setAttribute('tabindex', '0');
-            
+
             if (release.id === currentReleaseId) {
                 releaseItem.classList.add('active');
             }
-              // Check if this is a future release
+            // Check if this is a future release
             const releaseDate = parseReleaseDate(release.release_date_en);
             const now = new Date();
             const isFutureRelease = releaseDate && releaseDate > now;
-            
+
             // Add upcoming badge and different button layout for future releases
             let upcomingBadge = '';
             let buttonsHtml = '';
-              if (isFutureRelease) {
+            if (isFutureRelease) {
                 releaseItem.classList.add('upcoming-release');
                 upcomingBadge = `<div class="upcoming-badge">${translations[currentLanguage]['upcoming.badge']}</div>`;
                 buttonsHtml = `
@@ -324,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     </a>
                 `;
             }
-            
+
             releaseItem.innerHTML = `
                 <img 
                     src="${release.artwork_small_url}" 
@@ -341,9 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     </div>
                 </div>
             `;
-            
+
             releasesGrid.appendChild(releaseItem);
-        });        
+        });
         // Add event listeners to listen buttons (only for available releases)
         document.querySelectorAll('.listen-btn').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -367,7 +372,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     e.preventDefault();
                 }
             });
-        });    }
+        });
+    }
 
     // Display mini releases grid on home page (excluding upcoming and featured releases)
     function displayMiniReleases() {
@@ -377,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         // Get current featured release ID to exclude it
         const upcomingRelease = getEarliestFutureRelease();
         let featuredReleaseId = null;
-        
+
         if (!upcomingRelease) {
             // If no upcoming release, get the featured release
             const featured = getMostRecentPastRelease();
@@ -389,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             const releaseDate = parseReleaseDate(release.release_date_en);
             const now = new Date();
             const isFutureRelease = releaseDate && releaseDate > now;
-            
+
             // Exclude future releases and the currently featured release
             return !isFutureRelease && release.id !== featuredReleaseId;
         });
@@ -405,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             miniReleaseItem.className = 'mini-release-item';
             miniReleaseItem.id = `mini-${release.id}`;
             miniReleaseItem.setAttribute('tabindex', '0');
-            
+
             if (release.id === currentReleaseId) {
                 miniReleaseItem.classList.add('active');
             }
@@ -422,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     </button>
                 </div>
             `;
-            
+
             miniReleasesGrid.appendChild(miniReleaseItem);
         });        // Add event listeners to mini listen buttons
         document.querySelectorAll('.mini-listen-btn').forEach(button => {
@@ -462,32 +468,32 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         }
         const release = releases.find(r => r.id === releaseId);
         if (!release) return;
-        
+
         // Update player
         bandcampPlayer.src = release.bandcampEmbedUrl;
         currentTrackElement.textContent = release[`title_${currentLanguage}`];
-        
+
         // Show player bar if hidden
         if (playerBar && !playerBar.classList.contains('visible')) {
             playerBar.classList.add('visible');
             document.body.classList.add('player-bar-visible');
         }
-          // Update UI
+        // Update UI
         if (currentReleaseId) {
             const previousItem = document.getElementById(currentReleaseId);
             if (previousItem) previousItem.classList.remove('active');
             const previousMiniItem = document.getElementById(`mini-${currentReleaseId}`);
             if (previousMiniItem) previousMiniItem.classList.remove('active');
         }
-        
+
         const currentItem = document.getElementById(releaseId);
         if (currentItem) currentItem.classList.add('active');
         const currentMiniItem = document.getElementById(`mini-${releaseId}`);
         if (currentMiniItem) currentMiniItem.classList.add('active');
-        
+
         // Update state
         currentReleaseId = releaseId;
-        
+
         // Remove hash update here so it doesn't change URL
         // history.replaceState(null, null, `#${releaseId}`);
     }
@@ -565,12 +571,12 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const fragment = window.location.hash.substring(1);
         if (fragment && releases.some(r => r.id === fragment)) {
             loadReleaseInPlayer(fragment);
-            
+
             // Scroll to the release
             setTimeout(() => {
                 const element = document.getElementById(fragment);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.scrollIntoView({behavior: 'smooth', block: 'center'});
                 }
             }, 500);
         }
@@ -585,29 +591,29 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Switch language
     function switchLanguage(lang) {
         if (lang === currentLanguage) return;
-        
+
         // Update buttons
         languageButtons[currentLanguage].classList.remove('active');
         languageButtons[currentLanguage].setAttribute('aria-pressed', 'false');
         languageButtons[lang].classList.add('active');
         languageButtons[lang].setAttribute('aria-pressed', 'true');
-        
+
         // Update language
         currentLanguage = lang;
         document.documentElement.lang = lang;
-        
+
         // Update UI with translations
         updateUILanguage();
-        
+
         // Update only text content for releases and featured release
         updateReleaseTexts();
-        
+
         // Update consent dialog if open
         updateConsentDialogLanguage();
 
         // Update artist bio if open
         updateArtistBioLanguage();
-        
+
         // Update current track if one is playing
         if (currentReleaseId) {
             const release = releases.find(r => r.id === currentReleaseId);
@@ -646,7 +652,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 const titleMain = upcomingContainer.querySelector('.upcoming-release-title-main');
                 if (titleMain) titleMain.textContent = upcoming[`title_${currentLanguage}`];
                 const artist = upcomingContainer.querySelector('.upcoming-artist.prominent');
-                if (artist) artist.textContent = upcoming.artist;                const desc = upcomingContainer.querySelector('.upcoming-description');
+                if (artist) artist.textContent = upcoming.artist;
+                const desc = upcomingContainer.querySelector('.upcoming-description');
                 if (desc) desc.textContent = upcoming[`description_${currentLanguage}`];
                 const detailedDesc = upcomingContainer.querySelector('.upcoming-detailed-description');
                 if (detailedDesc && upcoming[`detailed_description_${currentLanguage}`]) {
@@ -658,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
             }
         }
-        
+
         // Update featured release texts
         const featuredContainer = document.getElementById('featured-release');
         if (featuredContainer) {
@@ -668,7 +675,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 const titleMain = featuredContainer.querySelector('.featured-release-title-main');
                 if (titleMain) titleMain.textContent = featured[`title_${currentLanguage}`];
                 const artist = featuredContainer.querySelector('.featured-artist.prominent');
-                if (artist) artist.textContent = featured.artist;                const desc = featuredContainer.querySelector('.featured-description');
+                if (artist) artist.textContent = featured.artist;
+                const desc = featuredContainer.querySelector('.featured-description');
                 if (desc) desc.textContent = featured[`description_${currentLanguage}`];
                 const detailedDesc = featuredContainer.querySelector('.featured-detailed-description');
                 if (detailedDesc && featured[`detailed_description_${currentLanguage}`]) {
@@ -686,7 +694,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             const title = item.querySelector('.release-title');
             if (title) title.textContent = release[`title_${currentLanguage}`];
             const artist = item.querySelector('.release-artist');
-            if (artist) artist.textContent = release.artist;            const listenBtn = item.querySelector('.listen-btn');
+            if (artist) artist.textContent = release.artist;
+            const listenBtn = item.querySelector('.listen-btn');
             if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
             const buyBtn = item.querySelector('.buy-link');
             if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
@@ -703,19 +712,19 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             const releaseId = item.id.replace('mini-', '');
             const release = releases.find(r => r.id === releaseId);
             if (!release) return;
-            
+
             const title = item.querySelector('.mini-release-title');
             if (title) title.textContent = release[`title_${currentLanguage}`];
-            
+
             const artist = item.querySelector('.mini-release-artist');
             if (artist) artist.textContent = release.artist;
-            
+
             const listenBtn = item.querySelector('.mini-listen-btn');
             if (listenBtn) {
                 listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 listenBtn.setAttribute('aria-label', `${translations[currentLanguage]['releases.listenButton']} ${release[`title_${currentLanguage}`]}`);
             }
-            
+
             // Update alt attribute for image
             const img = item.querySelector('.mini-release-image');
             if (img) img.alt = release[`title_${currentLanguage}`];
@@ -766,7 +775,9 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
     // Tab switching logic
     const tabSections = document.querySelectorAll('.tab-content');
-    const navTabLinks = document.querySelectorAll('.nav-links a');    function showTab(tabId) {
+    const navTabLinks = document.querySelectorAll('.nav-links a');
+
+    function showTab(tabId) {
         tabSections.forEach(section => {
             if (section.id === tabId) {
                 section.classList.remove('hidden');
@@ -785,13 +796,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 link.setAttribute('tabindex', '-1');
             }
         });
-        
+
         // Clear all release selections when switching tabs
         clearAllReleaseSelections();
-        
+
         // Instantly scroll to top when switching tabs
-        window.scrollTo({ top: 0, behavior: 'auto' });
+        window.scrollTo({top: 0, behavior: 'auto'});
     }
+
+    window.showTab = showTab; // expose this for all web pages to be able to acces it
 
     // Clear all release selections (remove active states and hide overlays)
     function clearAllReleaseSelections() {
@@ -799,12 +812,12 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         document.querySelectorAll('.release-item.active').forEach(item => {
             item.classList.remove('active');
         });
-        
+
         // Clear mini release selections
         document.querySelectorAll('.mini-release-item.active').forEach(item => {
             item.classList.remove('active');
         });
-        
+
         // Reset current release ID
         currentReleaseId = null;
     }
@@ -812,20 +825,19 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Add document-level click handler to clear selections when clicking outside releases
     document.addEventListener('click', (e) => {
         // Check if click is outside any release item or its children
-        const isReleaseClick = e.target.closest('.release-item') || 
-                              e.target.closest('.mini-release-item') || 
-                              e.target.closest('.player-bar') ||
-                              e.target.closest('.featured-listen-btn') ||
-                              e.target.closest('.upcoming-preorder-btn');
-        
+        const isReleaseClick = e.target.closest('.release-item') ||
+            e.target.closest('.mini-release-item') ||
+            e.target.closest('.player-bar') ||
+            e.target.closest('.featured-listen-btn') ||
+            e.target.closest('.upcoming-preorder-btn');
+
         // If click is outside all release-related elements, clear selections
         if (!isReleaseClick && currentReleaseId) {
             clearAllReleaseSelections();
         }
     });
 
-    // Intercept nav link clicks for tab switching
-    // Intercept nav link clicks for tab switching
+    // Intercept nav link clicks for tab switching    // Intercept nav link clicks for tab switching
     navTabLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -835,8 +847,14 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
             const [path, hash] = href.split('#');
 
-            // If not on index.html, redirect to it with the correct hash
-            const isIndex = window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/wepn/') || window.location.pathname.endsWith('/wepn');
+            // Check if we're on the home page (index.html or root)
+            const currentPath = window.location.pathname;
+            const isIndex = currentPath === '/' || 
+                           currentPath === '/index.html' || 
+                           currentPath === '/wepn/' || 
+                           currentPath === '/wepn' ||
+                           currentPath === '/wepn/index.html';
+            
             if (!isIndex) {
                 e.preventDefault();
                 window.location.href = `${baseurl}/#${hash}`;
@@ -848,16 +866,27 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             showTab(hash);
             history.replaceState(null, null, `#${hash}`);
         });
-    });
-
-    // Add logo click handler to switch to home tab
+    });    // Add logo click handler to switch to home tab
     const logoLink = document.querySelector('.logo a');
     if (logoLink) {
         logoLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tabId = 'home';
-            showTab(tabId);
-            history.replaceState(null, null, `#${tabId}`);
+            // Check if we're on the home page (index.html or root)
+            const currentPath = window.location.pathname;
+            const isHomePage = currentPath === '/' || 
+                              currentPath === '/index.html' || 
+                              currentPath === '/wepn/' || 
+                              currentPath === '/wepn' ||
+                              currentPath === '/wepn/index.html';
+
+            if (!isHomePage) {
+                // Redirect to home with hash
+                e.preventDefault();
+                window.location.href = `${baseurl}/#home`;
+            } else {
+                e.preventDefault();
+                showTab('home');
+                history.replaceState(null, null, '#home');
+            }
         });
     }
 
@@ -878,7 +907,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Hero CTA button tab switch
     const heroCtaBtn = document.querySelector('.hero-cta-btn');
     if (heroCtaBtn) {
-        heroCtaBtn.addEventListener('click', function(e) {
+        heroCtaBtn.addEventListener('click', function (e) {
             e.preventDefault();
             showTab('music');
             history.replaceState(null, null, '#music');
@@ -888,7 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Mini releases title link handler for tab switching
     const miniReleasesTitle = document.querySelector('.mini-releases-title a');
     if (miniReleasesTitle) {
-        miniReleasesTitle.addEventListener('click', function(e) {
+        miniReleasesTitle.addEventListener('click', function (e) {
             e.preventDefault();
             showTab('music');
             history.replaceState(null, null, '#music');
@@ -910,12 +939,17 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     // Footer privacy link tab switch
     const footerPrivacyLink = document.querySelector('.footer-privacy-link');
     if (footerPrivacyLink) {
-        footerPrivacyLink.addEventListener('click', function(e) {
+        footerPrivacyLink.addEventListener('click', function (e) {
             e.preventDefault();
             showTab('privacy');
             history.replaceState(null, null, '#privacy');
         });
     }
+
+    window.addEventListener("hashchange", () => {
+        const hash = window.location.hash.substring(1);
+        showTab(hash);
+    });
 
     // Initialize the application
     function init() {

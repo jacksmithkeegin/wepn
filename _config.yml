@@ -12,6 +12,9 @@ permalink: pretty
 collections:
   releases:
     output: false
+  artists:
+    output: true
+    permalink: /artists/:name.html
 
 # Default front matter
 defaults:
@@ -30,3 +33,4 @@ exclude:
   - .jekyll-cache/
   - todo.md
   - resources/releases/makeSmallImages.py
+  - _config_local.yml
