@@ -16,9 +16,7 @@ layout: default
             <div class="bio-text">
                 {% include bio-paragraphs.html text=artist.bio %}
             </div>
-            {% endif %}
-
-            {% if artist.bluesky or artist.website or artist.soundcloud %}
+            {% endif %}            {% if artist.bluesky or artist.website or artist.soundcloud or artist.bandcamp %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if artist.bluesky %}
                 <a href="{{ artist.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
@@ -35,6 +33,12 @@ layout: default
                 {% if artist.soundcloud %}
                 <a href="{{ artist.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                     <i class="fa fa-soundcloud"></i>
+                </a>
+                {% endif %}
+
+                {% if artist.bandcamp %}
+                <a href="{{ artist.bandcamp }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bandcamp.svg" alt="Bandcamp">
                 </a>
                 {% endif %}
             </div>
