@@ -1,19 +1,22 @@
 ---
 layout: default
-title: Artists
-permalink: /artists/
+title: All Artists
+permalink: /all-artists/
 ---
 
 <section class="artists-section">
     <div class="container">
-        <h1 data-i18n="artists.title">Artists</h1>
-        <ul class="artist-list">
-            {% assign artists = site.data.artists %}
-            {% for artist in artists %}
-            <li>
-                <a class="artist-card" href="{{ site.baseurl }}/artists/{{ artist.slug }}.html">
-                    <img src="{{ artist.image }}" alt="{{ artist.name }}">
-                    <p>{{ artist.name }}</p>
+        <h1 data-i18n="artists.title">Artists</h1>        <ul class="artist-list">
+            {% assign artists = site.data.artists | sort_natural: 'name' %}            {% for artist in artists %}<li>
+                <a class="artist-card" href="{{ site.baseurl }}/artists/{{ artist.slug }}/">
+                    {% if artist.logo %}
+                        <img src="{{ artist.logo }}" alt="{{ artist.name }}">
+                    {% else %}
+                        <img src="{{ artist.image }}" alt="{{ artist.name }}">
+                    {% endif %}
+                    <div class="artist-overlay">
+                        <div class="artist-name">{{ artist.name }}</div>
+                    </div>
                 </a>
             </li>
             {% endfor %}

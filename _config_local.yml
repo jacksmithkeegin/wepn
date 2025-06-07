@@ -1,0 +1,8 @@
+# Local development config overrides
+# This file overrides settings in _config.yml for local development
+baseurl: "" # blank for local development to avoid URL issues
+url: "http://localhost:4000" # local development URL
+
+# Keep other settings from main config
+# Additional settings for local development
+local_dev: true # flag we can check in templates
