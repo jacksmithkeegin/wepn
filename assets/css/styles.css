@@ -200,7 +200,7 @@ header {
     top: 60px;
     left: 0;
     width: 100%;
-    background-color:rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     z-index: 999;
     padding: min(2.5vw, 0.25rem) 0; /* Responsive vertical padding, max 2.5vw, min 0.25rem */
     display: none;
@@ -234,7 +234,7 @@ header {
     display: block;
     margin: 0 auto;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     background: #ffffff;
 }
 
@@ -482,7 +482,9 @@ footer p {
 }
 
 /* Remove old contact section spacing if any */
-.contact-section { display: none; }
+.contact-section {
+    display: none;
+}
 
 /* Mobile Navigation */
 .mobile-nav-toggle {
@@ -500,7 +502,7 @@ footer p {
     background: rgba(0, 0, 0, 0.95);
     color: #fff;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 1200;
 }
 
@@ -516,10 +518,11 @@ footer p {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.92);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 1099; /* Just below the nav and hamburger */
     transition: opacity 0.3s;
 }
+
 .mobile-nav-overlay.active {
     display: block;
 }
@@ -529,6 +532,7 @@ footer p {
         display: block;
         z-index: 1200;
     }
+
     .nav-links {
         display: none;
         position: absolute;
@@ -541,37 +545,40 @@ footer p {
         padding: var(--spacing-md) 0;
         z-index: 1101;
     }
+
     .nav-links.active {
         display: flex;
     }
-    
+
     .nav-links li {
         margin: var(--spacing-md) 0;
     }
-    
+
     .about-content {
         flex-direction: column;
     }
-    
+
     .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+
     .release-item, .release-image {
         min-height: 220px;
         max-height: 350px;
     }
-    
+
     .player-bar {
         padding: min(2vw, 0.25rem) 0; /* Responsive vertical padding, max 2vw, min 0.25rem */
     }
-    
+
     .now-playing {
         font-size: 0.9rem;
     }
-    
+
     main {
         padding-top: 60px; /* Always match header height */
     }
+
     body.player-bar-visible main {
         padding-top: 150px; /* Header (60px) + Player bar (90px) */
     }
@@ -582,24 +589,25 @@ footer p {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-md);
     }
+
     .release-item, .release-image {
         min-height: 120px;
         max-height: 200px;
     }
-    
+
     .release-title {
         font-size: 1rem;
     }
-    
+
     .social-links {
         justify-content: center;
     }
-    
+
     .social-link {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
-    
+
     .player-wrapper iframe {
         height: 100px;
     }
@@ -616,28 +624,33 @@ footer p {
     align-items: center;
     justify-content: center;
 }
+
 .hero-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-lg); /* Halved from var(--spacing-xl) to var(--spacing-lg) */
 }
+
 .hero-panel {
     text-align: center;
     margin-bottom: var(--spacing-lg);
 }
+
 .hero-heading {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: var(--spacing-md);
     letter-spacing: 0.01em;
 }
+
 .hero-tagline {
     font-size: 1.3rem;
     margin-bottom: var(--spacing-lg);
     font-weight: 400;
     color: #e0e0e0;
 }
+
 .hero-cta-btn {
     display: inline-block;
     background: var(--primary-color);
@@ -648,13 +661,15 @@ footer p {
     border-radius: var(--border-radius);
     text-decoration: none;
     transition: background 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
+
 .hero-cta-btn:hover, .hero-cta-btn:focus {
     background: #1e7fdb;
     color: #fff;
     text-decoration: none;
 }
+
 .featured-release {
     display: flex;
     flex-direction: column;
@@ -668,19 +683,21 @@ footer p {
     gap: var(--spacing-xl);
     width: 100%;
 }
+
 .featured-artwork {
     width: 500px;
     max-width: 40vw;
     height: auto;
     object-fit: contain;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
     background: #222;
 }
+
 .featured-release-panel {
     background: rgba(33, 150, 243, 0.15); /* Blue tint to match upcoming panel */
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
     padding: var(--spacing-lg);
     width: 100%;
     max-width: 100%; /* Make as wide as .container */
@@ -691,6 +708,7 @@ footer p {
     gap: var(--spacing-lg);
     border: 2px solid rgba(33, 150, 243, 0.3); /* Subtle blue border to match upcoming panel */
 }
+
 .featured-label {
     font-size: 1.1rem;
     font-weight: 700;
@@ -700,12 +718,14 @@ footer p {
     margin-bottom: 1.2rem;
     text-align: left;
 }
+
 .featured-title {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0.2em;
     color: #fff;
 }
+
 .featured-description {
     font-size: 1.1rem;
     color: #f3f3f3;
@@ -732,6 +752,7 @@ footer p {
     gap: 1.2rem;
     margin-top: 0.5em;
 }
+
 .featured-listen-btn, .featured-bandcamp-btn {
     background: var(--primary-color);
     color: #fff;
@@ -744,10 +765,12 @@ footer p {
     transition: background 0.2s;
     cursor: pointer;
 }
+
 .featured-listen-btn:hover, .featured-bandcamp-btn:hover {
     background: #1e7fdb;
     color: #fff;
 }
+
 .featured-release-title-main {
     font-size: 2rem;
     font-weight: 700;
@@ -756,6 +779,7 @@ footer p {
     line-height: 1.1;
     text-align: left;
 }
+
 .featured-artist.prominent {
     font-size: 1.25rem;
     font-weight: 600;
@@ -768,7 +792,7 @@ footer p {
 .upcoming-release-panel {
     background: rgba(33, 150, 243, 0.15); /* Blue tint to distinguish from featured */
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
     padding: var(--spacing-lg);
     width: 100%;
     max-width: 100%;
@@ -800,7 +824,7 @@ footer p {
     height: auto;
     object-fit: contain;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
     background: #222;
 }
 
@@ -944,22 +968,26 @@ footer p {
     .featured-release-panel, .upcoming-release-panel {
         padding: var(--spacing-md);
     }
+
     .featured-release, .upcoming-release {
         flex-direction: column;
         align-items: stretch;
         text-align: center;
         gap: var(--spacing-md); /* Reduce gap between items */
     }
+
     .featured-top-section, .upcoming-top-section {
         flex-direction: column;
         align-items: center;
         gap: var(--spacing-md);
     }
+
     .featured-artwork, .upcoming-artwork {
         margin: 0 auto var(--spacing-md) auto;
         width: 70vw;
         max-width: 420px;
     }
+
     .featured-info, .upcoming-info {
         display: flex;
         flex-direction: column;
@@ -971,29 +999,36 @@ footer p {
     .hero-heading {
         font-size: 2rem;
     }
+
     .hero-section {
         min-height: auto;
         padding-top: calc(var(--spacing-lg) + 2rem);
     }
+
     .featured-title {
         font-size: 1.3rem;
     }
+
     .featured-artwork, .upcoming-artwork {
         width: 85vw;
         max-width: 350px;
         margin: 0 auto var(--spacing-md) auto;
     }
+
     .featured-release-title-main, .upcoming-release-title-main {
         font-size: 1.7rem;
         text-align: center;
     }
+
     .featured-artist.prominent, .upcoming-artist.prominent {
         text-align: center;
     }
+
     .featured-description, .upcoming-description {
         font-size: 1rem;
         text-align: center;
     }
+
     .featured-buttons, .upcoming-buttons {
         justify-content: center;
     }
@@ -1004,7 +1039,7 @@ footer p {
     html {
         scroll-behavior: auto;
     }
-    
+
     .release-item,
     .release-overlay,
     a,
@@ -1056,7 +1091,7 @@ footer p {
 .mini-releases-panel {
     background: rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
     padding: var(--spacing-lg);
     width: 100%;
     margin-top: var(--spacing-lg);
@@ -1183,11 +1218,11 @@ footer p {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: var(--spacing-sm);
     }
-    
+
     .mini-releases-panel {
         padding: var(--spacing-md);
     }
-    
+
     .mini-listen-btn {
         padding: 0.3rem 0.6rem;
         font-size: 0.7rem;
@@ -1199,11 +1234,12 @@ footer p {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 }
+
 .close-player-bar {
     position: absolute;
     top: 0;
     right: -48px; /* Move button outside the player to the right */
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -1216,19 +1252,22 @@ footer p {
     cursor: pointer;
     z-index: 10;
     transition: background 0.2s, right 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .close-player-bar:hover, .close-player-bar:focus {
     background: var(--primary-color);
     color: #fff;
     outline: none;
 }
+
 .player-wrapper {
     position: relative;
 }
+
 @media (max-width: 900px) {
     .close-player-bar {
         right: 0;
@@ -1239,30 +1278,36 @@ footer p {
 /* Bandcamp Cookie Consent Dialog */
 .bandcamp-consent-dialog {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .bandcamp-consent-content {
     background: #fff;
     color: #222;
     border-radius: 12px;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
     padding: 2rem 2.5rem;
     max-width: 90vw;
     width: 350px;
     text-align: center;
     font-size: 1.1rem;
 }
+
 .bandcamp-consent-buttons {
     margin-top: 1.5rem;
     display: flex;
     gap: 1rem;
     justify-content: center;
 }
+
 .bandcamp-consent-buttons button {
     padding: 0.5rem 1.2rem;
     border-radius: 6px;
@@ -1273,11 +1318,13 @@ footer p {
     color: #fff;
     transition: background 0.2s;
 }
+
 .bandcamp-consent-buttons button.bandcamp-decline-btn {
     background: #eee;
     color: #222;
     border: 1px solid #bbb;
 }
+
 .bandcamp-consent-buttons button:focus {
     outline: 2px solid var(--primary-color, #1e7fdb);
 }
@@ -1288,12 +1335,13 @@ footer p {
     align-items: center;
     justify-content: center;
     min-height: 120px;
-    background: rgba(255,255,255,0.98);
+    background: rgba(255, 255, 255, 0.98);
     border-radius: var(--border-radius, 12px);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
     position: relative;
     z-index: 10;
 }
+
 .bandcamp-consent-dialog-inline .bandcamp-consent-content {
     width: 100%;
     max-width: 500px;
@@ -1306,12 +1354,14 @@ footer p {
     border-radius: 0;
     font-size: 1.1rem;
 }
+
 .bandcamp-consent-dialog-inline .bandcamp-consent-buttons {
     margin-top: 1.2rem;
     display: flex;
     gap: 1rem;
     justify-content: center;
 }
+
 .bandcamp-consent-dialog-inline .bandcamp-consent-buttons button {
     padding: 0.5rem 1.2rem;
     border-radius: 6px;
@@ -1322,11 +1372,13 @@ footer p {
     color: #fff;
     transition: background 0.2s;
 }
+
 .bandcamp-consent-dialog-inline .bandcamp-consent-buttons button.bandcamp-decline-btn {
     background: #eee;
     color: #222;
     border: 1px solid #bbb;
 }
+
 .bandcamp-consent-dialog-inline .bandcamp-consent-buttons button:focus {
     outline: 2px solid var(--primary-color, #1e7fdb);
 }
@@ -1350,7 +1402,7 @@ footer p {
     height: 200px; /* Fix image height */
     object-fit: cover; /* Crop nicely to fit the box */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .artist-card h3 {
@@ -1387,28 +1439,86 @@ footer p {
 
 .artist-links {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    align-items: center;
+    gap: 1rem;
 }
+
 .artist-links a {
-    margin-right: 0.5rem;
-}
-.artist-links img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
-    vertical-align: middle;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.artist-links img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+}
+
+.artist-links i {
+    color: #fff !important;
+    fill: currentColor !important;
+    filter: none !important;
+    transform: translateY(1px);
+    width: 20px;
+    height: 20px;
+    display: inline-block;
 }
 
 .social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    text-decoration: none;
-    color: var(--main-text-color);
-    font-size: 1rem;
 }
 
 .social-link img {
     width: 20px;
     height: 20px;
+}
+
+.artist-icon {
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.artist-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+}
+
+.artist-social-link:hover {
+    color: var(--primary-color);
+}
+
+.artist-social-link img,
+.artist-social-link i {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    object-fit: contain;
+    filter: invert(1) brightness(2); /* Ensures white color on dark backgrounds */
+}
+
+.artist-social-link .fa-soundcloud,
+.artist-social-link .fa-link {
+    font-size: 22px;
+    transform: translateY(1px);
 }

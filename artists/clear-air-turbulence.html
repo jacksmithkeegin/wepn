@@ -4,8 +4,8 @@ title: Clear Air Turbulence
 name: Clear Air Turbulence
 slug: clear-air-turbulence
 image: /assets/images/artists/clear-air-turbulence/clear-air-turbulence.jpg
-banner: /assets/images/artists/clear-air-turbulence/banner.jpg
 bluesky: https://bsky.app/profile/caturbulence.bsky.social
+soundcloud: https://soundcloud.com/clear_air_turbluence
 bio:
   en: >
     Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris.
@@ -15,12 +15,6 @@ bio:
     Yn aml, yr unig beth sy'n dal uchder uchel yn cofnodi yn ôl yw hyd y cebl llusgo.
 permalink: /artists/clear-air-turbulence.html
 ---
-
-{% if page.banner %}
-<div class="artist-banner">
-    <img src="{{ page.banner | relative_url }}" alt="Banner for {{ page.title }}"/>
-</div>
-{% endif %}
 
 <section class="artist-bio">
     <div class="container">
@@ -39,26 +33,20 @@ permalink: /artists/clear-air-turbulence.html
             {% if page.bluesky or page.website %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if page.bluesky %}
-                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky"
-                         class="footer-icon">
-                    {{ page.bluesky | remove: "https://bsky.app/profile/" | remove: "/" }}
+                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky">
                 </a>
                 {% endif %}
 
                 {% if page.website %}
-                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" viewBox="0 0 24 24" fill="currentColor"
-                         width="20" height="20">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-                     10-4.48 10-10S17.52 2 12 2zm0 2c1.1 0 2 .9
-                     2 2h-4c0-1.1.9-2 2-2zm0 16c-1.1 0-2-.9-2-2h4c0
-                     1.1-.9 2-2 2zm6-6c0 1.1-.9 2-2 2v-4c1.1 0 2 .9
-                     2 2zm-12 0c0-1.1.9-2 2-2v4c-1.1 0-2-.9-2-2zm6-6c2.21
-                     0 4 1.79 4 4h-2c0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21
-                     1.79-4 4-4z"/>
-                    </svg>
-                    {{ page.website | remove: "https://" | remove: "http://" | remove: "/" }}
+                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <i class="fas fa-link"></i>
+                </a>
+                {% endif %}
+
+                {% if page.soundcloud %}
+                <a href="{{ page.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                    <i class="fa fa-soundcloud"></i>
                 </a>
                 {% endif %}
             </div>
