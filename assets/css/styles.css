@@ -559,7 +559,7 @@ footer p {
     }    .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }    .artist-grid, .artist-list {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 
     .release-item, .release-image {
@@ -1390,14 +1390,14 @@ footer p {
 
 .artist-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: var(--spacing-lg);
     padding: 2rem 0;
 }
 
 .artist-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: var(--spacing-lg);
     padding: 2rem 0;
     list-style: none;
