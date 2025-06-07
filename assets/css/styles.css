@@ -1391,16 +1391,25 @@ footer p {
     padding: 2rem 0;
 }
 
+.artist-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0;
+    list-style: none;
+}
+
 .artist-card {
-    flex: 1 1 200px;
-    max-width: 250px;
+    flex: 1 1 150px;
+    max-width: 180px;
     text-align: center;
 }
 
 .artist-card img {
-    width: 100%;
-    height: 200px; /* Fix image height */
-    object-fit: cover; /* Crop nicely to fit the box */
+    width: 150px;
+    height: 150px; /* Square images */
+    object-fit: cover; /* Crop nicely to fit the square */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
