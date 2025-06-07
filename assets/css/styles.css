@@ -1378,8 +1378,37 @@ footer p {
 }
 
 .artist-banner img {
+    background-color: var(--background-color);
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
+}
+
+.artist-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.artist-links a {
+    margin-right: 0.5rem;
+}
+.artist-links img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    text-decoration: none;
+    color: var(--main-text-color);
+    font-size: 1rem;
+}
+
+.social-link img {
+    width: 20px;
+    height: 20px;
 }

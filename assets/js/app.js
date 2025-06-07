@@ -793,6 +793,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
+    window.showTab = showTab; // expose this for all web pages to be able to acces it
+
     // Clear all release selections (remove active states and hide overlays)
     function clearAllReleaseSelections() {
         // Clear main release selections
