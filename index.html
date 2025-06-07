@@ -44,17 +44,17 @@ title: WEPN - Wales Electronic Producers Network
 <!-- Artists section -->
 <section id="artists" class="tab-content hidden">
   <div class="container">    <h2 data-i18n="artists.title">Artists</h2>    <div class="artist-grid">
-      {% assign artists = site.data.artists | sort_natural: 'name' %}
-      {% for artist in artists %}<div class="artist-card">
-        <a href="{{ site.baseurl }}/artists/{{ artist.slug | downcase }}/">
+      {% assign artists = site.data.artists | sort_natural: 'name' %}      {% for artist in artists %}
+        <a class="artist-card" href="{{ site.baseurl }}/artists/{{ artist.slug | downcase }}/">
           {% if artist.logo %}
             <img src="{{ artist.logo | relative_url }}" alt="{{ artist.name }}">
           {% else %}
             <img src="{{ artist.image | relative_url }}" alt="{{ artist.name }}">
           {% endif %}
-          <h3>{{ artist.name }}</h3>
+          <div class="artist-overlay">
+            <div class="artist-name">{{ artist.name }}</div>
+          </div>
         </a>
-      </div>
       {% endfor %}
     </div>
   </div>
