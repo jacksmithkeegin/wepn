@@ -1,24 +1,14 @@
 ---
 layout: default
-title: Clear Air Turbulence
-name: Clear Air Turbulence
-slug: clear-air-turbulence
-image: /assets/images/artists/clear-air-turbulence/clear-air-turbulence.jpg
-bluesky: https://bsky.app/profile/caturbulence.bsky.social
-soundcloud: https://soundcloud.com/clear_air_turbluence
-permalink: /artists/clear-air-turbulence.html
 ---
 
-<section class="artist-bio">    <div class="container">
-        <h1>{{ page.title }}</h1>
-
-        {% assign artist = site.data.artists | where: "slug", page.slug | first %}
+<section class="artist-bio">
+    <div class="container">
+        <h1>{{ page.title }}</h1>        {% assign artist = page.artist %}
         {% if artist.image %}
             <img class="artist-photo" src="{{ artist.image | relative_url }}" alt="{{ page.title }}"/>
         {% elsif artist.logo %}
             <img class="artist-photo" src="{{ artist.logo | relative_url }}" alt="{{ page.title }}"/>
-        {% else %}
-            <img class="artist-photo" src="{{ page.image | relative_url }}" alt="{{ page.title }}"/>
         {% endif %}
 
         <div class="artist-description">
@@ -28,22 +18,22 @@ permalink: /artists/clear-air-turbulence.html
             </div>
             {% endif %}
 
-            {% if page.bluesky or page.website %}
+            {% if artist.bluesky or artist.website or artist.soundcloud %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
-                {% if page.bluesky %}
-                <a href="{{ page.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                {% if artist.bluesky %}
+                <a href="{{ artist.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg" alt="Bluesky">
                 </a>
                 {% endif %}
 
-                {% if page.website %}
-                <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                {% if artist.website %}
+                <a href="{{ artist.website }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                     <i class="fas fa-link"></i>
                 </a>
                 {% endif %}
 
-                {% if page.soundcloud %}
-                <a href="{{ page.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
+                {% if artist.soundcloud %}
+                <a href="{{ artist.soundcloud }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                     <i class="fa fa-soundcloud"></i>
                 </a>
                 {% endif %}

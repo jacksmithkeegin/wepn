@@ -12,6 +12,9 @@ permalink: pretty
 collections:
   releases:
     output: false
+  artists:
+    output: true
+    permalink: /artists/:name.html
 
 # Default front matter
 defaults:

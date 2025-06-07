@@ -46,9 +46,8 @@ title: WEPN - Wales Electronic Producers Network
   <div class="container">
     <h2 data-i18n="artists.title">Artists</h2>    <div class="artist-grid">
       {% assign artists = site.data.artists %}
-      {% for artist in artists %}
-      <div class="artist-card">
-        <a href="{{ site.baseurl }}/artists/{{ artist.slug | downcase }}.html">
+      {% for artist in artists %}      <div class="artist-card">
+        <a href="{{ site.baseurl }}/artists/{{ artist.slug | downcase }}/">
           {% if artist.logo %}
             <img src="{{ artist.logo | relative_url }}" alt="{{ artist.name }}">
           {% else %}
