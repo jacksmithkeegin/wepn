@@ -837,8 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         }
     });
 
-    // Intercept nav link clicks for tab switching
-    // Intercept nav link clicks for tab switching
+    // Intercept nav link clicks for tab switching    // Intercept nav link clicks for tab switching
     navTabLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -848,8 +847,14 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
             const [path, hash] = href.split('#');
 
-            // If not on index.html, redirect to it with the correct hash
-            const isIndex = window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/wepn/') || window.location.pathname.endsWith('/wepn');
+            // Check if we're on the home page (index.html or root)
+            const currentPath = window.location.pathname;
+            const isIndex = currentPath === '/' || 
+                           currentPath === '/index.html' || 
+                           currentPath === '/wepn/' || 
+                           currentPath === '/wepn' ||
+                           currentPath === '/wepn/index.html';
+            
             if (!isIndex) {
                 e.preventDefault();
                 window.location.href = `${baseurl}/#${hash}`;
@@ -861,13 +866,17 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             showTab(hash);
             history.replaceState(null, null, `#${hash}`);
         });
-    });
-
-    // Add logo click handler to switch to home tab
+    });    // Add logo click handler to switch to home tab
     const logoLink = document.querySelector('.logo a');
     if (logoLink) {
         logoLink.addEventListener('click', (e) => {
-            const isHomePage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/wepn/') || window.location.pathname.endsWith('/wepn');
+            // Check if we're on the home page (index.html or root)
+            const currentPath = window.location.pathname;
+            const isHomePage = currentPath === '/' || 
+                              currentPath === '/index.html' || 
+                              currentPath === '/wepn/' || 
+                              currentPath === '/wepn' ||
+                              currentPath === '/wepn/index.html';
 
             if (!isHomePage) {
                 // Redirect to home with hash
