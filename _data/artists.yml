@@ -5,12 +5,19 @@
   image: /assets/images/artists/foel/foel.webp
   bluesky: https://bsky.app/profile/foel.cymru
   website: https://foel.cymru/
-  bio: |
-    Foel is an electronic music producer based in North Wales. A Welsh speaker, he has spent a great deal of time exploring the region's wild areas. His adventures are shared with his wife and nowadays his two children.
+  bio:
+    en: |
+      Foel is an electronic music producer based in North Wales. A Welsh speaker, he has spent a great deal of time exploring the region's wild areas. His adventures are shared with his wife and nowadays his two children.
 
-    His music runs from minimal ambient to frenetic electronic, its gradual transitions and use of space reflecting the local landscape. His music has been an outlet for dealing with difficult childhood experiences, bringing an element of darkness and sometimes anger.
+      His music runs from minimal ambient to frenetic electronic, its gradual transitions and use of space reflecting the local landscape. His music has been an outlet for dealing with difficult childhood experiences, bringing an element of darkness and sometimes anger.
 
-    He builds complex digital systems whose sounds are repetitive but always shifting and evolving, finding a balance between machine-like and natural, order and chaos.
+      He builds complex digital systems whose sounds are repetitive but always shifting and evolving, finding a balance between machine-like and natural, order and chaos.
+    cy: |
+      Cynhyrchydd cerddoriaeth electronig o Ogledd Cymru ydy Foel. Yn siaradwr Cymraeg o'r Gogledd, mae o wedi treulio lot o amser yn crwydro ardaloedd gwyllt y rhanbarth. Mae o'n rhannu ei anturiaethau efo'i wraig ac erbyn hyn ei ddau o blant.
+
+      Mae ei gerddoriaeth yn amrywio o ambient minimal i electronig gwyllt, efo trawsnewidiadau graddol a defnydd o ofod sy'n adlewyrchu'r tirwedd leol. Mae ei gerddoriaeth wedi helpu fo delio efo profiadau anodd o'i blentyndod, gan ddod ag elfen o dywyllwch ac weithiau dicter.
+
+      Mae o'n adeiladu systemau digidol cymhleth sy'n creu seiniau ailadroddus ond bob tro yn newid ac yn esblygu, gan daro cydbwysedd rhwng y peirianyddol a'r naturiol, trefn ac anrhefn.
 
 - name: Clear Air Turbulence
   slug: clear-air-turbulence
@@ -18,32 +25,35 @@
   image: /assets/images/artists/clear-air-turbulence/clear-air-turbulence.jpg
   bluesky: https://bsky.app/profile/caturbulence.bsky.social
   soundcloud: https://soundcloud.com/clear_air_turbluence
-  bio: |
-    Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris.
+  bio:
+    en: |
+      Based in the Vale, Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris.
 
-    Often the only thing holding a high altitude recording back is the length of the trailing cable.
+      Often the only thing holding a high altitude recording back is the length of the trailing cable.
 
 - name: SUNBANE
   slug: sunbane
   title: SUNBANE
   image: /assets/images/artists/sunbane/sunbane_logo.jpg
   bandcamp: https://thesunbane.bandcamp.com/music
-  bio: |
-    WEPN's founder creates music described in Electronic Sound as "post apocalyptic rave". Sunbane makes wide ranging electronic music with elements of house, techno, dup, hip-hop, drone, psychedelic rock and even occasionally pop music. Driven by a pre-occupation with the measures we take to avoid looking at the dark side of the world and exist in a society where everyday chaos has become hyper-normalised to the point it might as well be invisible.
+  bio:
+    en: |
+      WEPN's founder creates music described in Electronic Sound as "post apocalyptic rave". Sunbane makes wide ranging electronic music with elements of house, techno, dup, hip-hop, drone, psychedelic rock and even occasionally pop music. Driven by a pre-occupation with the measures we take to avoid looking at the dark side of the world and exist in a society where everyday chaos has become hyper-normalised to the point it might as well be invisible.
 
-    Currently working on Chrysalism, the follow-up to his critically acclaimed 2020 release [Crooked Timber](https://thesunbane.bandcamp.com/album/crooked-timber), which earned a New and Notable nod from bandcamp on its release. Expect a fusion of krautrock, shoegaze, industrial and glitch wrapping a concept record about chaos theory. It will all make sense when you hear it.
+      Currently working on Chrysalism, the follow-up to his critically acclaimed 2020 release [Crooked Timber](https://thesunbane.bandcamp.com/album/crooked-timber), which earned a New and Notable nod from bandcamp on its release. Expect a fusion of krautrock, shoegaze, industrial and glitch wrapping a concept record about chaos theory. It will all make sense when you hear it.
 
 - name: hardwareghost
   slug: hardwareghost
   title: hardwareghost
   image: /assets/images/artists/hardwareghost/hardwareghost_logo.png
   website: https://www.mixcloud.com/sheeldz/monday-graveyard-show-178-10062019/
-  bio: |
-    i am not sunbane – fuck that guy – oh look im going to change the world by making angry rave music that twelve people listen to – take your head out of your ass - dickhead
+  bio:
+    en: |
+      i am not sunbane – fuck that guy – oh look im going to change the world by making angry rave music that twelve people listen to – take your head out of your ass - dickhead
 
-    get high
-    make beats
-    sell millions
-    sunset and supermodels
+      get high
+      make beats
+      sell millions
+      sunset and supermodels
 
-    or dont – couldnt care less m8
+      or dont – couldnt care less m8

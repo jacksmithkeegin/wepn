@@ -9,14 +9,24 @@ layout: default
             <img class="artist-photo" src="{{ artist.image | relative_url }}" alt="{{ page.title }}"/>
         {% elsif artist.logo %}
             <img class="artist-photo" src="{{ artist.logo | relative_url }}" alt="{{ page.title }}"/>
-        {% endif %}
-
-        <div class="artist-description">
+        {% endif %}        <div class="artist-description">
             {% if artist.bio %}
-            <div class="bio-text">
-                {% include bio-paragraphs.html text=artist.bio %}
-            </div>
-            {% endif %}            {% if artist.bluesky or artist.website or artist.soundcloud or artist.bandcamp %}
+                {% if artist.bio.en %}
+                    <div class="bio-text" data-lang="en">
+                        {% include bio-paragraphs.html text=artist.bio.en %}
+                    </div>
+                    {% if artist.bio.cy %}
+                    <div class="bio-text" data-lang="cy" style="display: none;">
+                        {% include bio-paragraphs.html text=artist.bio.cy %}
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <!-- Fallback for old single-language bio format -->
+                    <div class="bio-text" data-lang="en">
+                        {% include bio-paragraphs.html text=artist.bio %}
+                    </div>
+                {% endif %}
+            {% endif %}{% if artist.bluesky or artist.website or artist.soundcloud or artist.bandcamp %}
             <div class="artist-links" style="margin-top: 1em; margin-bottom: 1.5em;">
                 {% if artist.bluesky %}
                 <a href="{{ artist.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">

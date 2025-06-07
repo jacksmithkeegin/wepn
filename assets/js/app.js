@@ -558,11 +558,22 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             dialog.querySelector('.bandcamp-cookie-text').innerHTML = translations[currentLanguage]['bandcamp.cookies'] || 'The Bandcamp player uses cookies';
             dialog.querySelector('.bandcamp-privacy-link').outerHTML = privacyLink;
         }
-    }
-
-    function updateArtistBioLanguage() {
+    }    function updateArtistBioLanguage() {
         document.querySelectorAll('.bio-text').forEach(el => {
-            el.style.display = el.dataset.lang === currentLanguage ? 'block' : 'none';
+            const langAttr = el.dataset.lang;
+            if (langAttr === currentLanguage) {
+                el.style.display = 'block';
+            } else if (langAttr === 'en' && currentLanguage === 'cy') {
+                // If Welsh is selected but no Welsh bio exists, check if there's an English fallback
+                const welshBio = el.parentElement.querySelector('.bio-text[data-lang="cy"]');
+                if (!welshBio) {
+                    el.style.display = 'block'; // Show English as fallback
+                } else {
+                    el.style.display = 'none';
+                }
+            } else {
+                el.style.display = 'none';
+            }
         });
     }
 
