@@ -554,6 +554,12 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         }
     }
 
+    function updateArtistBioLanguage() {
+        document.querySelectorAll('.bio-text').forEach(el => {
+            el.style.display = el.dataset.lang === currentLanguage ? 'block' : 'none';
+        });
+    }
+
     // Check URL fragment for direct linking
     function checkUrlFragment() {
         const fragment = window.location.hash.substring(1);
@@ -598,6 +604,9 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         
         // Update consent dialog if open
         updateConsentDialogLanguage();
+
+        // Update artist bio if open
+        updateArtistBioLanguage();
         
         // Update current track if one is playing
         if (currentReleaseId) {
@@ -816,12 +825,28 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     });
 
     // Intercept nav link clicks for tab switching
+    // Intercept nav link clicks for tab switching
     navTabLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            const tabId = link.getAttribute('href').replace('#', '');
-            showTab(tabId);
-            history.replaceState(null, null, `#${tabId}`);
+            const href = link.getAttribute('href');
+
+            // Ignore links without hashes or marked as no-tab
+            if (!href || !href.includes('#') || link.hasAttribute('data-no-tab')) return;
+
+            const [path, hash] = href.split('#');
+
+            // If not on index.html, redirect to it with the correct hash
+            const isIndex = window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/wepn/') || window.location.pathname.endsWith('/wepn');
+            if (!isIndex) {
+                e.preventDefault();
+                window.location.href = `${baseurl}/#${hash}`;
+                return;
+            }
+
+            // If already on index.html, handle tab switch
             e.preventDefault();
+            showTab(hash);
+            history.replaceState(null, null, `#${hash}`);
         });
     });
 
@@ -894,33 +919,29 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
     // Initialize the application
     function init() {
-        // Set initial language based on browser settings
+        // Always run setup first
+        setupLanguageToggle();
+
+        // Detect browser language
         const browserLang = navigator.language.substring(0, 2);
-        if (browserLang === 'cy') {
-            switchLanguage('cy');
-        } else {
-            updateUILanguage();
+        const preferredLang = (browserLang === 'cy') ? 'cy' : 'en';
+
+        // Set language (this updates UI and internal state)
+        switchLanguage(preferredLang);
+
+        // Load config and releases if present (safe for /artists too)
+        loadDisplayConfig()
+            .then(loadReleasesData)
+            .catch(loadReleasesData);
+
+        // Only init tabs if we’re on the homepage (tabs exist)
+        if (document.querySelectorAll('.tab-content').length) {
+            initTabs();
         }
-          setupLanguageToggle();
-        
-        // Load display config first, then releases data
-        loadDisplayConfig().then(() => {
-            loadReleasesData();
-        }).catch(() => {
-            // Continue with releases even if config fails
-            loadReleasesData();
-        });
-        
-        initTabs();
-        
-        // Hide player bar and remove body class on load
+
+        // Hide player bar on load
         playerBar.classList.remove('visible');
         document.body.classList.remove('player-bar-visible');
-        
-        // Handle window resize for responsive layout adjustments
-        window.addEventListener('resize', () => {
-            // Any responsive adjustments can be added here
-        });
     }
 
     // Start the application

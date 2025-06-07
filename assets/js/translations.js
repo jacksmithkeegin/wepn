@@ -42,6 +42,8 @@ const translations = {
         "bandcamp.accept": "Accept",
         "bandcamp.decline": "Decline",
         "bandcamp.privacyLink": "Privacy Policy",
+
+        'artists.title': 'Artists',
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -85,5 +87,7 @@ const translations = {
         "bandcamp.accept": "Derbyn",
         "bandcamp.decline": "Gwrthod",
         "bandcamp.privacyLink": "Polisi Preifatrwydd",
+
+        'artists.title': 'Artistiaid',
     }
 };
