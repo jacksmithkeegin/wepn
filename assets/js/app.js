@@ -348,8 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             `;
 
             releasesGrid.appendChild(releaseItem);
-        });
-        // Add event listeners to listen buttons (only for available releases)
+        });        // Add event listeners to listen buttons (only for available releases)
         document.querySelectorAll('.listen-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const releaseId = e.target.dataset.id;
@@ -368,10 +367,10 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     if (!item.classList.contains('upcoming-release')) {
                         const releaseId = item.id;
                         loadReleaseInPlayer(releaseId);
-                    }
-                    e.preventDefault();
+                    }                e.preventDefault();
                 }
-            });
+            });              // Add mobile overlay management for touch devices
+            addMobileOverlayManagement(item);
         });
     }
 
@@ -454,8 +453,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (!e.target.classList.contains('mini-listen-btn')) {
                     const releaseId = item.id.replace('mini-', '');
                     loadReleaseInPlayer(releaseId);
-                }
-            });
+                }            });              // Add mobile overlay management for touch devices
+            addMobileOverlayManagement(item);
         });
     }
 
@@ -960,12 +959,111 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     window.addEventListener("hashchange", () => {
         const hash = window.location.hash.substring(1);
         showTab(hash);
-    });
+    });    // Mobile touch detection and overlay management
+    let isTouchDevice = false;
+    
+    // Detect if device supports touch
+    function detectTouchDevice() {
+        isTouchDevice = (('ontouchstart' in window) ||
+                        (navigator.maxTouchPoints > 0) ||
+                        (navigator.msMaxTouchPoints > 0));
+    }    // Two-stage mobile interaction: tap to reveal overlay, tap again to activate buttons
+    function addMobileOverlayManagement(element) {
+        if (!isTouchDevice) return;
+
+        const overlay = element.querySelector('.release-overlay, .artist-overlay, .mini-release-overlay');
+        if (!overlay) return;
+
+        let isOverlayRevealed = false;
+
+        // Handle touch start - first stage: reveal overlay
+        element.addEventListener('touchstart', function(e) {
+            if (!isOverlayRevealed) {
+                // First touch: reveal overlay and enable interactions
+                element.classList.add('overlay-revealed');
+                isOverlayRevealed = true;
+                
+                // Reset all other overlays to ensure single selection
+                resetAllOtherOverlays(element);
+                
+                console.log('Overlay revealed for:', element.id);
+                
+                // Prevent this touch from immediately triggering clicks
+                e.preventDefault();
+            }
+            // If overlay is already revealed, let the touch proceed normally to buttons/links
+        }, { passive: false }); // Not passive so we can preventDefault
+
+        // Handle clicks on interactive elements - second stage: activate buttons
+        const interactiveElements = overlay.querySelectorAll('a, button');
+        interactiveElements.forEach(interactiveEl => {
+            interactiveEl.addEventListener('click', function(e) {
+                if (isTouchDevice && !isOverlayRevealed) {
+                    // Prevent clicks on buttons/links when overlay is not revealed
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Click prevented - overlay not revealed');
+                    return false;
+                }
+                // If overlay is revealed or not on touch device, allow click to proceed normally
+                console.log('Click allowed on:', interactiveEl.tagName, interactiveEl.textContent || interactiveEl.href);
+            });
+        });
+
+        // Reset overlay state when it loses revelation
+        function resetOverlayState() {
+            element.classList.remove('overlay-revealed');
+            isOverlayRevealed = false;
+        }
+
+        // Store reset function for external access
+        element._resetOverlayState = resetOverlayState;
+    }
+
+    // Reset overlay state for a specific item
+    function resetOverlay(element) {
+        if (!isTouchDevice) return;
+        
+        if (element._resetOverlayState) {
+            element._resetOverlayState();
+        }
+        console.log('Overlay reset for:', element.id);
+    }
+
+    // Reset all overlays except for the specified element
+    function resetAllOtherOverlays(exceptElement) {
+        if (!isTouchDevice) return;
+        
+        document.querySelectorAll('.release-item, .mini-release-item, .artist-card').forEach(item => {
+            if (item !== exceptElement) {
+                resetOverlay(item);
+            }
+        });
+    }// Global handler to reset all overlays when touching outside
+    function addGlobalTouchResetHandler() {
+        if (!isTouchDevice) return;
+        
+        document.addEventListener('touchstart', (e) => {
+            // Check if the touch is outside any grid item
+            const touchedElement = e.target.closest('.release-item, .mini-release-item, .artist-card');
+            
+            if (!touchedElement) {
+                // Reset all overlays
+                document.querySelectorAll('.release-item, .mini-release-item, .artist-card').forEach(resetOverlay);
+                console.log('All overlays reset - touched outside grid items');
+            }
+        }, { passive: true });
+    }
 
     // Initialize the application
     function init() {
         // Always run setup first
         setupLanguageToggle();
+          // Detect touch device capability
+        detectTouchDevice();
+        
+        // Add global touch reset handler for overlays
+        addGlobalTouchResetHandler();
 
         // Detect browser language
         const browserLang = navigator.language.substring(0, 2);
@@ -981,14 +1079,23 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
 
         // Only init tabs if we’re on the homepage (tabs exist)
         if (document.querySelectorAll('.tab-content').length) {
-            initTabs();
-        }
-
-        // Hide player bar on load
+            initTabs();        }          // Hide player bar on load
         playerBar.classList.remove('visible');
         document.body.classList.remove('player-bar-visible');
     }
 
+    // Initialize mobile overlay management for artist cards
+    function initArtistCardMobileOverlays() {
+        if (!isTouchDevice) return;
+        
+        document.querySelectorAll('.artist-card').forEach(artistCard => {
+            addMobileOverlayManagement(artistCard);
+        });
+    }
+
     // Start the application
     init();
+    
+    // Initialize artist card mobile overlays after DOM is ready
+    initArtistCardMobileOverlays();
 });

@@ -336,6 +336,49 @@ section h2::after {
     text-align: center;
 }
 
+/* Initially disable interactions on all overlay interactive elements */
+.release-overlay a,
+.release-overlay button,
+.artist-overlay a,
+.artist-overlay button,
+.mini-release-overlay a,
+.mini-release-overlay button {
+    pointer-events: none;
+}
+
+/* Enable interactions when overlay is visible on desktop (hover/focus) */
+.release-item:hover .release-overlay a,
+.release-item:hover .release-overlay button,
+.release-item:focus-within .release-overlay a,
+.release-item:focus-within .release-overlay button,
+.artist-card:hover .artist-overlay a,
+.artist-card:hover .artist-overlay button,
+.artist-card:focus-within .artist-overlay a,
+.artist-card:focus-within .artist-overlay button,
+.mini-release-item:hover .mini-release-overlay a,
+.mini-release-item:hover .mini-release-overlay button,
+.mini-release-item:focus-within .mini-release-overlay a,
+.mini-release-item:focus-within .mini-release-overlay button {
+    pointer-events: auto;
+}
+
+/* Enable interactions only when overlay is explicitly revealed on mobile */
+.overlay-revealed .release-overlay a,
+.overlay-revealed .release-overlay button,
+.overlay-revealed .artist-overlay a,
+.overlay-revealed .artist-overlay button,
+.overlay-revealed .mini-release-overlay a,
+.overlay-revealed .mini-release-overlay button {
+    pointer-events: auto;
+}
+
+/* Force overlay to be visible when revealed class is present */
+.overlay-revealed .release-overlay,
+.overlay-revealed .artist-overlay,
+.overlay-revealed .mini-release-overlay {
+    opacity: 1;
+}
+
 .release-item:hover .release-overlay,
 .release-item:focus-within .release-overlay {
     opacity: 1;
