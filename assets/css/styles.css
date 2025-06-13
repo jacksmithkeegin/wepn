@@ -276,8 +276,9 @@ section h2::after {
 /* Releases Grid */
 .releases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: calc(var(--spacing-lg) * 1.5); /* Increased gap for better spacing */
+    padding: 2rem 0;
 }
 
 .release-item {
@@ -292,9 +293,7 @@ section h2::after {
     min-height: 0;
     height: auto;
     padding-bottom: 0;
-    display: flex;
-    align-items: stretch;
-    justify-content: stretch;
+    display: block;
 }
 
 .release-item:hover {
@@ -311,7 +310,7 @@ section h2::after {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     min-width: 0;
     min-height: 0;
     max-width: 100%;
@@ -591,23 +590,20 @@ footer p {
 
     .nav-links.active {
         display: flex;
-    }
-
-    .nav-links li {
+    }    .nav-links li {
         margin: var(--spacing-md) 0;
     }
-
+    
     .about-content {
         flex-direction: column;
-    }    .releases-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }    .artist-grid, .artist-list {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-
-    .release-item, .release-image {
-        min-height: 220px;
-        max-height: 350px;
+      .releases-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
+    }
+      .artist-grid, .artist-list {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
     }
 
     .player-bar {
@@ -624,23 +620,58 @@ footer p {
 
     body.player-bar-visible main {
         padding-top: 150px; /* Header (60px) + Player bar (90px) */
+    }    /* Enhanced mobile touch interaction */
+    /* Ensure grid items have sufficient touch targets and allow scrolling */
+    .release-item,
+    .artist-card,
+    .mini-release-item {
+        touch-action: pan-y; /* Allow vertical scrolling but prevent horizontal panning */
+    }
+    
+    /* Add subtle visual feedback when overlay is revealed on mobile */
+    .overlay-revealed {
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    /* Reset transform on hover to avoid double scaling */
+    .overlay-revealed:hover {
+        transform: scale(1.02); /* Override the hover transform */
+    }
+    
+    /* Improve touch target sizes for buttons in overlays */
+    .release-overlay .listen-btn,
+    .release-overlay .preorder-btn,
+    .artist-overlay a,
+    .mini-release-overlay .mini-listen-btn {
+        min-height: 44px; /* Recommended minimum touch target size */
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Ensure overlay buttons are well spaced for touch */
+    .release-buttons {
+        gap: 0.75rem;
+    }
+    
+    /* Add more padding to overlays for better touch interaction */
+    .release-overlay,
+    .artist-overlay,
+    .mini-release-overlay {
+        padding: calc(var(--spacing-md) * 1.5);
     }
 }
 
 @media (max-width: 480px) {
     .releases-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: var(--spacing-md);
+        grid-template-columns: 1fr; /* Single column for small screens */
+        gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
-
-    .artist-grid, .artist-list {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: var(--spacing-md);
-    }
-
-    .release-item, .release-image {
-        min-height: 120px;
-        max-height: 200px;
+      .artist-grid, .artist-list {
+        grid-template-columns: 1fr; /* Single column for small screens */
+        gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
 
     .release-title {
@@ -658,6 +689,14 @@ footer p {
 
     .player-wrapper iframe {
         height: 100px;
+    }
+
+    .overlay-revealed {
+        transform: scale(1.05); /* Slightly more prominent on small screens */
+    }
+    
+    .overlay-revealed:hover {
+        transform: scale(1.05);
     }
 }
 
@@ -1277,11 +1316,11 @@ footer p {
     }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .mini-releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
-}
+} */
 
 .close-player-bar {
     position: absolute;
@@ -1433,15 +1472,15 @@ footer p {
 
 .artist-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: calc(var(--spacing-lg) * 1.5); /* Increased gap for better spacing */
     padding: 2rem 0;
 }
 
 .artist-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: calc(var(--spacing-lg) * 1.5); /* Increased gap for better spacing */
     padding: 2rem 0;
     list-style: none;
 }
