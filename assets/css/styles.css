@@ -594,14 +594,16 @@ footer p {
 
     .nav-links li {
         margin: var(--spacing-md) 0;
-    }
-
-    .about-content {
+    }    .about-content {
         flex-direction: column;
-    }    .releases-grid {
+    }
+    
+    .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
-    }    .artist-grid, .artist-list {
+    }
+    
+    .artist-grid, .artist-list {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
     }
@@ -664,10 +666,13 @@ footer p {
     }
 }
 
-@media (max-width: 480px) {    .releases-grid {
+@media (max-width: 480px) {
+    .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-lg); /* Better gap on smaller screens */
-    }    .artist-grid, .artist-list {
+    }
+    
+    .artist-grid, .artist-list {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
