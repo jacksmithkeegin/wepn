@@ -621,14 +621,11 @@ footer p {
 
     body.player-bar-visible main {
         padding-top: 150px; /* Header (60px) + Player bar (90px) */
-    }
-
-    /* Enhanced mobile touch interaction */
-    /* Ensure grid items have sufficient touch targets */
+    }    /* Enhanced mobile touch interaction */
+    /* Ensure grid items have sufficient touch targets and allow scrolling */
     .release-item,
     .artist-card,
     .mini-release-item {
-        min-height: 120px;
         touch-action: pan-y; /* Allow vertical scrolling but prevent horizontal panning */
     }
     
