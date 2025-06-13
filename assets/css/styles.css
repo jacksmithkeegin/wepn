@@ -601,9 +601,8 @@ footer p {
         grid-template-columns: 1fr; /* Single column for mobile */
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
     }
-    
-    .artist-grid, .artist-list {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      .artist-grid, .artist-list {
+        grid-template-columns: 1fr; /* Single column for mobile */
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
     }
 
@@ -670,9 +669,8 @@ footer p {
         grid-template-columns: 1fr; /* Single column for small screens */
         gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
-    
-    .artist-grid, .artist-list {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      .artist-grid, .artist-list {
+        grid-template-columns: 1fr; /* Single column for small screens */
         gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
 
