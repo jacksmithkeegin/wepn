@@ -278,6 +278,7 @@ section h2::after {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: calc(var(--spacing-lg) * 1.5); /* Increased gap for better spacing */
+    padding: 2rem 0;
 }
 
 .release-item {
