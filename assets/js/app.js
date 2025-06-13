@@ -975,24 +975,57 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         if (!overlay) return;
 
         let isOverlayRevealed = false;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let hasMoved = false;
 
-        // Handle touch start - first stage: reveal overlay
+        // Handle touch start - track initial position and time
         element.addEventListener('touchstart', function(e) {
-            if (!isOverlayRevealed) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+            hasMoved = false;
+        }, { passive: true });        // Handle touch move - detect if user is scrolling
+        element.addEventListener('touchmove', function(e) {
+            if (!hasMoved) {
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const deltaX = Math.abs(touchX - touchStartX);
+                const deltaY = Math.abs(touchY - touchStartY);
+                
+                // If movement is primarily vertical and significant, consider it scrolling
+                // Use a lower threshold for better scroll detection
+                if (deltaY > 5 && deltaY > deltaX * 0.7) {
+                    hasMoved = true;
+                }
+                // Also consider horizontal scrolling (though less common)
+                else if (deltaX > 10 && deltaX > deltaY) {
+                    hasMoved = true;
+                }
+            }
+        }, { passive: true });        // Handle touch end - decide whether to reveal overlay or allow scrolling
+        element.addEventListener('touchend', function(e) {
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // If the user moved significantly (scrolling) or the touch was very brief, don't reveal overlay
+            if (hasMoved || touchDuration < 50) {
+                return; // Let the scroll happen naturally
+            }
+            
+            // For very long touches (>1000ms), also don't reveal overlay (might be accidental)
+            if (touchDuration > 1000) {
+                return;
+            }
+              if (!isOverlayRevealed) {
                 // First touch: reveal overlay and enable interactions
-                element.classList.add('overlay-revealed');
-                isOverlayRevealed = true;
+                revealOverlay();
                 
-                // Reset all other overlays to ensure single selection
-                resetAllOtherOverlays(element);
-                
-                console.log('Overlay revealed for:', element.id);
-                
-                // Prevent this touch from immediately triggering clicks
+                // Prevent any default action for this touch
                 e.preventDefault();
             }
             // If overlay is already revealed, let the touch proceed normally to buttons/links
-        }, { passive: false }); // Not passive so we can preventDefault
+        }, { passive: false }); // Not passive so we can preventDefault when needed
 
         // Handle clicks on interactive elements - second stage: activate buttons
         const interactiveElements = overlay.querySelectorAll('a, button');
@@ -1008,13 +1041,41 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 // If overlay is revealed or not on touch device, allow click to proceed normally
                 console.log('Click allowed on:', interactiveEl.tagName, interactiveEl.textContent || interactiveEl.href);
             });
-        });
-
-        // Reset overlay state when it loses revelation
+        });        // Reset overlay state when it loses revelation
         function resetOverlayState() {
             element.classList.remove('overlay-revealed');
             isOverlayRevealed = false;
+            clearTimeout(autoResetTimeout);
         }
+
+        // Auto-reset overlay after a delay if no interaction
+        let autoResetTimeout;
+        
+        function scheduleAutoReset() {
+            clearTimeout(autoResetTimeout);
+            autoResetTimeout = setTimeout(() => {
+                if (isOverlayRevealed) {
+                    resetOverlayState();
+                    console.log('Auto-reset overlay for:', element.id);
+                }
+            }, 5000); // Reset after 5 seconds of no interaction
+        }
+        
+        // Schedule auto-reset when overlay is revealed
+        function revealOverlay() {
+            element.classList.add('overlay-revealed');
+            isOverlayRevealed = true;
+            resetAllOtherOverlays(element);
+            scheduleAutoReset();
+            console.log('Overlay revealed for:', element.id);
+        }
+        
+        // Cancel auto-reset on interaction
+        element.addEventListener('touchstart', () => {
+            if (isOverlayRevealed) {
+                clearTimeout(autoResetTimeout);
+            }
+        }, { passive: true });
 
         // Store reset function for external access
         element._resetOverlayState = resetOverlayState;
@@ -1039,18 +1100,44 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 resetOverlay(item);
             }
         });
-    }// Global handler to reset all overlays when touching outside
+    }    // Global handler to reset all overlays when touching outside
     function addGlobalTouchResetHandler() {
         if (!isTouchDevice) return;
         
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let hasMoved = false;
+        
         document.addEventListener('touchstart', (e) => {
-            // Check if the touch is outside any grid item
-            const touchedElement = e.target.closest('.release-item, .mini-release-item, .artist-card');
-            
-            if (!touchedElement) {
-                // Reset all overlays
-                document.querySelectorAll('.release-item, .mini-release-item, .artist-card').forEach(resetOverlay);
-                console.log('All overlays reset - touched outside grid items');
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            hasMoved = false;
+        }, { passive: true });
+          document.addEventListener('touchmove', (e) => {
+            if (!hasMoved) {
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const deltaX = Math.abs(touchX - touchStartX);
+                const deltaY = Math.abs(touchY - touchStartY);
+                
+                // If movement is significant, consider it scrolling
+                // Use lower threshold for better scroll detection
+                if (deltaX > 5 || deltaY > 5) {
+                    hasMoved = true;
+                }
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchend', (e) => {
+            // Only reset overlays if this was a tap (not scroll) and outside grid items
+            if (!hasMoved) {
+                const touchedElement = e.target.closest('.release-item, .mini-release-item, .artist-card');
+                
+                if (!touchedElement) {
+                    // Reset all overlays
+                    document.querySelectorAll('.release-item, .mini-release-item, .artist-card').forEach(resetOverlay);
+                    console.log('All overlays reset - tapped outside grid items');
+                }
             }
         }, { passive: true });
     }
