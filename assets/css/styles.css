@@ -597,9 +597,8 @@ footer p {
     .about-content {
         flex-direction: column;
     }
-    
-    .releases-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      .releases-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
     }
     
@@ -668,7 +667,7 @@ footer p {
 
 @media (max-width: 480px) {
     .releases-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: 1fr; /* Single column for small screens */
         gap: var(--spacing-lg); /* Better gap on smaller screens */
     }
     
