@@ -602,16 +602,9 @@ footer p {
     }    .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
-    }
-
-    .artist-grid, .artist-list {
+    }    .artist-grid, .artist-list {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: calc(var(--spacing-lg) * 1.25); /* Increased mobile gap */
-    }
-
-    .release-item, .release-image {
-        min-height: 220px;
-        max-height: 350px;
     }
 
     .player-bar {
@@ -678,16 +671,9 @@ footer p {
 @media (max-width: 480px) {    .releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-lg); /* Better gap on smaller screens */
-    }
-
-    .artist-grid, .artist-list {
+    }    .artist-grid, .artist-list {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: var(--spacing-lg); /* Better gap on smaller screens */
-    }
-
-    .release-item, .release-image {
-        min-height: 120px;
-        max-height: 200px;
     }
 
     .release-title {
