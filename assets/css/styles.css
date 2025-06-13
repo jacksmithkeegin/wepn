@@ -1319,11 +1319,11 @@ footer p {
     }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .mini-releases-grid {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
-}
+} */
 
 .close-player-bar {
     position: absolute;
