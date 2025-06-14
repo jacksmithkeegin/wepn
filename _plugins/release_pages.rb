@@ -15,21 +15,21 @@ module Jekyll
       @site = site
       @base = base
       @dir = 'releases'
-      
-      # Use the title.en as the URL slug
+        # Use the title.en as the URL slug
       release_slug = create_slug_from_title(release['title']['en'])
       @name = "#{release_slug}.html"
-
+      
       self.process(@name)
       self.data = {}
       self.data['layout'] = 'release'
-      self.data['title'] = "#{release['title']['en']} - WEPN"
+      self.data['title'] = "#{release['title']['en']} by #{release['artists']['en']} | WEPN"
       self.data['release'] = release
       self.data['release_id'] = release['release_code']['en']
-      
-      # Set individual fields for easy access in templates
-      release.each do |key, value|
-        self.data[key] = value
+        # Add SEO description
+      if release['description'] && release['description']['en']
+        self.data['description'] = "#{release['description']['en']} Listen to #{release['title']['en']} by #{release['artists']['en']} on WEPN."
+      else
+        self.data['description'] = "#{release['title']['en']} by #{release['artists']['en']} - Electronic music release from WEPN (Wales Electronic Producers Network)."
       end
     end
 

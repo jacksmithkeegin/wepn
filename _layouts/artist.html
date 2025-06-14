@@ -2,14 +2,26 @@
 layout: default
 ---
 
-<section class="artist-page">
+{% include breadcrumb-schema.html %}
+
+<section class="artist-page" itemscope itemtype="https://schema.org/MusicGroup">
     <div class="container">
         {% assign artist = page.artist %}
+        
+        <!-- Hidden structured data -->
+        <meta itemprop="name" content="{{ artist.name }}">
+        {% if artist.bio.en %}<meta itemprop="description" content="{{ artist.bio.en | strip_html | truncate: 300 }}">{% endif %}
+        {% if artist.image %}<meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}{{ artist.image }}">{% endif %}
+        <meta itemprop="genre" content="Electronic Music">
+        <div itemprop="foundingLocation" itemscope itemtype="https://schema.org/Place">
+            <meta itemprop="name" content="Wales">
+            <meta itemprop="addressCountry" content="GB">
+        </div>
         
         <!-- Artist header -->
         <div class="artist-header">
             <a class="back-to-artists" href="{{ site.baseurl }}/#artists">← <span data-i18n="artists.back">Back to Artists</span></a>
-            <h1 class="artist-page-title">{{ page.title }}</h1>
+            <h1 class="artist-page-title" itemprop="name">{{ page.title }}</h1>
         </div>
 
         <!-- Artist content -->

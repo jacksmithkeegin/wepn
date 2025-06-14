@@ -2,13 +2,60 @@
 layout: default
 ---
 
-<section class="release-page">
+{% include breadcrumb-schema.html %}
+
+<section class="release-page" itemscope itemtype="https://schema.org/MusicAlbum">
     <div class="container">
         {% assign release = page.release %}
         
+        <!-- Hidden structured data -->
+        <meta itemprop="name" content="{{ release.title.en }}">
+        <meta itemprop="description" content="{{ release.description.en }}">
+        <meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}{{ release.artwork_url }}">
+        <meta itemprop="datePublished" content="{{ release.release_date.en | date: '%Y-%m-%d' }}">
+        <meta itemprop="genre" content="Electronic Music">
+        <meta itemprop="url" content="{{ page.url | prepend: site.url | prepend: site.baseurl }}">
+        
+        <!-- Record Label -->
+        <div itemprop="recordLabel" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="WEPN">
+            <meta itemprop="url" content="{{ site.url }}{{ site.baseurl }}/">
+        </div>
+        
+        <!-- Artists -->
+        {% assign artists_array = release.artists.en | split: " / " %}
+        {% for artist in artists_array %}
+        <div itemprop="byArtist" itemscope itemtype="https://schema.org/MusicGroup">
+            <meta itemprop="name" content="{{ artist | strip }}">
+        </div>
+        {% endfor %}
+          <!-- Offers/Purchase -->
+        {% if release.link.en %}
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="url" content="{{ release.link.en }}">
+            <meta itemprop="price" content="0">
+            <meta itemprop="priceCurrency" content="GBP">
+            <meta itemprop="availability" content="https://schema.org/InStock">
+            <meta itemprop="seller" content="WEPN">
+        </div>
+        {% endif %}
+        
+        <!-- Additional Schema.org properties -->
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="WEPN - Wales Electronic Producers Network">
+            <meta itemprop="url" content="{{ site.url }}{{ site.baseurl }}/">
+        </div>
+        
+        {% if release.bandcampEmbedUrl %}
+        <div itemprop="audio" itemscope itemtype="https://schema.org/AudioObject">
+            <meta itemprop="contentUrl" content="{{ release.bandcampEmbedUrl }}">
+            <meta itemprop="encodingFormat" content="audio/mpeg">
+        </div>
+        {% endif %}
+        
         <!-- Release header -->
         <div class="release-header">
-            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>            <h1 class="release-page-title">
+            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>            <h1 class="release-page-title" itemprop="name">
                 <span data-lang="en">{{ release.title.en }}</span>
                 {% if release.title.cy %}
                 <span data-lang="cy" style="display: none;">{{ release.title.cy }}</span>
@@ -16,7 +63,7 @@ layout: default
                 <span data-lang="cy" style="display: none;">{{ release.title.en }}</span>
                 {% endif %}
             </h1>
-        </div>        <!-- Release content (similar to featured release panel but without blue background) -->
+        </div><!-- Release content (similar to featured release panel but without blue background) -->
         <div class="release-content">
             <div class="release-top-section">
                 <div class="release-page-artwork-container">

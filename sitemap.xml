@@ -1,0 +1,50 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/" />
+    <xhtml:link rel="alternate" hreflang="cy" href="{{ site.url }}{{ site.baseurl }}/?lang=cy" />
+  </url>
+  
+  <!-- All Artists page -->
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}/all-artists/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/all-artists/" />
+    <xhtml:link rel="alternate" hreflang="cy" href="{{ site.url }}{{ site.baseurl }}/all-artists/?lang=cy" />
+  </url>
+  
+  <!-- Individual Artist Pages -->
+  {% for artist in site.data.artists %}
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}/artists/{{ artist.slug }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/artists/{{ artist.slug }}/" />
+    <xhtml:link rel="alternate" hreflang="cy" href="{{ site.url }}{{ site.baseurl }}/artists/{{ artist.slug }}/?lang=cy" />
+  </url>
+  {% endfor %}
+  
+  <!-- Individual Release Pages -->
+  {% for release in site.data.releases %}
+  {% assign release_slug = release.title.en | slugify %}
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}/releases/{{ release_slug }}/</loc>
+    <lastmod>{{ release.release_date.en | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/releases/{{ release_slug }}/" />
+    <xhtml:link rel="alternate" hreflang="cy" href="{{ site.url }}{{ site.baseurl }}/releases/{{ release_slug }}/?lang=cy" />
+  </url>
+  {% endfor %}
+</urlset>

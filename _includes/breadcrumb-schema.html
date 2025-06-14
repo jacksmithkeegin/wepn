@@ -1,0 +1,42 @@
+<!-- Breadcrumb Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}{{ site.baseurl }}/"
+    }
+    {% if page.layout == "artist" %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Artists",
+      "item": "{{ site.url }}{{ site.baseurl }}/#artists"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.artist.name }}",
+      "item": "{{ page.url | prepend: site.url | prepend: site.baseurl }}"
+    }
+    {% elsif page.layout == "release" %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Music",
+      "item": "{{ site.url }}{{ site.baseurl }}/#music"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.release.title.en }}",
+      "item": "{{ page.url | prepend: site.url | prepend: site.baseurl }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
