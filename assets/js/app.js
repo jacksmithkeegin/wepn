@@ -201,17 +201,22 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             // No upcoming release found - hide panel
             upcomingPanel.style.display = 'none';
             return;
-        }
-
-        // Show the panel
+        }        // Show the panel
         upcomingPanel.style.display = 'flex';
+
+        // Generate release URL with language preservation
+        const releaseSlug = upcoming.id.toLowerCase().replace(/_/g, '-');
+        const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+        const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
         // Build upcoming release HTML
         upcomingContainer.innerHTML = `
             <div class="upcoming-top-section">
-                <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                <a href="${releaseUrl}">
+                    <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                </a>
                 <div class="upcoming-info">
-                    <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
+                    <a href="${releaseUrl}" class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</a>
                     <div class="upcoming-artist prominent">${upcoming.artist}</div>
                     <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
                     <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
@@ -261,17 +266,22 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         if (!featured) {
             featuredPanel.style.display = 'none';
             return;
-        }
-
-        // Show featured release panel
+        }        // Show featured release panel
         featuredPanel.style.display = 'flex';
+
+        // Generate release URL with language preservation
+        const releaseSlug = featured.id.toLowerCase().replace(/_/g, '-');
+        const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+        const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
         // Build featured release HTML
         featuredContainer.innerHTML = `
             <div class="featured-top-section">
-                <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                <a href="${releaseUrl}">
+                    <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                </a>
                 <div class="featured-info">
-                    <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
+                    <a href="${releaseUrl}" class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</a>
                     <div class="featured-artist prominent">${featured.artist}</div>
                     <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
                     <div class="featured-buttons">
@@ -687,8 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             }
         });
     }// Update only text content for releases and featured release when switching language
-    function updateReleaseTexts() {
-        // Update upcoming release texts
+    function updateReleaseTexts() {        // Update upcoming release texts
         const upcomingContainer = document.getElementById('upcoming-release');
         if (upcomingContainer) {
             const upcoming = getEarliestFutureRelease();
@@ -708,10 +717,17 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
                 if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
+                
+                // Update URLs for title and artwork links
+                const releaseSlug = upcoming.id.toLowerCase().replace(/_/g, '-');
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                const titleLink = upcomingContainer.querySelector('a.upcoming-release-title-main');
+                if (titleLink) titleLink.href = releaseUrl;
+                const artworkLink = upcomingContainer.querySelector('.upcoming-top-section > a');
+                if (artworkLink) artworkLink.href = releaseUrl;
             }
-        }
-
-        // Update featured release texts
+        }        // Update featured release texts
         const featuredContainer = document.getElementById('featured-release');
         if (featuredContainer) {
             const featured = releases.find(r => r.id === (featuredReleaseId || getMostRecentPastRelease()?.id));
@@ -731,8 +747,17 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
                 if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
+                
+                // Update URLs for title and artwork links
+                const releaseSlug = featured.id.toLowerCase().replace(/_/g, '-');
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                const titleLink = featuredContainer.querySelector('a.featured-release-title-main');
+                if (titleLink) titleLink.href = releaseUrl;
+                const artworkLink = featuredContainer.querySelector('.featured-top-section > a');
+                if (artworkLink) artworkLink.href = releaseUrl;
             }
-        }        // Update releases grid texts
+        }// Update releases grid texts
         document.querySelectorAll('.release-item').forEach(item => {
             const release = releases.find(r => r.id === item.id);
             if (!release) return;

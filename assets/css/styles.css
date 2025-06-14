@@ -867,6 +867,19 @@ footer p {
     text-align: left;
 }
 
+/* Link styling for featured release titles */
+a.featured-release-title-main {
+    color: #fff;
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a.featured-release-title-main:hover,
+a.featured-release-title-main:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
 .featured-artist.prominent {
     font-size: 1.25rem;
     font-weight: 600;
@@ -942,6 +955,19 @@ footer p {
     margin-bottom: 0.3em;
     line-height: 1.1;
     text-align: left;
+}
+
+/* Link styling for upcoming release titles */
+a.upcoming-release-title-main {
+    color: #fff;
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a.upcoming-release-title-main:hover,
+a.upcoming-release-title-main:focus {
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 .upcoming-artist.prominent {
