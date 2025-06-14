@@ -24,10 +24,9 @@ layout: default
                 <img src="{{ release.artwork_url | relative_url }}" 
                      alt="{{ release.title.en }}" 
                      class="release-page-artwork" 
-                     loading="eager">
-                
-                <div class="release-page-info">
+                     loading="eager">                <div class="release-page-info">
                     <div class="release-page-artist">{{ release.artists.en }}</div>
+                    <div class="release-page-code">{{ release.release_code.en }}</div>
                       <div class="release-page-date">
                         <span data-lang="en">{{ release.release_date.en }}</span>
                         {% if release.release_date.cy %}

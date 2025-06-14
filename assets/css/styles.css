@@ -1749,6 +1749,20 @@ footer p {
     gap: var(--spacing-md);
 }
 
+.release-page-code {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #e8e8e8;
+    margin: 0.5rem 0 0.75rem 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    border-left: 3px solid var(--primary-color);
+}
+
 .release-page-artist {
     font-size: 1.4rem;
     font-weight: 600;
