@@ -16,15 +16,23 @@ layout: default
                 <span data-lang="cy" style="display: none;">{{ release.title.en }}</span>
                 {% endif %}
             </h1>
-        </div>
-
-        <!-- Release content (similar to featured release panel but without blue background) -->
+        </div>        <!-- Release content (similar to featured release panel but without blue background) -->
         <div class="release-content">
             <div class="release-top-section">
-                <img src="{{ release.artwork_url | relative_url }}" 
-                     alt="{{ release.title.en }}" 
-                     class="release-page-artwork" 
-                     loading="eager">                <div class="release-page-info">
+                <div class="release-page-artwork-container">
+                    <img src="{{ release.artwork_url | relative_url }}" 
+                         alt="{{ release.title.en }}" 
+                         class="release-page-artwork" 
+                         loading="eager">
+                    {% assign release_date = release.release_date.en | date: "%Y-%m-%d" %}
+                    {% assign current_date = "now" | date: "%Y-%m-%d" %}
+                    {% if release_date > current_date %}
+                        <!-- Add upcoming badge for future releases -->
+                        <div class="upcoming-badge">
+                            <span data-i18n="upcoming.badge">Upcoming</span>
+                        </div>
+                    {% endif %}
+                </div><div class="release-page-info">
                     <div class="release-page-artist">{{ release.artists.en }}</div>
                     <div class="release-page-code">{{ release.release_code.en }}</div>
                       <div class="release-page-date">
