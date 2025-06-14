@@ -44,6 +44,7 @@ const translations = {
         "bandcamp.privacyLink": "Privacy Policy",
 
         'artists.title': 'Artists',
+        'artists.back': 'Back to Artists',
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -89,5 +90,6 @@ const translations = {
         "bandcamp.privacyLink": "Polisi Preifatrwydd",
 
         'artists.title': 'Artistiaid',
+        'artists.back': 'Yn ôl i’r Artistiaid',
     }
 };
