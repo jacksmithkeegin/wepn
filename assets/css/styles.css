@@ -1782,17 +1782,14 @@ a.upcoming-release-title-main:focus {
 }
 
 .release-page-code {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #e8e8e8;
-    margin: 0.5rem 0 0.75rem 0;
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ceeafd;
+    margin: 0.3rem 0 0.75rem 0;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
     display: inline-block;
-    border-left: 3px solid var(--primary-color);
+    opacity: 0.9;
 }
 
 .release-page-artist {
