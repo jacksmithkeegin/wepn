@@ -9,10 +9,10 @@ const translations = {
         
         "player.nowPlaying": "Now Playing: ",
         "player.selectRelease": "Select a release",
-        
-        "releases.title": "Releases",
+          "releases.title": "Releases",
         "releases.listenButton": "Listen",
         "releases.buyOn": "Buy on Bandcamp",
+        "releases.backToMusic": "Back to Music",
         
         "about.title": "About WEPN",
         "about.para1": "WEPN (Wales Electronic Producers Network) is a collective of electronic music producers based in Wales, UK. Founded in 2020, WEPN aims to showcase the diverse electronic music scene in Wales and provide a platform for emerging talent.",
@@ -57,10 +57,10 @@ const translations = {
         
         "player.nowPlaying": "Yn Chwarae Nawr: ",
         "player.selectRelease": "Dewiswch ryddhad",
-        
-        "releases.title": "Rhyddhiadau",
+          "releases.title": "Rhyddhiadau",
         "releases.listenButton": "Gwrando",
         "releases.buyOn": "Prynu ar Bandcamp",
+        "releases.backToMusic": "Yn ôl i Gerddoriaeth",
         
         "about.title": "Ynglŷn â WEPN",
         "about.para1": "Mae WEPN (Rhwydwaith Cynhyrchwyr Electronig Cymru) yn gydweithfa o gynhyrchwyr cerddoriaeth electronig yng Nghymru, y DU. Wedi'i sefydlu yn 2020, nod WEPN yw arddangos yr olygfa cerddoriaeth electronig amrywiol yng Nghymru a darparu llwyfan ar gyfer talent newydd.",

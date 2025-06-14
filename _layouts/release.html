@@ -1,0 +1,125 @@
+---
+layout: default
+---
+
+<section class="release-page">
+    <div class="container">
+        {% assign release = page.release %}
+        
+        <!-- Release header -->
+        <div class="release-header">
+            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>
+            <h1 class="release-page-title">
+                <span data-lang="en">{{ release.title.en }}</span>
+                {% if release.title.cy %}
+                <span data-lang="cy" style="display: none;">{{ release.title.cy }}</span>
+                {% endif %}
+            </h1>
+        </div>
+
+        <!-- Release content (similar to featured release panel but without blue background) -->
+        <div class="release-content">
+            <div class="release-top-section">
+                <img src="{{ release.artwork_url | relative_url }}" 
+                     alt="{{ release.title.en }}" 
+                     class="release-page-artwork" 
+                     loading="eager">
+                
+                <div class="release-page-info">
+                    <div class="release-page-artist">{{ release.artists.en }}</div>
+                    
+                    <div class="release-page-date">
+                        <span data-lang="en">{{ release.release_date.en }}</span>
+                        {% if release.release_date.cy %}
+                        <span data-lang="cy" style="display: none;">{{ release.release_date.cy }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="release-page-description">
+                        <span data-lang="en">{{ release.description.en }}</span>
+                        {% if release.description.cy %}
+                        <span data-lang="cy" style="display: none;">{{ release.description.cy }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="release-page-buttons">
+                        {% assign release_date = release.release_date.en | date: "%Y-%m-%d" %}
+                        {% assign current_date = "now" | date: "%Y-%m-%d" %}
+                        {% if release_date > current_date %}
+                            <!-- Future release - show preorder button -->
+                            {% if release.link.en %}
+                            <a href="{{ release.link.en }}" class="release-page-preorder-btn" target="_blank" rel="noopener noreferrer">
+                                <span data-i18n="upcoming.preorderButton">Pre-order on Bandcamp</span>
+                            </a>
+                            {% endif %}
+                        {% else %}
+                            <!-- Released - show listen and buy buttons -->
+                            <button class="release-page-listen-btn" data-id="{{ release.release_code.en }}">
+                                <span data-i18n="releases.listenButton">Listen</span>
+                            </button>
+                            {% if release.link.en %}
+                            <a href="{{ release.link.en }}" class="release-page-buy-btn" target="_blank" rel="noopener noreferrer">
+                                <span data-i18n="releases.buyOn">Buy on Bandcamp</span>
+                            </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed description if present -->
+            {% if release.detailed_description %}
+            <div class="release-page-detailed-description">
+                <div data-lang="en">
+                    {{ release.detailed_description.en | markdownify }}
+                </div>
+                {% if release.detailed_description.cy %}
+                <div data-lang="cy" style="display: none;">
+                    {{ release.detailed_description.cy | markdownify }}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle listen button click
+    const listenBtn = document.querySelector('.release-page-listen-btn');
+    if (listenBtn) {
+        listenBtn.addEventListener('click', function() {
+            const releaseId = this.dataset.id;
+            if (window.loadReleaseInPlayer) {
+                window.loadReleaseInPlayer(releaseId);
+                // Scroll to player bar if it exists
+                const playerBar = document.querySelector('.player-bar');
+                if (playerBar) {
+                    playerBar.scrollIntoView({behavior: 'smooth'});
+                }
+            }
+        });
+    }
+    
+    // Check for language parameter in URL and switch if needed
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam === 'cy' && window.switchLanguage) {
+        window.switchLanguage('cy');
+    }
+    
+    // Update language toggle to preserve URL state when switching
+    if (window.languageButtons) {
+        window.languageButtons.en.addEventListener('click', function() {
+            const newUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState(null, null, newUrl);
+        });
+        
+        window.languageButtons.cy.addEventListener('click', function() {
+            const newUrl = window.location.pathname + '?lang=cy' + window.location.hash;
+            window.history.replaceState(null, null, newUrl);
+        });
+    }
+});
+</script>

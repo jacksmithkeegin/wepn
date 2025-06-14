@@ -1665,3 +1665,206 @@ footer p {
     font-size: 22px;
     transform: translateY(1px);
 }
+
+/* Release Page Styles */
+.release-page {
+    background-color: rgba(255, 255, 255, 0.05);
+    min-height: 80vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.release-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.back-to-music {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    transition: color var(--transition-speed) ease;
+}
+
+.back-to-music:hover,
+.back-to-music:focus {
+    color: #1e7fdb;
+    text-decoration: none;
+}
+
+.release-page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.release-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: var(--spacing-xl);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.release-top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+    width: 100%;
+}
+
+.release-page-artwork {
+    width: 400px;
+    max-width: 35vw;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    background: #222;
+    flex-shrink: 0;
+}
+
+.release-page-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.release-page-artist {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #b3e0ff;
+    margin: 0;
+}
+
+.release-page-date {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 0;
+}
+
+.release-page-description {
+    font-size: 1.2rem;
+    color: #f3f3f3;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.release-page-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.release-page-listen-btn,
+.release-page-buy-btn,
+.release-page-preorder-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.release-page-listen-btn:hover,
+.release-page-buy-btn:hover,
+.release-page-preorder-btn:hover {
+    background: #1e7fdb;
+    color: #fff;
+    text-decoration: none;
+}
+
+.release-page-detailed-description {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+}
+
+.release-page-detailed-description p {
+    margin-bottom: var(--spacing-md);
+}
+
+.release-page-detailed-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobile responsiveness for release pages */
+@media (max-width: 900px) {
+    .release-content {
+        padding: var(--spacing-lg);
+    }
+
+    .release-top-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+
+    .release-page-artwork {
+        width: 70vw;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .release-page-info {
+        align-items: center;
+    }
+
+    .release-page-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .release-page-title {
+        font-size: 2rem;
+    }
+
+    .release-content {
+        padding: var(--spacing-md);
+    }
+
+    .release-page-artwork {
+        width: 85vw;
+        max-width: 350px;
+    }
+
+    .release-page-artist {
+        font-size: 1.2rem;
+    }
+
+    .release-page-description {
+        font-size: 1.1rem;
+    }
+
+    .release-page-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .release-page-listen-btn,
+    .release-page-buy-btn,
+    .release-page-preorder-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}

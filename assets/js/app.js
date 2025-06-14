@@ -357,9 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 // Prevent URL hash change
                 history.replaceState(null, null, '#releases');
             });
-        });
-
-        // Add keyboard support for release items
+        });        // Add keyboard support for release items
         document.querySelectorAll('.release-item').forEach(item => {
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -369,7 +367,25 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                         loadReleaseInPlayer(releaseId);
                     }                e.preventDefault();
                 }
-            });              // Add mobile overlay management for touch devices
+            });
+
+            // Add click handler for navigating to individual release pages
+            item.addEventListener('click', (e) => {
+                // Don't navigate if clicking on buttons or links
+                if (e.target.closest('.listen-btn, .buy-link, .preorder-btn')) {
+                    return;
+                }
+                
+                // Navigate to individual release page
+                const releaseId = item.id;
+                const releaseSlug = releaseId.toLowerCase().replace(/_/g, '-');
+                
+                // Preserve language state in URL
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                window.location.href = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+            });
+
+            // Add mobile overlay management for touch devices
             addMobileOverlayManagement(item);
         });
     }
@@ -446,14 +462,17 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     loadReleaseInPlayer(releaseId);
                     e.preventDefault();
                 }
-            });
-
-            // Click handler for the item itself (will play music when clicking on image)
+            });            // Click handler for the item itself (navigate to release page when clicking on image)
             item.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('mini-listen-btn')) {
                     const releaseId = item.id.replace('mini-', '');
-                    loadReleaseInPlayer(releaseId);
-                }            });              // Add mobile overlay management for touch devices
+                    const releaseSlug = releaseId.toLowerCase().replace(/_/g, '-');
+                    
+                    // Preserve language state in URL
+                    const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                    window.location.href = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                }
+            });// Add mobile overlay management for touch devices
             addMobileOverlayManagement(item);
         });
     }
@@ -488,14 +507,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const currentItem = document.getElementById(releaseId);
         if (currentItem) currentItem.classList.add('active');
         const currentMiniItem = document.getElementById(`mini-${releaseId}`);
-        if (currentMiniItem) currentMiniItem.classList.add('active');
-
-        // Update state
+        if (currentMiniItem) currentMiniItem.classList.add('active');        // Update state
         currentReleaseId = releaseId;
 
         // Remove hash update here so it doesn't change URL
         // history.replaceState(null, null, `#${releaseId}`);
     }
+
+    // Expose loadReleaseInPlayer globally for use in release pages
+    window.loadReleaseInPlayer = loadReleaseInPlayer;
 
     // Show Bandcamp cookie consent dialog
     function showBandcampConsentDialog(releaseId) {
@@ -627,11 +647,14 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         // Update current track if one is playing
         if (currentReleaseId) {
             const release = releases.find(r => r.id === currentReleaseId);
-            if (release) {
-                currentTrackElement.textContent = release[`title_${currentLanguage}`];
+            if (release) {                currentTrackElement.textContent = release[`title_${currentLanguage}`];
             }
         }
     }
+
+    // Expose language functions globally for use in release pages
+    window.switchLanguage = switchLanguage;
+    window.languageButtons = languageButtons;
 
     // Update UI elements with translated text
     function updateUILanguage() {
