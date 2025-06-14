@@ -34,6 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const isNetlify = !window.location.hostname.includes('github.io') && !isLocalhost;
 
+    // Helper function to create URL-safe slugs from titles
+    function createSlugFromTitle(title) {
+        return title.toLowerCase()
+                   .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+                   .replace(/\s+/g, '-')         // Replace spaces with hyphens
+                   .replace(/-+/g, '-')          // Replace multiple hyphens with single hyphen
+                   .replace(/^-|-$/g, '');       // Remove leading/trailing hyphens
+    }
+
     // Build proper asset paths for all environments
     function getAssetPath(path) {
         // Make sure path starts with /
@@ -78,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 id: r.release_code.en,
                 title_en: r.title.en,
                 title_cy: r.title.cy || r.title.en,
+                title_slug: createSlugFromTitle(r.title.en), // Add title-based slug
                 artist: r.artists.en, artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
                 artwork_small_url: r.artwork_small_url || getAssetPath(`/assets/images/releases/small/${r.release_code.en}_small.jpg`),
                 bandcampEmbedUrl: r.bandcampEmbedUrl || '',
@@ -202,10 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             upcomingPanel.style.display = 'none';
             return;
         }        // Show the panel
-        upcomingPanel.style.display = 'flex';
-
-        // Generate release URL with language preservation
-        const releaseSlug = upcoming.id.toLowerCase().replace(/_/g, '-');
+        upcomingPanel.style.display = 'flex';        // Generate release URL with language preservation
+        const releaseSlug = upcoming.title_slug;
         const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
         const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
@@ -267,10 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             featuredPanel.style.display = 'none';
             return;
         }        // Show featured release panel
-        featuredPanel.style.display = 'flex';
-
-        // Generate release URL with language preservation
-        const releaseSlug = featured.id.toLowerCase().replace(/_/g, '-');
+        featuredPanel.style.display = 'flex';        // Generate release URL with language preservation
+        const releaseSlug = featured.title_slug;
         const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
         const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
@@ -385,10 +391,10 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (e.target.closest('.listen-btn, .buy-link, .preorder-btn')) {
                     return;
                 }
-                
-                // Navigate to individual release page
+                  // Navigate to individual release page
                 const releaseId = item.id;
-                const releaseSlug = releaseId.toLowerCase().replace(/_/g, '-');
+                const release = releases.find(r => r.id === releaseId);
+                const releaseSlug = release ? release.title_slug : releaseId.toLowerCase().replace(/_/g, '-');
                 
                 // Preserve language state in URL
                 const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
@@ -476,7 +482,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             item.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('mini-listen-btn')) {
                     const releaseId = item.id.replace('mini-', '');
-                    const releaseSlug = releaseId.toLowerCase().replace(/_/g, '-');
+                    const release = releases.find(r => r.id === releaseId);
+                    const releaseSlug = release ? release.title_slug : releaseId.toLowerCase().replace(/_/g, '-');
                     
                     // Preserve language state in URL
                     const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
@@ -717,9 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
                 if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
-                
-                // Update URLs for title and artwork links
-                const releaseSlug = upcoming.id.toLowerCase().replace(/_/g, '-');
+                  // Update URLs for title and artwork links
+                const releaseSlug = upcoming.title_slug;
                 const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
                 const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
                 const titleLink = upcomingContainer.querySelector('a.upcoming-release-title-main');
@@ -747,9 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
                 if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
-                
-                // Update URLs for title and artwork links
-                const releaseSlug = featured.id.toLowerCase().replace(/_/g, '-');
+                  // Update URLs for title and artwork links
+                const releaseSlug = featured.title_slug;
                 const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
                 const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
                 const titleLink = featuredContainer.querySelector('a.featured-release-title-main');

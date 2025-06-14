@@ -4,7 +4,7 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
-    en: PRODUCT_S003_SPARK
+    en: PRODUCT_S003
   title:
     en: SPARK
   artists:
@@ -39,7 +39,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4085140319/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_S002_EIGNENGRAU
+    en: PRODUCT_S002
   title:
     en: EIGENGRAU
   artists:
@@ -66,7 +66,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=424674946/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_005_COMFORT
+    en: PRODUCT_005
   title:
     en: PRODUCT_005_COMFORT
   artists:
@@ -84,7 +84,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=307507743/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_004_UNITY
+    en: PRODUCT_004
   title:
     en: PRODUCT_004_UNITY
   artists:
@@ -102,7 +102,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2983030470/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_05_TRANSIENT
+    en: PRODUCT_003_05
   title:
     en: PRODUCT_003_05_TRANSIENT
   artists:
@@ -120,7 +120,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1806755848/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_04_LARYNX
+    en: PRODUCT_003_04
   title:
     en: PRODUCT_003_04_LARYNX
   artists:
@@ -138,7 +138,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4079767905/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_03_TRINITY
+    en: PRODUCT_003_03
   title:
     en: PRODUCT_003_03_TRINITY
   artists:
@@ -156,7 +156,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=864813109/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_02_NOSTALGIA
+    en: PRODUCT_003_02
   title:
     en: PRODUCT_003_02_NOSTALGIA
   artists:
@@ -174,7 +174,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1355110797/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_01_SINGULAR
+    en: PRODUCT_003_01
   title:
     en: PRODUCT_003_01_SINGULAR
   artists:
@@ -192,7 +192,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1149959447/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_002_COMMUNITY
+    en: PRODUCT_002
   title:
     en: PRODUCT_002_COMMUNITY
   artists:
@@ -210,7 +210,7 @@
   bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=562378794/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_001_LUNAR
+    en: PRODUCT_001
   title:
     en: PRODUCT_001_LUNAR
   artists:
