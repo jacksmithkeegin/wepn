@@ -596,9 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     function setupLanguageToggle() {
         languageButtons.en.addEventListener('click', () => switchLanguage('en'));
         languageButtons.cy.addEventListener('click', () => switchLanguage('cy'));
-    }
-
-    // Switch language
+    }    // Switch language
     function switchLanguage(lang) {
         if (lang === currentLanguage) return;
 
@@ -611,6 +609,8 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         // Update language
         currentLanguage = lang;
         document.documentElement.lang = lang;
+          // Save language preference to sessionStorage (clears when browser closes)
+        sessionStorage.setItem('wepn-language', lang);
 
         // Update UI with translations
         updateUILanguage();
@@ -1150,11 +1150,10 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         detectTouchDevice();
         
         // Add global touch reset handler for overlays
-        addGlobalTouchResetHandler();
-
-        // Detect browser language
+        addGlobalTouchResetHandler();        // Detect browser language and check for saved preference
+        const savedLang = sessionStorage.getItem('wepn-language');
         const browserLang = navigator.language.substring(0, 2);
-        const preferredLang = (browserLang === 'cy') ? 'cy' : 'en';
+        const preferredLang = savedLang || ((browserLang === 'cy') ? 'cy' : 'en');
 
         // Set language (this updates UI and internal state)
         switchLanguage(preferredLang);
