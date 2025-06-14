@@ -1698,6 +1698,18 @@ footer p {
     color: #fff;
     margin: 0;
     line-height: 1.2;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.release-page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
 }
 
 .release-content {
