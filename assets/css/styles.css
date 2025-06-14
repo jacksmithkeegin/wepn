@@ -1667,29 +1667,31 @@ a.upcoming-release-title-main:focus {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 .artist-social-link:hover {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
-.artist-social-link img,
-.artist-social-link i {
-    width: 20px;
-    height: 20px;
+/* Style for all SVG images */
+.artist-social-link img {
+    width: 28px;
+    height: 28px;
     vertical-align: middle;
     display: inline-block;
     object-fit: contain;
-    filter: invert(1) brightness(2); /* Ensures white color on dark backgrounds */
+    filter: invert(1) grayscale(1) brightness(1.5);
+    transition: filter 0.2s ease;
 }
 
-.artist-social-link .fa-soundcloud,
-.artist-social-link .fa-link {
-    font-size: 22px;
-    transform: translateY(1px);
+.artist-social-link:hover img {
+    filter: invert(44%) sepia(98%) saturate(747%) hue-rotate(181deg) brightness(1.2);
 }
 
 /* Release Page Styles */
@@ -1932,6 +1934,12 @@ a.upcoming-release-title-main:focus {
 }
 
 /* Artist Page Styles */
+.artist-page {
+    background-color: rgba(255, 255, 255, 0.05);
+    min-height: 80vh;
+    padding: var(--spacing-xl) 0;
+}
+
 .artist-header {
     margin-bottom: var(--spacing-xl);
 }
@@ -1949,4 +1957,152 @@ a.upcoming-release-title-main:focus {
 .back-to-artists:focus {
     color: #1e7fdb;
     text-decoration: none;
+}
+
+.artist-page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.artist-page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.artist-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: var(--spacing-xl);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.artist-top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+    width: 100%;
+}
+
+.artist-page-photo-container {
+    position: relative;
+    width: 400px;
+    max-width: 35vw;
+    flex-shrink: 0;
+}
+
+.artist-page-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    background: #222;
+    display: block;
+}
+
+.artist-page-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.artist-page-bio {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+}
+
+.artist-page-bio p {
+    margin-bottom: var(--spacing-md);
+}
+
+.artist-page-bio p:last-child {
+    margin-bottom: 0;
+}
+
+.artist-page-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+/* Mobile responsiveness for artist pages */
+@media (max-width: 900px) {
+    .artist-content {
+        padding: var(--spacing-lg);
+    }
+
+    .artist-top-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+
+    .artist-page-photo-container {
+        width: 70vw;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .artist-page-photo {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .artist-page-info {
+        align-items: center;
+    }
+
+    .artist-page-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .artist-page-title {
+        font-size: 2rem;
+    }
+
+    .artist-content {
+        padding: var(--spacing-md);
+    }
+
+    .artist-page-photo-container {
+        width: 85vw;
+        max-width: 350px;
+    }
+
+    .artist-page-photo {
+        width: 100%;
+        max-width: none;
+    }
+
+    .artist-page-bio {
+        font-size: 1rem;
+    }
+
+    .artist-page-links {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
