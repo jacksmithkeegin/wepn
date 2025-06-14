@@ -8,11 +8,12 @@ layout: default
         
         <!-- Release header -->
         <div class="release-header">
-            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>
-            <h1 class="release-page-title">
+            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>            <h1 class="release-page-title">
                 <span data-lang="en">{{ release.title.en }}</span>
                 {% if release.title.cy %}
                 <span data-lang="cy" style="display: none;">{{ release.title.cy }}</span>
+                {% else %}
+                <span data-lang="cy" style="display: none;">{{ release.title.en }}</span>
                 {% endif %}
             </h1>
         </div>
@@ -27,18 +28,20 @@ layout: default
                 
                 <div class="release-page-info">
                     <div class="release-page-artist">{{ release.artists.en }}</div>
-                    
-                    <div class="release-page-date">
+                      <div class="release-page-date">
                         <span data-lang="en">{{ release.release_date.en }}</span>
                         {% if release.release_date.cy %}
                         <span data-lang="cy" style="display: none;">{{ release.release_date.cy }}</span>
+                        {% else %}
+                        <span data-lang="cy" style="display: none;">{{ release.release_date.en }}</span>
                         {% endif %}
                     </div>
-                    
-                    <div class="release-page-description">
+                      <div class="release-page-description">
                         <span data-lang="en">{{ release.description.en }}</span>
                         {% if release.description.cy %}
                         <span data-lang="cy" style="display: none;">{{ release.description.cy }}</span>
+                        {% else %}
+                        <span data-lang="cy" style="display: none;">{{ release.description.en }}</span>
                         {% endif %}
                     </div>
                     
@@ -68,14 +71,17 @@ layout: default
             </div>
             
             <!-- Detailed description if present -->
-            {% if release.detailed_description %}
-            <div class="release-page-detailed-description">
+            {% if release.detailed_description %}            <div class="release-page-detailed-description">
                 <div data-lang="en">
                     {{ release.detailed_description.en | markdownify }}
                 </div>
                 {% if release.detailed_description.cy %}
                 <div data-lang="cy" style="display: none;">
                     {{ release.detailed_description.cy | markdownify }}
+                </div>
+                {% else %}
+                <div data-lang="cy" style="display: none;">
+                    {{ release.detailed_description.en | markdownify }}
                 </div>
                 {% endif %}
             </div>
@@ -102,24 +108,86 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Check for language parameter in URL and switch if needed
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    if (langParam === 'cy' && window.switchLanguage) {
-        window.switchLanguage('cy');
+    // Function to initialize language state for release page
+    function initializeLanguageState() {
+        // Check for language parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        
+        // Get saved language preference or use URL param
+        const savedLang = sessionStorage.getItem('wepn-language');
+        const preferredLang = langParam || savedLang || 'en';
+        
+        // If language switching is available, use it
+        if (window.switchLanguage) {
+            window.switchLanguage(preferredLang);
+        } else {
+            // Fallback: manually update data-lang elements
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const elementLang = element.getAttribute('data-lang');
+                if (elementLang === preferredLang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
     }
     
+    // Try to initialize language state immediately
+    initializeLanguageState();
+    
+    // Set up a small delay to retry if main app hasn't loaded yet
+    setTimeout(() => {
+        if (window.switchLanguage) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const savedLang = sessionStorage.getItem('wepn-language');
+            const preferredLang = langParam || savedLang || 'en';
+            window.switchLanguage(preferredLang);
+        }
+    }, 500);
+    
     // Update language toggle to preserve URL state when switching
-    if (window.languageButtons) {
-        window.languageButtons.en.addEventListener('click', function() {
-            const newUrl = window.location.pathname + window.location.hash;
-            window.history.replaceState(null, null, newUrl);
-        });
-        
-        window.languageButtons.cy.addEventListener('click', function() {
-            const newUrl = window.location.pathname + '?lang=cy' + window.location.hash;
-            window.history.replaceState(null, null, newUrl);
-        });
+    function updateLanguageButtons() {
+        if (window.languageButtons) {
+            // Remove any existing listeners first
+            const enBtn = window.languageButtons.en;
+            const cyBtn = window.languageButtons.cy;
+            
+            if (enBtn && cyBtn) {
+                // Clone buttons to remove all event listeners
+                const newEnBtn = enBtn.cloneNode(true);
+                const newCyBtn = cyBtn.cloneNode(true);
+                
+                enBtn.parentNode.replaceChild(newEnBtn, enBtn);
+                cyBtn.parentNode.replaceChild(newCyBtn, cyBtn);
+                
+                // Update the global reference
+                window.languageButtons.en = newEnBtn;
+                window.languageButtons.cy = newCyBtn;
+                
+                // Add new listeners for release pages
+                newEnBtn.addEventListener('click', function() {
+                    if (window.switchLanguage) {
+                        window.switchLanguage('en');
+                    }
+                    const newUrl = window.location.pathname + window.location.hash;
+                    window.history.replaceState(null, null, newUrl);
+                });
+                
+                newCyBtn.addEventListener('click', function() {
+                    if (window.switchLanguage) {
+                        window.switchLanguage('cy');
+                    }
+                    const newUrl = window.location.pathname + '?lang=cy' + window.location.hash;
+                    window.history.replaceState(null, null, newUrl);
+                });
+            }
+        }
     }
+    
+    // Set up language buttons after a delay to ensure main app is loaded
+    setTimeout(updateLanguageButtons, 600);
 });
 </script>

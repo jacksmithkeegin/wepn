@@ -630,10 +630,11 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         currentLanguage = lang;
         document.documentElement.lang = lang;
           // Save language preference to sessionStorage (clears when browser closes)
-        sessionStorage.setItem('wepn-language', lang);
-
-        // Update UI with translations
+        sessionStorage.setItem('wepn-language', lang);        // Update UI with translations
         updateUILanguage();
+
+        // Update data-lang elements (for release pages)
+        updateDataLangElements();
 
         // Update only text content for releases and featured release
         updateReleaseTexts();
@@ -670,11 +671,22 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const heroTagline = document.querySelector('.hero-tagline');
         if (heroTagline) heroTagline.textContent = translations[currentLanguage]['hero.tagline'];
         const heroCta = document.querySelector('.hero-cta-btn');
-        if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];
-        // Featured release title
+        if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];        // Featured release title
         const featuredTitle = document.querySelector('.featured-release-title');
         if (featuredTitle) featuredTitle.textContent = translations[currentLanguage]['hero.featured'];
-    }    // Update only text content for releases and featured release when switching language
+    }
+
+    // Update data-lang elements (for release pages)
+    function updateDataLangElements() {
+        document.querySelectorAll('[data-lang]').forEach(element => {
+            const elementLang = element.getAttribute('data-lang');
+            if (elementLang === currentLanguage) {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+        });
+    }// Update only text content for releases and featured release when switching language
     function updateReleaseTexts() {
         // Update upcoming release texts
         const upcomingContainer = document.getElementById('upcoming-release');
