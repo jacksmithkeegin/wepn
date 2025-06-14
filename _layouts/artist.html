@@ -4,7 +4,11 @@ layout: default
 
 <section class="artist-bio">
     <div class="container">
-        <h1>{{ page.title }}</h1>        {% assign artist = page.artist %}
+        <!-- Artist header -->
+        <div class="artist-header">
+            <a class="back-to-artists" href="{{ site.baseurl }}/#artists">← <span data-i18n="artists.back">Back to Artists</span></a>
+            <h1>{{ page.title }}</h1>
+        </div>{% assign artist = page.artist %}
         {% if artist.image %}
             <img class="artist-photo" src="{{ artist.image | relative_url }}" alt="{{ page.title }}"/>
         {% elsif artist.logo %}
@@ -50,11 +54,8 @@ layout: default
                 <a href="{{ artist.bandcamp }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bandcamp.svg" alt="Bandcamp">
                 </a>
-                {% endif %}
-            </div>
+                {% endif %}            </div>
             {% endif %}
         </div>
-
-        <a class="back-to-artists" href="{{ site.baseurl }}/#artists">← <span data-i18n="artists.back">Back to Artists</span></a>
     </div>
 </section>

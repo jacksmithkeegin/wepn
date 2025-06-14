@@ -1930,3 +1930,23 @@ a.upcoming-release-title-main:focus {
         max-width: 250px;
     }
 }
+
+/* Artist Page Styles */
+.artist-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.back-to-artists {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    transition: color var(--transition-speed) ease;
+}
+
+.back-to-artists:hover,
+.back-to-artists:focus {
+    color: #1e7fdb;
+    text-decoration: none;
+}
