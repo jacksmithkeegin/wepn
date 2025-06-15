@@ -1,0 +1,121 @@
+<!-- Homepage-specific Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}{{ site.baseurl }}/#organization",
+      "name": "WEPN - Wales Electronic Producers Network",
+      "alternateName": ["WEPN", "Wales Electronic Producers Network"],
+      "description": "Wales Electronic Producers Network (WEPN) is a collective of electronic music producers based in Wales, UK. Founded in 2020, WEPN showcases the diverse electronic music scene in Wales and provides a platform for emerging talent.",
+      "url": "{{ site.url }}{{ site.baseurl }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.baseurl }}/assets/images/logo_big.jpg",
+        "width": 400,
+        "height": 400
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.baseurl }}/assets/images/WEPN_logo_1200x630.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "foundingDate": "2020",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Cardiff",
+        "addressRegion": "Wales",
+        "addressCountry": "GB"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Wales",
+        "addressCountry": "GB"
+      },
+      "genre": ["Electronic Music", "Ambient", "Techno", "House", "Experimental", "Trip-hop", "Drum and Bass", "Dub", "Glitch"],
+      "sameAs": [
+        "https://wales-epn.bandcamp.com",
+        "https://bsky.app/profile/wepn.bsky.social",
+        "https://discord.com/channels/1233345290258350140/",
+        "https://youtube.com/@_wepn_"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "General Inquiries",
+        "availableLanguage": ["English", "Welsh"]
+      },
+      "knowsLanguage": ["en", "cy"],
+      "member": [
+        {% for artist in site.data.artists %}
+        {
+          "@type": "MusicGroup",
+          "name": "{{ artist.name }}",
+          {% if artist.title != artist.name %}"alternateName": "{{ artist.title }}",{% endif %}
+          "url": "{{ site.url }}{{ site.baseurl }}/artists/{{ artist.slug }}/"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}{{ site.baseurl }}/#website",
+      "url": "{{ site.url }}{{ site.baseurl }}/",
+      "name": "{{ site.title }}",
+      "description": "{{ site.description }}",
+      "publisher": {
+        "@id": "{{ site.url }}{{ site.baseurl }}/#organization"
+      },
+      "inLanguage": ["en-GB", "cy"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ site.url }}{{ site.baseurl }}/#music"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "{{ site.url }}{{ site.baseurl }}/#musicgroup",
+      "name": "WEPN",
+      "alternateName": "Wales Electronic Producers Network",
+      "description": "A collective of electronic music producers from Wales creating diverse electronic music ranging from ambient to experimental.",
+      "genre": ["Electronic Music", "Ambient", "Techno", "House", "Experimental"],
+      "foundingDate": "2020",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Wales",
+        "addressCountry": "GB"
+      },
+      "album": [
+        {% for release in site.data.releases limit:10 %}
+        {
+          "@type": "MusicAlbum",
+          "name": "{{ release.title.en }}",
+          "datePublished": "{{ release.release_date.en | date: '%Y-%m-%d' }}",
+          "image": "{{ site.url }}{{ site.baseurl }}{{ release.artwork_url }}",
+          "url": "{{ site.url }}{{ site.baseurl }}/releases/{{ release.title.en | slugify }}/"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "WEPN Music Releases",
+      "description": "Regular electronic music releases from Welsh producers",
+      "organizer": {
+        "@id": "{{ site.url }}{{ site.baseurl }}/#organization"
+      },
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "{{ site.url }}{{ site.baseurl }}/"
+      },
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode"
+    }
+  ]
+}
+</script>

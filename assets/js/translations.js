@@ -9,10 +9,10 @@ const translations = {
         
         "player.nowPlaying": "Now Playing: ",
         "player.selectRelease": "Select a release",
-        
-        "releases.title": "Releases",
+          "releases.title": "Releases",
         "releases.listenButton": "Listen",
         "releases.buyOn": "Buy on Bandcamp",
+        "releases.backToMusic": "Back to Music",
         
         "about.title": "About WEPN",
         "about.para1": "WEPN (Wales Electronic Producers Network) is a collective of electronic music producers based in Wales, UK. Founded in 2020, WEPN aims to showcase the diverse electronic music scene in Wales and provide a platform for emerging talent.",
@@ -24,9 +24,11 @@ const translations = {
         "contact.soundcloud": "SoundCloud",
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
-        "contact.email": "Email: ",        "hero.heading": "Wales Electronic Producers Network",
-        "hero.tagline": "Showcasing Wales' diverse electronic music scene since 2015",
-        "hero.cta": "Discover Our Music",        "hero.featured": "Featured Release",
+        "contact.email": "Email: ",
+        "hero.heading": "Wales Electronic Producers Network",
+        "hero.tagline": "Giving voice to Wales' electronic sound",
+        "hero.cta": "Discover Our Music",
+        "hero.featured": "Featured Release",
         "hero.upcoming": "Upcoming Release",
         "hero.catalog": "Hear More",
         "hero.moreInfo": "More Info",
@@ -44,6 +46,7 @@ const translations = {
         "bandcamp.privacyLink": "Privacy Policy",
 
         'artists.title': 'Artists',
+        'artists.back': 'Back to Artists',
     },
     cy: {
         "nav.releases": "Rhyddhiadau",
@@ -54,10 +57,10 @@ const translations = {
         
         "player.nowPlaying": "Yn Chwarae Nawr: ",
         "player.selectRelease": "Dewiswch ryddhad",
-        
-        "releases.title": "Rhyddhiadau",
+          "releases.title": "Rhyddhiadau",
         "releases.listenButton": "Gwrando",
         "releases.buyOn": "Prynu ar Bandcamp",
+        "releases.backToMusic": "Yn ôl i Gerddoriaeth",
         
         "about.title": "Ynglŷn â WEPN",
         "about.para1": "Mae WEPN (Rhwydwaith Cynhyrchwyr Electronig Cymru) yn gydweithfa o gynhyrchwyr cerddoriaeth electronig yng Nghymru, y DU. Wedi'i sefydlu yn 2020, nod WEPN yw arddangos yr olygfa cerddoriaeth electronig amrywiol yng Nghymru a darparu llwyfan ar gyfer talent newydd.",
@@ -69,9 +72,11 @@ const translations = {
         "contact.soundcloud": "SoundCloud",
         "contact.twitter": "Twitter",
         "contact.instagram": "Instagram",
-        "contact.email": "E-bost: ",        "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
-        "hero.tagline": "Yn arddangos olygfa gerddoriaeth electronig amrywiol Cymru ers 2015",
-        "hero.cta": "Darganfod Ein Cerddoriaeth",        "hero.featured": "Rhyddhad dan Sylw",
+        "contact.email": "E-bost: ",
+        "hero.heading": "Rhwydwaith Cynhyrchwyr Electronig Cymru",
+        "hero.tagline": "Rhoi llais i sŵn electronig Cymru",
+        "hero.cta": "Darganfod Ein Cerddoriaeth",
+        "hero.featured": "Rhyddhad dan Sylw",
         "hero.upcoming": "Rhyddhad i Ddod",
         "hero.catalog": "Clywch Fwy",
         "hero.moreInfo": "Mwy o Wybodaeth",
@@ -89,5 +94,6 @@ const translations = {
         "bandcamp.privacyLink": "Polisi Preifatrwydd",
 
         'artists.title': 'Artistiaid',
+        'artists.back': 'Yn ôl i’r Artistiaid',
     }
 };

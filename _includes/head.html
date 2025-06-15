@@ -1,8 +1,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ site.description }}">
-  <title>{{ site.title }}</title>  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- Enhanced meta tags for SEO -->
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% elsif page.release.description.en %}{{ page.release.description.en }}{% elsif page.artist.bio.en %}{{ page.artist.bio.en | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="keywords" content="Wales, Welsh music, electronic music, producers, WEPN, Cymru, cerddoriaeth electronig{% if page.artist %}, {{ page.artist.name }}{% endif %}{% if page.release %}, {{ page.release.artists.en }}, {{ page.release.title.en }}{% endif %}">
+  <meta name="author" content="{% if page.artist %}{{ page.artist.name }}{% else %}WEPN - Wales Electronic Producers Network{% endif %}">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="en-GB">
+  <meta name="geo.region" content="GB-WLS">
+  <meta name="geo.placename" content="Wales">
+  
+  <!-- Page-specific titles -->
+  <title>{% if page.title and page.title != site.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | prepend: site.url | prepend: site.baseurl }}">
+  
+  <!-- Language alternatives -->
+  <link rel="alternate" href="{{ page.url | prepend: site.url | prepend: site.baseurl }}" hreflang="en">
+  <link rel="alternate" href="{{ page.url | prepend: site.url | prepend: site.baseurl }}?lang=cy" hreflang="cy">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site.url }}{{ site.baseurl }}/#organization",
+        "name": "WEPN - Wales Electronic Producers Network",
+        "alternateName": ["WEPN", "Wales Electronic Producers Network"],
+        "description": "{{ site.description }}",
+        "url": "{{ site.url }}{{ site.baseurl }}/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}{{ site.baseurl }}/assets/images/logo_big.jpg"
+        },
+        "foundingDate": "2020",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Wales",
+          "addressCountry": "GB"
+        },
+        "areaServed": {
+          "@type": "Place",
+          "name": "Wales"
+        },
+        "genre": ["Electronic Music", "Ambient", "Techno", "House", "Experimental"],
+        "sameAs": [
+          "https://wales-epn.bandcamp.com",
+          "https://bsky.app/profile/wepn.bsky.social",
+          "https://discord.com/channels/1233345290258350140/",
+          "https://youtube.com/@_wepn_"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url }}{{ site.baseurl }}/#website",
+        "url": "{{ site.url }}{{ site.baseurl }}/",
+        "name": "{{ site.title }}",
+        "description": "{{ site.description }}",
+        "publisher": {
+          "@id": "{{ site.url }}{{ site.baseurl }}/#organization"
+        },
+        "inLanguage": ["en-GB", "cy"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "{{ site.url }}{{ site.baseurl }}/#music",
+          "query-input": "required name=search_term_string"
+        }
+      }
+      {% if page.layout == "release" %},
+      {
+        "@type": "MusicAlbum",
+        "@id": "{{ page.url | prepend: site.url | prepend: site.baseurl }}#album",
+        "name": "{{ page.release.title.en }}",
+        {% if page.release.title.cy %}"alternateName": "{{ page.release.title.cy }}",{% endif %}
+        "description": "{{ page.release.description.en }}",
+        "image": "{{ site.url }}{{ site.baseurl }}{{ page.release.artwork_url }}",
+        "url": "{{ page.url | prepend: site.url | prepend: site.baseurl }}",
+        "datePublished": "{{ page.release.release_date.en | date: '%Y-%m-%d' }}",
+        "genre": "Electronic Music",
+        {% assign artists_array = page.release.artists.en | split: " / " %}
+        {% if artists_array.size > 1 %}
+        "byArtist": [
+          {% for artist in artists_array %}
+          {
+            "@type": "MusicGroup",
+            "name": "{{ artist | strip }}"
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+        {% else %}
+        "byArtist": {
+          "@type": "MusicGroup",
+          "name": "{{ page.release.artists.en }}"
+        },
+        {% endif %}
+        "recordLabel": {
+          "@type": "Organization",
+          "name": "WEPN",
+          "@id": "{{ site.url }}{{ site.baseurl }}/#organization"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "{{ page.release.link.en }}",
+          "price": "0",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+      {% elsif page.layout == "artist" %},
+      {
+        "@type": "MusicGroup",
+        "@id": "{{ page.url | prepend: site.url | prepend: site.baseurl }}#artist",
+        "name": "{{ page.artist.name }}",
+        {% if page.artist.title != page.artist.name %}"alternateName": "{{ page.artist.title }}",{% endif %}
+        {% if page.artist.bio.en %}"description": "{{ page.artist.bio.en | strip_html | truncate: 300 }}",{% endif %}
+        {% if page.artist.image %}"image": "{{ site.url }}{{ site.baseurl }}{{ page.artist.image }}",{% endif %}
+        "url": "{{ page.url | prepend: site.url | prepend: site.baseurl }}",
+        "genre": "Electronic Music",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Wales",
+          "addressCountry": "GB"
+        },
+        {% if page.artist.website or page.artist.bandcamp or page.artist.soundcloud or page.artist.bluesky %}
+        "sameAs": [
+          {% if page.artist.website %}"{{ page.artist.website }}"{% if page.artist.bandcamp or page.artist.soundcloud or page.artist.bluesky %},{% endif %}{% endif %}
+          {% if page.artist.bandcamp %}"{{ page.artist.bandcamp }}"{% if page.artist.soundcloud or page.artist.bluesky %},{% endif %}{% endif %}
+          {% if page.artist.soundcloud %}"{{ page.artist.soundcloud }}"{% if page.artist.bluesky %},{% endif %}{% endif %}
+          {% if page.artist.bluesky %}"{{ page.artist.bluesky }}"{% endif %}
+        ],
+        {% endif %}
+        "memberOf": {
+          "@type": "Organization",
+          "name": "WEPN - Wales Electronic Producers Network",
+          "@id": "{{ site.url }}{{ site.baseurl }}/#organization"
+        }
+      }
+      {% endif %}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
@@ -14,22 +157,53 @@
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicons/favicon.svg' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicons/favicon.png' | relative_url }}">
-  <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">  <!-- Social media meta tags for Discord, Facebook, Twitter, Bluesky -->
-  <meta property="og:title" content="{{ site.title }}">
-  <meta property="og:description" content="{{ site.description }}">
+  <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">
+
+  <!-- Enhanced Social media meta tags for Discord, Facebook, Twitter, Bluesky -->
+  <meta property="og:title" content="{% if page.title and page.title != site.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elsif page.release.description.en %}{{ page.release.description.en }}{% elsif page.artist.bio.en %}{{ page.artist.bio.en | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.release.artwork_url %}
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ page.release.artwork_url }}">
+  <meta property="og:image:alt" content="{{ page.release.title.en }} artwork">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="1000">
+  {% elsif page.artist.image %}
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ page.artist.image }}">
+  <meta property="og:image:alt" content="{{ page.artist.name }} photo">
+  {% else %}
   <meta property="og:image" content="https://wepn.wales/assets/images/WEPN_logo_1200x630.jpg">
-  <meta property="og:url" content="https://wepn.wales/">
-  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:alt" content="WEPN Logo">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:type" content="website">  <!-- Twitter Card tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ site.title }}">
-  <meta name="twitter:description" content="{{ site.description }}">
+  {% endif %}
+  <meta property="og:url" content="{{ page.url | prepend: site.url | prepend: site.baseurl }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:type" content="{% if page.layout == 'release' %}music.album{% elsif page.layout == 'artist' %}profile{% else %}website{% endif %}">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="cy_GB">
+  
+  {% if page.layout == "release" %}
+  <meta property="music:musician" content="{{ page.release.artists.en }}">
+  <meta property="music:release_date" content="{{ page.release.release_date.en | date: '%Y-%m-%d' }}">
+  {% endif %}
+
+  <!-- Enhanced Twitter Card tags -->
+  <meta name="twitter:card" content="{% if page.release.artwork_url or page.artist.image %}summary_large_image{% else %}summary{% endif %}">
+  <meta name="twitter:title" content="{% if page.title and page.title != site.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif page.release.description.en %}{{ page.release.description.en }}{% elsif page.artist.bio.en %}{{ page.artist.bio.en | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.release.artwork_url %}
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.release.artwork_url }}">
+  <meta name="twitter:image:alt" content="{{ page.release.title.en }} artwork">
+  {% elsif page.artist.image %}
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.artist.image }}">
+  <meta name="twitter:image:alt" content="{{ page.artist.name }} photo">
+  {% else %}
   <meta name="twitter:image" content="https://wepn.wales/assets/images/WEPN_logo_1200x630.jpg">
   <meta name="twitter:image:alt" content="WEPN Logo">
-  <meta name="twitter:image:width" content="1200">
-  <meta name="twitter:image:height" content="630">
+  {% endif %}
+  <meta name="twitter:site" content="@wepn_music">
+  
   <!-- Bluesky uses Open Graph tags -->
+  
+  {% include social-meta.html %}
 </head>

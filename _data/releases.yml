@@ -4,7 +4,7 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
-    en: PRODUCT_S003_SPARK
+    en: PRODUCT_S003
   title:
     en: SPARK
   artists:
@@ -14,7 +14,7 @@
     cy: 6 Mehefin 2025
   description:
     en: Three different takes on the same core samples by WEPN artists, featuring tracks from iBug, Fflint, and Clear Air Turbulence.
-    cy: Tri safbwynt gwahanol ar yr un samplau craidd gan artistiaid WEPN, yn cynnwys traciau gan iBug, Fflint, a Clear Air Turbulence.
+    cy: Tri ymateb gwahanol ar yr un samplau craidd gan artistiaid WEPN, yn cynnwys traciau gan iBug, Fflint, a Clear Air Turbulence.
   detailed_description:
     en: |
       The concept was simple. Take a set of samples, some WEPN artists and create some music. With this release we have three different takes on the same core samples.
@@ -25,21 +25,21 @@
 
       Clear Air Turbulence // Whitewater gives a fresh track of rave and breaks. Clear Air Turbulence creates music in the highest places of Wales. From the peak of Yr Wyddfa to the summit of Cadr Idris. Often the only thing holding a high altitude recording back is the length of the trailing cable.
     cy: |
-      Roedd y cysyniad yn syml. Cymryd set o samplau, rhai artistiaid WEPN a chreu rhywfaint o gerddoriaeth. Gyda'r rhyddhad hwn mae gennym dri safbwynt gwahanol ar yr un samplau craidd.
+      Cysyniad syml. Ambell artist WEPN yn defnyddio set o samplau a chreu traciau cerddoriaeth newydd. Gyda'r rhyddhad hwn mae gennym dri safbwynt gwahanol ar yr un samplau craidd.
 
-      ibug // Mae Wobbert yn sicr yn tyrchu i'r bas gyda thrac cadarn sy'n cyfuno elfennau o Trip-hop, wub a toriadau ffynci. Mae ibug yn dod o'r Fro ac wedi bod yn rhyddhau cerddoriaeth ers blynyddoedd lawer o dan enwau sy'n seiliedig ar bryfed. Efallai ei fod yn bryf..
+      Mae ibug // Wobbert yn sicr yn ymgolli yn y bas gyda thrac cadarn sy'n cyfuno elfennau o Trip-hop, wub a thoriadau ffynci. Mae ibug yn dod o'r Fro ac wedi bod yn rhyddhau cerddoriaeth ers sawl blwyddyn o dan enwau sy'n seiliedig ar bryfed. Efallai ei fod yn bryfyn..
 
-      Fflint // Mae Blackwater yn cyfuno gorllewin lo-fi gyda diferyn o glitch-hop. Mae Fflint yn DJ profiadol, cynhyrchydd ac artist profiadol sy'n seiliedig yng Nghaerdydd.
+      Mae Fflint // Blackwater yn cyfuno lo-fi gorllewinol gyda tamaid o glitch-hop. Mae Fflint yn DJ profiadol, cynhyrchydd ac artist profiadol yng Nghaerdydd.
 
-      Clear Air Turbulence // Mae Whitewater yn rhoi trac ffres o rave a thoriadau. Mae Clear Air Turbulence yn creu cerddoriaeth yn mannau uchaf Cymru. O gopa Yr Wyddfa i gopa Cadair Idris. Yn aml yr unig beth sy'n dal recordiad uchder uchel yn ôl yw hyd y cebl sy'n dilyn.
+      Mae Clear Air Turbulence // Whitewater yn rhoi trac ffres o rave a thoriadau. Mae Clear Air Turbulence yn creu cerddoriaeth yn mannau uchaf Cymru. O gopa Yr Wyddfa i gopa Cadair Idris. O bosib yr unig beth sy'n atal recordiad o’r uchder yma yw hyd y cebl sy'n dilyn.
   link:
     en: https://wales-epn.bandcamp.com/album/spark
   artwork_url: assets/images/releases/big/PRODUCT_S003_SPARK_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_S003_SPARK_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4085140319/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1401842135/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_S002_EIGNENGRAU
+    en: PRODUCT_S002
   title:
     en: EIGENGRAU
   artists:
@@ -49,24 +49,24 @@
     cy: 28 Mawrth 2025
   description:
     en: WEPN's inaugural artist release, featuring Sunbane's original track and a dub techno remix by Veins Full of Static.
-    cy: Rhyddhad artist cyntaf WEPN, yn cynnwys trac gwreiddiol gan Sunbane a remix dub techno gan Veins Full of Static.
+    cy: Rhyddhad cyntaf WEPN, yn cynnwys trac gwreiddiol gan Sunbane ag ailgymysgiad dub techno gan Veins Full of Static.
   detailed_description:
     en: |
       WEPN's first artist release - a soft launch trial release for the new era of WEPN. The first of many to come...
 
       Brain tickling bass lurches and sonorous synths from label-head Sunbane, remixed into glorious dub techno by Veins Full of Static.
     cy: |
-      Rhyddhad artist cyntaf WEPN – rhyddhad treial lansiad meddal ar gyfer oes newydd WEPN. Y cyntaf o lawer i ddod...
+      Rhyddhad cyntaf WEPN – rhyddhad gyda lansiad meddal ar gyfer oes newydd WEPN. Y cyntaf o lawer i ddod...
 
-      Bas crensian sy'n cosi'r ymennydd a syntheseiddwyr soniarus gan Sunbane, wedi'u hailgymysgu'n dub techno godidog gan Veins Full of Static.
+      Cyfuniad crefftus o bas a synth gan Sunbane, wedi'u hailgymysgu mewn arddull dub techno gan Veins Full of Static.
   link:
     en: https://wales-epn.bandcamp.com/album/sunbane-eigengrau
   artwork_url: assets/images/releases/big/PRODUCT_S002_EIGNENGRAU_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_S002_EIGNENGRAU_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=424674946/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=424674946/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_005_COMFORT
+    en: PRODUCT_005
   title:
     en: PRODUCT_005_COMFORT
   artists:
@@ -77,14 +77,27 @@
   description:
     en: A compilation showcasing a range of electronic styles including Detailed Comfort & SUBWFR.
     cy: Casgliad sy'n dangos amrywiaeth o arddulliau electronig gan gynnwys Detailed Comfort & SUBWFR.
+  detailed_description:
+    en: |
+      After some delay due to the label-head being abducted by a small race of dog-like aliens and raised as a prophet on their homeworld (or just being too busy to get his act together - delete according to your preference) we are ready to go with the latest in the PRODUCT series.
+
+      Running from the oceanic ambient of VfoS through to hardwareghost's vapourwave afterworld and touching almost every possible genre of electronica between those points, this might just be our strongest collection yet.
+
+      Our charity this time is Kidney Wales - kidneywales.cymru - Kidney diseases can be devastating and disabling and affect people of all ages. Kidney Wales provide financial support to people who's illness means they can't earn enough to get by - especially important during a cost of living crisis. They also provide educational resources for patients and professionals and support research into new ways to manage this complex group of illnesses.
+    cy: |
+      Ar ôl oedi oherwydd bod pennaeth y label wedi'i gipio gan hil fach o estroniaid tebyg i gŵn a'i fagu fel proffwyd ar eu byd nhw (neu jyst bod yn rhy brysur i gael ei bethau ynghyd - dilëwch yn ôl eich dewis) rydym yn barod i fynd gyda'r diweddaraf yn y gyfres PRODUCT.
+
+      Yn rhedeg o ambient cefnforol VfoS hyd at fyd ôl vapourwave hardwareghost ac yn cyffwrdd bron pob genre o electroneg rhwng y pwyntiau hynny, efallai mai dyma yw ein casgliad cryfaf eto.
+
+      Ein elusen y tro hwn yw Kidney Wales - kidneywales.cymru - Gall afiechydon yr arennau fod yn ddinistriol ac yn analluogi ac yn effeithio ar bobl o bob oed. Mae Kidney Wales yn darparu cymorth ariannol i bobl y mae eu salwch yn golygu na allant ennill digon i ddod o hyd iddi - yn arbennig o bwysig yn ystod argyfwng costau byw. Mae hefyd yn darparu adnoddau addysgol ar gyfer cleifion a phroffesiynolion ac yn cefnogi ymchwil i ffyrdd newydd o reoli'r grŵp cymhleth hwn o afiechydon.
   link:
     en: https://wales-epn.bandcamp.com/album/product-005-comfort
   artwork_url: assets/images/releases/big/PRODUCT_005_COMFORT_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_005_COMFORT_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=307507743/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=307507743/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_004_UNITY
+    en: PRODUCT_004
   title:
     en: PRODUCT_004_UNITY
   artists:
@@ -95,14 +108,29 @@
   description:
     en: A 26-track compilation from Welsh electronic artists. Proceeds support humanitarian work in Ukraine.
     cy: Casgliad 26-trac gan artistiaid electronig o Gymru. Elw'n mynd tuag at waith dyngarol yn Wcráin.
+  detailed_description:
+    en: |
+      WalesElectronicProducersNetwork (WEPN) are proud to present our latest LP, our first as WEPN and our first physical release.
+
+      PRODUCT_004_UNITY is a collection of 26 tracks from electronic artists around Wales and opens with a contribution from Anitta, a Ukrainian producer collaborating with Rave Industries as Ravitta. A lot of ground is covered ranging from banging house to experimental ambient and almost literally everything in between.
+
+      All proceeds from this record will go towards supporting the Red Cross' work in Ukraine, providing basic care and support to people who have had their whole lives upended and destroyed by this continuous act of malignant insanity. No money from this release will go towards funding arms or weapons, only to support those in desperate need due to circumstances far beyond their control.
+
+      Thank you for reading. Wishing you all peace, love, UNITY and music - WEPN
+    cy: |
+      Mae WalesElectronicProducersNetwork (WEPN) yn falch o gyflwyno ein LP diweddaraf, ein cyntaf fel WEPN a'n rhyddhad ffisegol cyntaf.
+
+      Mae PRODUCT_004_UNITY yn gasgliad o 26 trac gan artistiaid electronig o gwmpas Cymru ac yn agor gyda chyfraniad gan Anitta, cynhyrchydd o Wcráin sy'n cydweithio â Rave Industries fel Ravitta. Caiff llawer o dir ei orchuddio yn amrywio o house tarw i ambient arbrofol ac bron yn llythrennol popeth yn y canol.
+
+      Bydd holl elw'r record hon yn mynd tuag at gefnogi gwaith y Groes Goch yn Wcráin, gan ddarparu gofal sylfaenol a chymorth i bobl sydd wedi cael eu bywydau i gyd wedi'u dymchwel a'u dinistrio gan y weithred barhaus hon o wallgofrwydd maleisus. Ni fydd unrhyw arian o'r rhyddhad hwn yn mynd tuag at ariannu arfau nac ymgyrchoedd filwrol, dim ond i gefnogi'r rheiny mewn angen brys oherwydd amgylchiadau y tu hwnt i'w rheolaeth.
   link:
     en: https://wales-epn.bandcamp.com/album/product-004-unity
   artwork_url: assets/images/releases/big/PRODUCT_004_UNITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_004_UNITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2983030470/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2983030470/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_05_TRANSIENT
+    en: PRODUCT_003_05
   title:
     en: PRODUCT_003_05_TRANSIENT
   artists:
@@ -113,14 +141,27 @@
   description:
     en: Explores the theme of transience in electronic composition.
     cy: Yn archwilio thema trosbawredd mewn cyfansoddiad electronig.
+  detailed_description:
+    en: |
+      We present the fifth in a series of themed releases from CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      PRODUCT_003_CONTINUUM will continue for as long as we do. This series allows our artists to indulge in some experimental tangents and operate outside their comfort zones. We fully encourage half-finished curios, demos and documents of failed experiments, as well as moments of spontaneous genius and divine inspiration. All tracks are presented unmastered at present.
+
+      Once a year we will compile the juiciest cuts into a more formal release. If there is enough interest it may even be on something you can hold in your meatspace palms.
+    cy: |
+      Rydym yn cyflwyno'r pumed mewn cyfres o ryddhiadau thematig gan CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      Bydd PRODUCT_003_CONTINUUM yn parhau cyhyd ag yr ydym ni. Mae'r gyfres hon yn caniatáu i'n artistiaid ymdoddi mewn rhai tangiadau arbrofol a gweithredu y tu allan i'w parth cysur. Rydym yn annog yn llawn hanner-curios gorffenedig, demos a dogfennau arbrofion methedig, yn ogystal â momentau o athrylith digymell ac ysbrydoliaeth ddwyfol. Mae pob trac yn cael ei gyflwyno heb ei feistroli ar hyn o bryd.
+
+      Unwaith y flwyddyn byddwn yn casglu'r torriadau mwya' suddlon mewn rhyddhad mwy ffurfiol. Os oes digon o ddiddordeb, efallai y bydd hyd yn oed ar rywbeth y gallwch ei ddal yn eich dwylo 'charnau.
   link:
     en: https://wales-epn.bandcamp.com/album/product-003-05-transient
   artwork_url: assets/images/releases/big/PRODUCT_003_05_TRANSIENT_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_05_TRANSIENT_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1806755848/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1806755848/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_04_LARYNX
+    en: PRODUCT_003_04
   title:
     en: PRODUCT_003_04_LARYNX
   artists:
@@ -131,14 +172,27 @@
   description:
     en: Tracks built using only vocal samples, encouraging experimental techniques.
     cy: Traciau a grëwyd gan ddefnyddio samplau llais yn unig, gan annog technegau arbrofol.
+  detailed_description:
+    en: |
+      We present the fourth in a monthly series of themed releases from CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      PRODUCT_003_CONTINUUM will continue for as long as we do... no promises or guarantees will be offered about the "monthly" thing, but we will try to keep it prompt. This series allows our artists to indulge in some experimental tangents and operate outside their comfort zones. We fully encourage half-finished curios, demos and documents of failed experiments, as well as moments of spontaneous genius and divine inspiration. All tracks are presented unmastered at present.
+
+      Once a year we will compile the juiciest cuts into a more formal release. If there is enough interest it may even be on something you can hold in your meatspace palms.
+    cy: |
+      Rydym yn cyflwyno'r pedwerydd mewn cyfres fisol o ryddhiadau thematig gan CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      Bydd PRODUCT_003_CONTINUUM yn parhau cyhyd ag yr ydym... ni fydd unrhyw addewidion neu warantau'n cael eu cynnig ynghylch y peth "misol", ond byddwn yn ceisio'i gadw'n brydlon. Mae'r gyfres hon yn caniatáu i'n artistiaid ymdoddi mewn rhai tangiadau arbrofol a gweithredu y tu allan i'w parth cysur. Rydym yn annog yn llawn hanner-curios gorffenedig, demos a dogfennau arbrofion methedig, yn ogystal â momentau o athrylith digymell ac ysbrydoliaeth ddwyfol. Mae pob trac yn cael ei gyflwyno heb ei feistroli ar hyn o bryd.
+
+      Unwaith y flwyddyn byddwn yn casglu'r torriadau mwya' suddlon mewn rhyddhad mwy ffurfiol. Os oes digon o ddiddordeb, efallai y bydd hyd yn oed ar rywbeth y gallwch ei ddal yn eich dwylo 'charnau.
   link:
     en: https://wales-epn.bandcamp.com/album/product-003-04-larynx
   artwork_url: assets/images/releases/big/PRODUCT_003_04_LARYNX_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_04_LARYNX_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4079767905/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=4079767905/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_03_TRINITY
+    en: PRODUCT_003_03
   title:
     en: PRODUCT_003_03_TRINITY
   artists:
@@ -149,14 +203,27 @@
   description:
     en: A themed release of tracks in 3/4 time.
     cy: Rhyddhad thematig o draciau mewn amser 3/4.
+  detailed_description:
+    en: |
+      We present the third in a monthly series of themed releases from CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      PRODUCT_003_CONTINUUM will continue for as long as we do... no promises or guarantees will be offered about the "monthly" thing, but we will try to keep it prompt. This series allows our artists to indulge in some experimental tangents and operate outside their comfort zones. We fully encourage half-finished curios, demos and documents of failed experiments, as well as moments of spontaneous genius and divine inspiration. All tracks are presented unmastered at present.
+
+      Once a year we will compile the juiciest cuts into a more formal release. If there is enough interest it may even be on something you can hold in your meatspace palms.
+    cy: |
+      Rydym yn cyflwyno'r trydydd mewn cyfres fisol o ryddhiadau thematig gan CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      Bydd PRODUCT_003_CONTINUUM yn parhau cyhyd ag yr ydym... ni fydd unrhyw addewidion neu warantau'n cael eu cynnig ynghylch y peth "misol", ond byddwn yn ceisio'i gadw'n brydlon. Mae'r gyfres hon yn caniatáu i'n artistiaid ymdoddi mewn rhai tangiadau arbrofol a gweithredu y tu allan i'w parth cysur. Rydym yn annog yn llawn hanner-curios gorffenedig, demos a dogfennau arbrofion methedig, yn ogystal â momentau o athrylith digymell ac ysbrydoliaeth ddwyfol. Mae pob trac yn cael ei gyflwyno heb ei feistroli ar hyn o bryd.
+
+      Unwaith y flwyddyn byddwn yn casglu'r torriadau mwya' suddlon mewn rhyddhad mwy ffurfiol. Os oes digon o ddiddordeb, efallai y bydd hyd yn oed ar rywbeth y gallwch ei ddal yn eich dwylo 'charnau.
   link:
     en: https://wales-epn.bandcamp.com/album/product-003-03-trinity
   artwork_url: assets/images/releases/big/PRODUCT_003_03_TRINITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_03_TRINITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=864813109/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=864813109/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_02_NOSTALGIA
+    en: PRODUCT_003_02
   title:
     en: PRODUCT_003_02_NOSTALGIA
   artists:
@@ -167,14 +234,27 @@
   description:
     en: Synth-driven release exploring retro sounds and memory.
     cy: Rhyddhad sy'n archwilio synau retro a'r cof gan ddefnyddio syntheseiddwyr.
+  detailed_description:
+    en: |
+      We present the second in a monthly series of themed releases from CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      PRODUCT_003_CONTINUUM will continue for as long as we do... no promises or guarantees will be offered about the "monthly" thing, but we will try to keep it prompt. This series allows our artists to indulge in some experimental tangents and operate outside their comfort zones. We fully encourage half-finished curios, demos and documents of failed experiments, as well as moments of spontaneous genius and divine inspiration. All tracks are presented unmastered at present.
+
+      Once a year we will compile the juiciest cuts into a more formal release. If there is enough interest it may even be on something you can hold in your meatspace palms.
+    cy: |
+      Rydym yn cyflwyno'r ail mewn cyfres fisol o ryddhiadau thematig gan CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      Bydd PRODUCT_003_CONTINUUM yn parhau cyhyd ag yr ydym... ni fydd unrhyw addewidion neu warantau'n cael eu cynnig ynghylch y peth "misol", ond byddwn yn ceisio'i gadw'n brydlon. Mae'r gyfres hon yn caniatáu i'n artistiaid ymdoddi mewn rhai tangiadau arbrofol a gweithredu y tu allan i'w parth cysur. Rydym yn annog yn llawn hanner-curios gorffenedig, demos a dogfennau arbrofion methedig, yn ogystal â momentau o athrylith digymell ac ysbrydoliaeth ddwyfol. Mae pob trac yn cael ei gyflwyno heb ei feistroli ar hyn o bryd.
+
+      Unwaith y flwyddyn byddwn yn casglu'r torriadau mwya' suddlon mewn rhyddhad mwy ffurfiol. Os oes digon o ddiddordeb, efallai y bydd hyd yn oed ar rywbeth y gallwch ei ddal yn eich dwylo 'charnau.
   link:
     en: https://wales-epn.bandcamp.com/album/product-003-02-nostalgia
   artwork_url: assets/images/releases/big/PRODUCT_003_02_NOSTALGIA_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_02_NOSTALGIA_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1355110797/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1355110797/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_003_01_SINGULAR
+    en: PRODUCT_003_01
   title:
     en: PRODUCT_003_01_SINGULAR
   artists:
@@ -185,14 +265,27 @@
   description:
     en: Each track made with only one instrument.
     cy: Pob trac wedi'i greu gyda dim ond un offeryn.
+  detailed_description:
+    en: |
+      We present the first in a monthly series of themed releases from CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      PRODUCT_003_CONTINUUM will continue for as long as we do... no promises or guarantees will be offered about the "monthly" thing, but we will try to keep it prompt. This series allows our artists to indulge in some experimental tangents and operate outside their comfort zones. We fully encourage half-finished curios, demos and documents of failed experiments, as well as moments of spontaneous genius and divine inspiration. All tracks are presented unmastered at present.
+
+      Once a year we will compile the juiciest cuts into a more formal release. If there is enough interest it may even be on something you can hold in your meatspace palms.
+    cy: |
+      Rydym yn cyflwyno'r cyntaf mewn cyfres fisol o ryddhiadau thematig gan CARDIFF ELECTRONIC PRODUCERS NETWORK.
+
+      Bydd PRODUCT_003_CONTINUUM yn parhau cyhyd ag yr ydym... ni fydd unrhyw addewidion neu warantau'n cael eu cynnig ynghylch y peth "misol", ond byddwn yn ceisio'i gadw'n brydlon. Mae'r gyfres hon yn caniatáu i'n artistiaid ymdoddi mewn rhai tangiadau arbrofol a gweithredu y tu allan i'w parth cysur. Rydym yn annog yn llawn hanner-curios gorffenedig, demos a dogfennau arbrofion methedig, yn ogystal â momentau o athrylith digymell ac ysbrydoliaeth ddwyfol. Mae pob trac yn cael ei gyflwyno heb ei feistroli ar hyn o bryd.
+
+      Unwaith y flwyddyn byddwn yn casglu'r torriadau mwya' suddlon mewn rhyddhad mwy ffurfiol. Os oes digon o ddiddordeb, efallai y bydd hyd yn oed ar rywbeth y gallwch ei ddal yn eich dwylo 'charnau.
   link:
     en: https://wales-epn.bandcamp.com/album/product-003-01-singular
   artwork_url: assets/images/releases/big/PRODUCT_003_01_SINGULAR_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_003_01_SINGULAR_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1149959447/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=1149959447/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_002_COMMUNITY
+    en: PRODUCT_002
   title:
     en: PRODUCT_002_COMMUNITY
   artists:
@@ -203,14 +296,29 @@
   description:
     en: A celebration of collective creativity from WEPN members.
     cy: Dathliad o greadigrwydd ar y cyd gan aelodau WEPN.
+  detailed_description:
+    en: |
+      The second in Cardiff Electronic Producers Network's charity compilation series. PRODUCT_002_COMMUNITY features an array of producers working in electronic genres ranging all the way from floor-ready Drum'n'Bass to experimental sound collage and everything else in between.
+
+      Releases on 5th March 2021 - all proceeds will be donated to Llamau, working to eradicate homelessness for young people and vulnerable women. Check out the fantastic work they do at www.llamau.org.uk/our-vision-and-mission
+
+      Thank you to all the artists featured for donating their tracks, all exclusive at the time of release. See you for the next one in 6 months or so!
+
+      Mastered by Kris llic of Disintegration State records
+    cy: |
+      Yr ail yng nghyfres casgliadau elusennol Cardiff Electronic Producers Network. Mae PRODUCT_002_COMMUNITY yn cynnwys amrywiaeth o gynhyrchwyr sy'n gweithio mewn genres electronig yn amrywio o Drum'n'Bass parod-llawr i golaj sain arbrofol a phopeth arall yn y canol.
+
+      Yn rhyddhau ar 5ed Mawrth 2021 - bydd yr holl elw'n cael ei roi i Llamau, sy'n gweithio i ddileu digartrefedd i bobl ifanc a menywod agored i niwed. Gwiriwch y gwaith gwych maent yn ei wneud yn www.llamau.org.uk/our-vision-and-mission
+
+      Diolch i'r holl artistiaid a nodweddwyd am roi eu traciau, i gyd yn unigryw ar adeg y rhyddhad.
   link:
     en: https://wales-epn.bandcamp.com/album/product-002-community
   artwork_url: assets/images/releases/big/PRODUCT_002_COMMUNITY_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_002_COMMUNITY_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=562378794/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=562378794/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
 
 - release_code:
-    en: PRODUCT_001_LUNAR
+    en: PRODUCT_001
   title:
     en: PRODUCT_001_LUNAR
   artists:
@@ -220,9 +328,22 @@
     cy: 5 Mehefin 2020
   description:
     en: Debut compilation supporting The Moon venue during lockdown.
-    cy: Casgliad cyntaf WEPN i gefnogi'r lleoliad The Moon yn ystod y cyfnod clo.
+    cy: Casgliad cyntaf WEPN i gefnogi The Moon, lleoliad cerddoriaeth yng Nghaerdydd yn ystod y cyfnod clo.
+  detailed_description:
+    en: |
+      Cardiff Electronic Producers Network are proud to announce our first release - all exclusive material from 29 different artists.
+
+      All profits go towards keeping our home at The Moon Cafe & Bar in Cardiff open.
+
+      SUPPORT YOUR VENUES DURING LOCKDOWN
+    cy: |
+      Mae Cardiff Electronic Producers Network yn falch o gyhoeddi ein rhyddhad cyntaf - deunydd unigryw o 29 artist gwahanol.
+
+      Mae'r holl elw'n mynd tuag at gadw ein cartref yn The Moon Cafe & Bar yng Nghaerdydd ar agor.
+
+      CEFNOGWCH EICH LLEOLIADAU YN YSTOD Y CYFNOD CLO
   link:
     en: https://wales-epn.bandcamp.com/album/product-001-lunar
   artwork_url: assets/images/releases/big/PRODUCT_001_LUNAR_big.jpg
   artwork_small_url: assets/images/releases/small/PRODUCT_001_LUNAR_small.jpg
-  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2300872844/size=medium/bgcol=ffffff/linkcol=0687f5/transparent=true/
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2300872844/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/

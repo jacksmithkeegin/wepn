@@ -1,0 +1,21 @@
+---
+layout: null
+---
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+
+# Disallow certain paths
+Disallow: /assets/js/
+Disallow: /_site/
+Disallow: /vendor/
+Disallow: /node_modules/
+
+# Allow important assets
+Allow: /assets/css/
+Allow: /assets/images/
+
+# Crawl delay (optional)
+Crawl-delay: 1

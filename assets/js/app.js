@@ -34,6 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const isNetlify = !window.location.hostname.includes('github.io') && !isLocalhost;
 
+    // Helper function to create URL-safe slugs from titles
+    function createSlugFromTitle(title) {
+        return title.toLowerCase()
+                   .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+                   .replace(/\s+/g, '-')         // Replace spaces with hyphens
+                   .replace(/-+/g, '-')          // Replace multiple hyphens with single hyphen
+                   .replace(/^-|-$/g, '');       // Remove leading/trailing hyphens
+    }
+
     // Build proper asset paths for all environments
     function getAssetPath(path) {
         // Make sure path starts with /
@@ -78,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 id: r.release_code.en,
                 title_en: r.title.en,
                 title_cy: r.title.cy || r.title.en,
+                title_slug: createSlugFromTitle(r.title.en), // Add title-based slug
                 artist: r.artists.en, artwork_url: r.artwork_url || '',                // Update to use new Jekyll path pattern
                 artwork_small_url: r.artwork_small_url || getAssetPath(`/assets/images/releases/small/${r.release_code.en}_small.jpg`),
                 bandcampEmbedUrl: r.bandcampEmbedUrl || '',
@@ -201,17 +211,20 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
             // No upcoming release found - hide panel
             upcomingPanel.style.display = 'none';
             return;
-        }
-
-        // Show the panel
-        upcomingPanel.style.display = 'flex';
+        }        // Show the panel
+        upcomingPanel.style.display = 'flex';        // Generate release URL with language preservation
+        const releaseSlug = upcoming.title_slug;
+        const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+        const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
         // Build upcoming release HTML
         upcomingContainer.innerHTML = `
             <div class="upcoming-top-section">
-                <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                <a href="${releaseUrl}">
+                    <img src="${upcoming.artwork_url}" alt="${upcoming[`title_${currentLanguage}`]}" class="upcoming-artwork" loading="eager">
+                </a>
                 <div class="upcoming-info">
-                    <div class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</div>
+                    <a href="${releaseUrl}" class="upcoming-release-title-main">${upcoming[`title_${currentLanguage}`]}</a>
                     <div class="upcoming-artist prominent">${upcoming.artist}</div>
                     <div class="upcoming-release-date">${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}</div>
                     <div class="upcoming-description">${upcoming[`description_${currentLanguage}`]}</div>
@@ -261,17 +274,20 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         if (!featured) {
             featuredPanel.style.display = 'none';
             return;
-        }
-
-        // Show featured release panel
-        featuredPanel.style.display = 'flex';
+        }        // Show featured release panel
+        featuredPanel.style.display = 'flex';        // Generate release URL with language preservation
+        const releaseSlug = featured.title_slug;
+        const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+        const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
 
         // Build featured release HTML
         featuredContainer.innerHTML = `
             <div class="featured-top-section">
-                <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                <a href="${releaseUrl}">
+                    <img src="${featured.artwork_url}" alt="${featured[`title_${currentLanguage}`]}" class="featured-artwork" loading="eager">
+                </a>
                 <div class="featured-info">
-                    <div class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</div>
+                    <a href="${releaseUrl}" class="featured-release-title-main">${featured[`title_${currentLanguage}`]}</a>
                     <div class="featured-artist prominent">${featured.artist}</div>
                     <div class="featured-description">${featured[`description_${currentLanguage}`]}</div>
                     <div class="featured-buttons">
@@ -357,9 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 // Prevent URL hash change
                 history.replaceState(null, null, '#releases');
             });
-        });
-
-        // Add keyboard support for release items
+        });        // Add keyboard support for release items
         document.querySelectorAll('.release-item').forEach(item => {
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -369,7 +383,25 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                         loadReleaseInPlayer(releaseId);
                     }                e.preventDefault();
                 }
-            });              // Add mobile overlay management for touch devices
+            });
+
+            // Add click handler for navigating to individual release pages
+            item.addEventListener('click', (e) => {
+                // Don't navigate if clicking on buttons or links
+                if (e.target.closest('.listen-btn, .buy-link, .preorder-btn')) {
+                    return;
+                }
+                  // Navigate to individual release page
+                const releaseId = item.id;
+                const release = releases.find(r => r.id === releaseId);
+                const releaseSlug = release ? release.title_slug : releaseId.toLowerCase().replace(/_/g, '-');
+                
+                // Preserve language state in URL
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                window.location.href = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+            });
+
+            // Add mobile overlay management for touch devices
             addMobileOverlayManagement(item);
         });
     }
@@ -446,14 +478,18 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                     loadReleaseInPlayer(releaseId);
                     e.preventDefault();
                 }
-            });
-
-            // Click handler for the item itself (will play music when clicking on image)
+            });            // Click handler for the item itself (navigate to release page when clicking on image)
             item.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('mini-listen-btn')) {
                     const releaseId = item.id.replace('mini-', '');
-                    loadReleaseInPlayer(releaseId);
-                }            });              // Add mobile overlay management for touch devices
+                    const release = releases.find(r => r.id === releaseId);
+                    const releaseSlug = release ? release.title_slug : releaseId.toLowerCase().replace(/_/g, '-');
+                    
+                    // Preserve language state in URL
+                    const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                    window.location.href = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                }
+            });// Add mobile overlay management for touch devices
             addMobileOverlayManagement(item);
         });
     }
@@ -488,14 +524,15 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const currentItem = document.getElementById(releaseId);
         if (currentItem) currentItem.classList.add('active');
         const currentMiniItem = document.getElementById(`mini-${releaseId}`);
-        if (currentMiniItem) currentMiniItem.classList.add('active');
-
-        // Update state
+        if (currentMiniItem) currentMiniItem.classList.add('active');        // Update state
         currentReleaseId = releaseId;
 
         // Remove hash update here so it doesn't change URL
         // history.replaceState(null, null, `#${releaseId}`);
     }
+
+    // Expose loadReleaseInPlayer globally for use in release pages
+    window.loadReleaseInPlayer = loadReleaseInPlayer;
 
     // Show Bandcamp cookie consent dialog
     function showBandcampConsentDialog(releaseId) {
@@ -596,9 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
     function setupLanguageToggle() {
         languageButtons.en.addEventListener('click', () => switchLanguage('en'));
         languageButtons.cy.addEventListener('click', () => switchLanguage('cy'));
-    }
-
-    // Switch language
+    }    // Switch language
     function switchLanguage(lang) {
         if (lang === currentLanguage) return;
 
@@ -611,9 +646,12 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         // Update language
         currentLanguage = lang;
         document.documentElement.lang = lang;
-
-        // Update UI with translations
+          // Save language preference to sessionStorage (clears when browser closes)
+        sessionStorage.setItem('wepn-language', lang);        // Update UI with translations
         updateUILanguage();
+
+        // Update data-lang elements (for release pages)
+        updateDataLangElements();
 
         // Update only text content for releases and featured release
         updateReleaseTexts();
@@ -627,11 +665,14 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         // Update current track if one is playing
         if (currentReleaseId) {
             const release = releases.find(r => r.id === currentReleaseId);
-            if (release) {
-                currentTrackElement.textContent = release[`title_${currentLanguage}`];
+            if (release) {                currentTrackElement.textContent = release[`title_${currentLanguage}`];
             }
         }
     }
+
+    // Expose language functions globally for use in release pages
+    window.switchLanguage = switchLanguage;
+    window.languageButtons = languageButtons;
 
     // Update UI elements with translated text
     function updateUILanguage() {
@@ -647,13 +688,23 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         const heroTagline = document.querySelector('.hero-tagline');
         if (heroTagline) heroTagline.textContent = translations[currentLanguage]['hero.tagline'];
         const heroCta = document.querySelector('.hero-cta-btn');
-        if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];
-        // Featured release title
+        if (heroCta) heroCta.textContent = translations[currentLanguage]['hero.cta'];        // Featured release title
         const featuredTitle = document.querySelector('.featured-release-title');
         if (featuredTitle) featuredTitle.textContent = translations[currentLanguage]['hero.featured'];
-    }    // Update only text content for releases and featured release when switching language
-    function updateReleaseTexts() {
-        // Update upcoming release texts
+    }
+
+    // Update data-lang elements (for release pages)
+    function updateDataLangElements() {
+        document.querySelectorAll('[data-lang]').forEach(element => {
+            const elementLang = element.getAttribute('data-lang');
+            if (elementLang === currentLanguage) {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+        });
+    }// Update only text content for releases and featured release when switching language
+    function updateReleaseTexts() {        // Update upcoming release texts
         const upcomingContainer = document.getElementById('upcoming-release');
         if (upcomingContainer) {
             const upcoming = getEarliestFutureRelease();
@@ -673,10 +724,16 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (releaseDate) releaseDate.textContent = `${translations[currentLanguage]['upcoming.releaseDate']} ${upcoming[`release_date_${currentLanguage}`]}`;
                 const preorderBtn = upcomingContainer.querySelector('.upcoming-preorder-btn');
                 if (preorderBtn) preorderBtn.textContent = translations[currentLanguage]['upcoming.preorderButton'];
+                  // Update URLs for title and artwork links
+                const releaseSlug = upcoming.title_slug;
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                const titleLink = upcomingContainer.querySelector('a.upcoming-release-title-main');
+                if (titleLink) titleLink.href = releaseUrl;
+                const artworkLink = upcomingContainer.querySelector('.upcoming-top-section > a');
+                if (artworkLink) artworkLink.href = releaseUrl;
             }
-        }
-
-        // Update featured release texts
+        }        // Update featured release texts
         const featuredContainer = document.getElementById('featured-release');
         if (featuredContainer) {
             const featured = releases.find(r => r.id === (featuredReleaseId || getMostRecentPastRelease()?.id));
@@ -696,8 +753,16 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
                 if (listenBtn) listenBtn.textContent = translations[currentLanguage]['releases.listenButton'];
                 const buyBtn = featuredContainer.querySelector('.featured-bandcamp-btn');
                 if (buyBtn) buyBtn.textContent = translations[currentLanguage]['releases.buyOn'];
+                  // Update URLs for title and artwork links
+                const releaseSlug = featured.title_slug;
+                const currentLang = currentLanguage === 'cy' ? '?lang=cy' : '';
+                const releaseUrl = `${baseurl}/releases/${releaseSlug}/${currentLang}`;
+                const titleLink = featuredContainer.querySelector('a.featured-release-title-main');
+                if (titleLink) titleLink.href = releaseUrl;
+                const artworkLink = featuredContainer.querySelector('.featured-top-section > a');
+                if (artworkLink) artworkLink.href = releaseUrl;
             }
-        }        // Update releases grid texts
+        }// Update releases grid texts
         document.querySelectorAll('.release-item').forEach(item => {
             const release = releases.find(r => r.id === item.id);
             if (!release) return;
@@ -1150,11 +1215,10 @@ document.addEventListener('DOMContentLoaded', () => {    // State variables
         detectTouchDevice();
         
         // Add global touch reset handler for overlays
-        addGlobalTouchResetHandler();
-
-        // Detect browser language
+        addGlobalTouchResetHandler();        // Detect browser language and check for saved preference
+        const savedLang = sessionStorage.getItem('wepn-language');
         const browserLang = navigator.language.substring(0, 2);
-        const preferredLang = (browserLang === 'cy') ? 'cy' : 'en';
+        const preferredLang = savedLang || ((browserLang === 'cy') ? 'cy' : 'en');
 
         // Set language (this updates UI and internal state)
         switchLanguage(preferredLang);

@@ -1,0 +1,247 @@
+---
+layout: default
+---
+
+{% include breadcrumb-schema.html %}
+
+<section class="release-page" itemscope itemtype="https://schema.org/MusicAlbum">
+    <div class="container">
+        {% assign release = page.release %}
+        
+        <!-- Hidden structured data -->
+        <meta itemprop="name" content="{{ release.title.en }}">
+        <meta itemprop="description" content="{{ release.description.en }}">
+        <meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}{{ release.artwork_url }}">
+        <meta itemprop="datePublished" content="{{ release.release_date.en | date: '%Y-%m-%d' }}">
+        <meta itemprop="genre" content="Electronic Music">
+        <meta itemprop="url" content="{{ page.url | prepend: site.url | prepend: site.baseurl }}">
+        
+        <!-- Record Label -->
+        <div itemprop="recordLabel" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="WEPN">
+            <meta itemprop="url" content="{{ site.url }}{{ site.baseurl }}/">
+        </div>
+        
+        <!-- Artists -->
+        {% assign artists_array = release.artists.en | split: " / " %}
+        {% for artist in artists_array %}
+        <div itemprop="byArtist" itemscope itemtype="https://schema.org/MusicGroup">
+            <meta itemprop="name" content="{{ artist | strip }}">
+        </div>
+        {% endfor %}
+          <!-- Offers/Purchase -->
+        {% if release.link.en %}
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="url" content="{{ release.link.en }}">
+            <meta itemprop="price" content="0">
+            <meta itemprop="priceCurrency" content="GBP">
+            <meta itemprop="availability" content="https://schema.org/InStock">
+            <meta itemprop="seller" content="WEPN">
+        </div>
+        {% endif %}
+        
+        <!-- Additional Schema.org properties -->
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="WEPN - Wales Electronic Producers Network">
+            <meta itemprop="url" content="{{ site.url }}{{ site.baseurl }}/">
+        </div>
+        
+        {% if release.bandcampEmbedUrl %}
+        <div itemprop="audio" itemscope itemtype="https://schema.org/AudioObject">
+            <meta itemprop="contentUrl" content="{{ release.bandcampEmbedUrl }}">
+            <meta itemprop="encodingFormat" content="audio/mpeg">
+        </div>
+        {% endif %}
+        
+        <!-- Release header -->
+        <div class="release-header">
+            <a class="back-to-music" href="{{ site.baseurl }}/#music">← <span data-i18n="releases.backToMusic">Back to Music</span></a>            <h1 class="release-page-title" itemprop="name">
+                <span data-lang="en">{{ release.title.en }}</span>
+                {% if release.title.cy %}
+                <span data-lang="cy" style="display: none;">{{ release.title.cy }}</span>
+                {% else %}
+                <span data-lang="cy" style="display: none;">{{ release.title.en }}</span>
+                {% endif %}
+            </h1>
+        </div><!-- Release content (similar to featured release panel but without blue background) -->
+        <div class="release-content">
+            <div class="release-top-section">
+                <div class="release-page-artwork-container">
+                    <img src="{{ release.artwork_url | relative_url }}" 
+                         alt="{{ release.title.en }}" 
+                         class="release-page-artwork" 
+                         loading="eager">
+                    {% assign release_date = release.release_date.en | date: "%Y-%m-%d" %}
+                    {% assign current_date = "now" | date: "%Y-%m-%d" %}
+                    {% if release_date > current_date %}
+                        <!-- Add upcoming badge for future releases -->
+                        <div class="upcoming-badge">
+                            <span data-i18n="upcoming.badge">Upcoming</span>
+                        </div>
+                    {% endif %}
+                </div><div class="release-page-info">
+                    <div class="release-page-artist">{{ release.artists.en }}</div>
+                    <div class="release-page-code">{{ release.release_code.en }}</div>
+                      <div class="release-page-date">
+                        <span data-lang="en">{{ release.release_date.en }}</span>
+                        {% if release.release_date.cy %}
+                        <span data-lang="cy" style="display: none;">{{ release.release_date.cy }}</span>
+                        {% else %}
+                        <span data-lang="cy" style="display: none;">{{ release.release_date.en }}</span>
+                        {% endif %}
+                    </div>
+                      <div class="release-page-description">
+                        <span data-lang="en">{{ release.description.en }}</span>
+                        {% if release.description.cy %}
+                        <span data-lang="cy" style="display: none;">{{ release.description.cy }}</span>
+                        {% else %}
+                        <span data-lang="cy" style="display: none;">{{ release.description.en }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="release-page-buttons">
+                        {% assign release_date = release.release_date.en | date: "%Y-%m-%d" %}
+                        {% assign current_date = "now" | date: "%Y-%m-%d" %}
+                        {% if release_date > current_date %}
+                            <!-- Future release - show preorder button -->
+                            {% if release.link.en %}
+                            <a href="{{ release.link.en }}" class="release-page-preorder-btn" target="_blank" rel="noopener noreferrer">
+                                <span data-i18n="upcoming.preorderButton">Pre-order on Bandcamp</span>
+                            </a>
+                            {% endif %}
+                        {% else %}
+                            <!-- Released - show listen and buy buttons -->
+                            <button class="release-page-listen-btn" data-id="{{ release.release_code.en }}">
+                                <span data-i18n="releases.listenButton">Listen</span>
+                            </button>
+                            {% if release.link.en %}
+                            <a href="{{ release.link.en }}" class="release-page-buy-btn" target="_blank" rel="noopener noreferrer">
+                                <span data-i18n="releases.buyOn">Buy on Bandcamp</span>
+                            </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed description if present -->
+            {% if release.detailed_description %}            <div class="release-page-detailed-description">
+                <div data-lang="en">
+                    {{ release.detailed_description.en | markdownify }}
+                </div>
+                {% if release.detailed_description.cy %}
+                <div data-lang="cy" style="display: none;">
+                    {{ release.detailed_description.cy | markdownify }}
+                </div>
+                {% else %}
+                <div data-lang="cy" style="display: none;">
+                    {{ release.detailed_description.en | markdownify }}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle listen button click
+    const listenBtn = document.querySelector('.release-page-listen-btn');
+    if (listenBtn) {
+        listenBtn.addEventListener('click', function() {
+            const releaseId = this.dataset.id;
+            if (window.loadReleaseInPlayer) {
+                window.loadReleaseInPlayer(releaseId);
+                // Scroll to player bar if it exists
+                const playerBar = document.querySelector('.player-bar');
+                if (playerBar) {
+                    playerBar.scrollIntoView({behavior: 'smooth'});
+                }
+            }
+        });
+    }
+    
+    // Function to initialize language state for release page
+    function initializeLanguageState() {
+        // Check for language parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        
+        // Get saved language preference or use URL param
+        const savedLang = sessionStorage.getItem('wepn-language');
+        const preferredLang = langParam || savedLang || 'en';
+        
+        // If language switching is available, use it
+        if (window.switchLanguage) {
+            window.switchLanguage(preferredLang);
+        } else {
+            // Fallback: manually update data-lang elements
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const elementLang = element.getAttribute('data-lang');
+                if (elementLang === preferredLang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+    }
+    
+    // Try to initialize language state immediately
+    initializeLanguageState();
+    
+    // Set up a small delay to retry if main app hasn't loaded yet
+    setTimeout(() => {
+        if (window.switchLanguage) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const savedLang = sessionStorage.getItem('wepn-language');
+            const preferredLang = langParam || savedLang || 'en';
+            window.switchLanguage(preferredLang);
+        }
+    }, 500);
+    
+    // Update language toggle to preserve URL state when switching
+    function updateLanguageButtons() {
+        if (window.languageButtons) {
+            // Remove any existing listeners first
+            const enBtn = window.languageButtons.en;
+            const cyBtn = window.languageButtons.cy;
+            
+            if (enBtn && cyBtn) {
+                // Clone buttons to remove all event listeners
+                const newEnBtn = enBtn.cloneNode(true);
+                const newCyBtn = cyBtn.cloneNode(true);
+                
+                enBtn.parentNode.replaceChild(newEnBtn, enBtn);
+                cyBtn.parentNode.replaceChild(newCyBtn, cyBtn);
+                
+                // Update the global reference
+                window.languageButtons.en = newEnBtn;
+                window.languageButtons.cy = newCyBtn;
+                
+                // Add new listeners for release pages
+                newEnBtn.addEventListener('click', function() {
+                    if (window.switchLanguage) {
+                        window.switchLanguage('en');
+                    }
+                    const newUrl = window.location.pathname + window.location.hash;
+                    window.history.replaceState(null, null, newUrl);
+                });
+                
+                newCyBtn.addEventListener('click', function() {
+                    if (window.switchLanguage) {
+                        window.switchLanguage('cy');
+                    }
+                    const newUrl = window.location.pathname + '?lang=cy' + window.location.hash;
+                    window.history.replaceState(null, null, newUrl);
+                });
+            }
+        }
+    }
+    
+    // Set up language buttons after a delay to ensure main app is loaded
+    setTimeout(updateLanguageButtons, 600);
+});
+</script>
