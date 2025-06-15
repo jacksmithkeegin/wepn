@@ -56,7 +56,7 @@ layout: default
                         </div>
                     {% endif %}
 
-                    {% if artist.bluesky or artist.website or artist.soundcloud or artist.bandcamp %}
+                    {% if artist.bluesky or artist.website or artist.soundcloud or artist.bandcamp or artist.youtube %}
                     <div class="artist-page-links">
                         {% if artist.bluesky %}
                         <a href="{{ artist.bluesky }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
@@ -77,6 +77,12 @@ layout: default
                         {% if artist.bandcamp %}
                         <a href="{{ artist.bandcamp }}" target="_blank" rel="noopener noreferrer" class="artist-social-link">
                             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bandcamp.svg" alt="Bandcamp">
+                        </a>
+                        {% endif %}
+
+                        {% if artist.youtube %}
+                        <a href="{{ artist.youtube }}" target="_blank" rel="noopener noreferrer" class="artist-social-link" aria-label="YouTube">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
                         </a>
                         {% endif %}
                     </div>
