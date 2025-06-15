@@ -2043,6 +2043,26 @@ a.upcoming-release-title-main:focus {
     margin-top: var(--spacing-md);
 }
 
+/* Artist bio links: white underline, footer-icon blue on hover */
+.artist-page-bio a,
+.artist-page-bio .bio-text a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+.artist-page-bio a:hover,
+.artist-page-bio .bio-text a:hover,
+.artist-page-bio a:focus,
+.artist-page-bio .bio-text a:focus {
+  color: #30beffff; /* Light blue to match footer icon hover */
+  border-bottom: 1px solid #30beffff;
+  background: none;
+  outline: none;
+  text-decoration: none;
+}
+
 /* Mobile responsiveness for artist pages */
 @media (max-width: 900px) {
     .artist-content {
