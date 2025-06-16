@@ -6,4 +6,3 @@ Once we have a few more releases, try splitting music page into sections for dif
 
 # Small
 Update about page once Sunbane provides text
-Replace hero section with graphic from Guilty
