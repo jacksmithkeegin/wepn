@@ -4,6 +4,37 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
+    en: PRODUCT_S004
+  title:
+    en: OGOF / MELLTYDD
+  artists:
+    en: Foel
+  release_date:
+    en: July 4, 2025
+    cy: 4 Gorffenaf 2025
+  description:
+    en: Foel shows his stylistic range with two contrasting tracks on his first release for WEPN.
+    cy: Mae Foel yn dangos ei ystod arddulliol efo'i ryddhad cyntaf ar gyfer WEPN.
+  detailed_description:
+    en: |
+      Foel shows his stylistic range with his first release for WEPN.
+      
+      As Ogof's caveman melody dissolves, the ground shifts and snares crack through before giving way to a final burst of footwork funk.
+      
+      B-side Melltydd has a slower burn - an uneasy bucolic scene gradually overwhelmed as a skittering, clicking machine generates mighty rolls of thunder.
+    cy: |
+      Mae Foel yn dangos ei ystod arddulliol efo'i ryddhad cyntaf ar gyfer WEPN.
+
+      Wrth i alaw Ogof bylu, mae'r ddaear yn symud a drymiau tannau'n torri drwodd cyn ildio i ffrwydriad olaf o ffync gwaith traed.
+      
+      Mae gan yr ochr-B Melltydd losgiad arafach - golygfa wledig anghysurus sy'n cael ei llethu'n raddol wrth i beiriant crychlyd, cleciog gynhyrchu rholiau nerthol o daranau.
+  link:
+    en: https://wales-epn.bandcamp.com/album/ogof-melltydd
+  artwork_url: assets/images/releases/big/PRODUCT_S004_OGOFMELLTYDD.jpg
+  artwork_small_url: assets/images/releases/small/PRODUCT_S004_OGOFMELLTYDD_small.jpg
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=2103787459/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
+
+- release_code:
     en: PRODUCT_S003
   title:
     en: SPARK
