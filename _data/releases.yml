@@ -4,6 +4,33 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
+    en: PRODUCT_S005
+  title:
+    en: CRYO DRIFT
+  artists:
+    en: J-Lower
+  release_date:
+    en: August 1, 2025
+    cy: 1 Awst 2025
+  description:
+    en: A three-track EP of moody acid techno by J-Lower. Engineered for icy tension and brooding atmosphere.
+    cy: EP tri trac o acid techno hwylus gan J-Lower. Wedi'i beirianneg ar gyfer tensiwn rhewllyd ac awyrgylch myfyrgar.
+  detailed_description:
+    en: |
+      A three-track EP of moody acid techno. Engineered for icy tension and brooding atmosphere, the release features "Cryo Drift" and "Shimmering," both mixed and mastered by Chris Evans (aka Evry). Rounding out the EP is Evry's remix of "Cryo Drift" — a deeper house reconstruction that melts away the tension and reimagines the track as a playful, floor-filling groove.
+      
+      Written and recorded by J-Lower. Mixed and mastered by Evry.
+    cy: |
+      EP tri trac o acid techno hwylus. Wedi'i beirianneg ar gyfer tensiwn rhewllyd ac awyrgylch myfyrgar, mae'r rhyddhad yn cynnwys "Cryo Drift" a "Shimmering," y ddau wedi'u cymysgu a'u meistroli gan Chris Evans (aka Evry). Yn cwblhau'r EP mae ailgymysgiad Evry o "Cryo Drift" — ailadeiledd house dyfnach sy'n toddi'r tensiwn ac yn ailddychmygu'r trac fel groove chwareus sy'n llenwi'r llawr.
+      
+      Wedi'i ysgrifennu a'i recordio gan J-Lower. Wedi'i gymysgu a'i feistroli gan Evry.
+  link:
+    en: https://wales-epn.bandcamp.com/album/cryo-drift
+  artwork_url: assets/images/releases/big/PRODUCT_S005_CRYODRIFT_big.jpg
+  artwork_small_url: assets/images/releases/small/PRODUCT_S005_CRYODRIFT_small.jpg
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=PLACEHOLDER/size=medium/bgcol=000000/linkcol=0687f5/transparent=true/
+
+- release_code:
     en: PRODUCT_S004
   title:
     en: OGOF / MELLTYDD
