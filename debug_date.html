@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<h1>Date Debug</h1>
+
+{% assign test_date = "July 4, 2025" %}
+{% assign parsed_date = test_date | date: "%Y-%m-%d" %}
+{% assign current_date = "now" | date: "%Y-%m-%d" %}
+
+<p>Test date: {{ test_date }}</p>
+<p>Parsed test date: {{ parsed_date }}</p>
+<p>Current date: {{ current_date }}</p>
+<p>Is parsed_date > current_date?</p>
+
+{% if parsed_date > current_date %}
+<p>YES - Future date detected!</p>
+{% else %}
+<p>NO - Not a future date.</p>
+{% endif %}
+
+<!-- Test with different formats -->
+{% assign test_date2 = "2025-07-04" %}
+{% assign parsed_date2 = test_date2 | date: "%Y-%m-%d" %}
+
+<p>Test date2 (ISO): {{ test_date2 }}</p>
+<p>Parsed test date2: {{ parsed_date2 }}</p>
+<p>Is parsed_date2 > current_date?</p>
+
+{% if parsed_date2 > current_date %}
+<p>YES - Future date detected with ISO format!</p>
+{% else %}
+<p>NO - Not a future date with ISO format.</p>
+{% endif %}
