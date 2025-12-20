@@ -2178,8 +2178,6 @@ a.upcoming-release-title-main:focus {
 .blog-preview-title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     font-weight: 600;
 }
 
