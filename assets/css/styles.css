@@ -2165,7 +2165,7 @@ a.upcoming-release-title-main:focus {
 /* Blog preview panel on home tab */
 .blog-preview-panel {
     margin: 3rem 0;
-    background: #1a1a1a;
+    background: #2a2a2a; /* Lighter grey for better distinction */
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -2219,6 +2219,27 @@ a.upcoming-release-title-main:focus {
 
 .blog-preview-content .btn:hover {
     background-color: #1e7fdb;
+}
+
+/* Blog section header styling */
+.blog-section-header {
+    margin-bottom: 2rem;
+}
+
+.blog-section-header h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.blog-section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
 }
 
 .blog-preview {

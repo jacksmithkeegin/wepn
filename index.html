@@ -44,7 +44,7 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
             <span data-lang="en">{{ latest.body.en | markdownify | strip_html | truncatewords: 30 }}</span>
             <span data-lang="cy" style="display:none;">{{ latest.body.cy | markdownify | strip_html | truncatewords: 30 }}</span>
           </p>
-          <a href="#blog" class="btn">Read all posts</a>
+          <a href="#blog" class="btn">Read more</a>
         </div>
       {% endif %}
     </div>
@@ -130,24 +130,26 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
   </div>
 </section>
 
-<!-- Blog preview section -->
+<!-- Blog section -->
 <section id="blog" class="tab-content">
   <div class="container">
-    <h2 data-i18n="nav.blog">Blog</h2>
+    <div class="blog-section-header">
+      <h2 data-i18n="nav.blog">Blog</h2>
+    </div>
     <div class="posts-list">
       {% assign posts = site.data.posts | sort: 'sort_date' | reverse %}
       {% for post in posts %}
         <article id="post-{{ post.slug }}" class="post-item full-post">
-          <header class="post-header">
-            <h2>
+          <div class="post-header">
+            <h3>
               <span data-lang="en">{{ post.title.en }}</span>
               <span data-lang="cy" style="display:none;">{{ post.title.cy }}</span>
-            </h2>
+            </h3>
             <time class="post-date">
               <span data-lang="en">{{ post.date.en }}</span>
               <span data-lang="cy" style="display:none;">{{ post.date.cy }}</span>
             </time>
-          </header>
+          </div>
           <div class="post-body">
             <div data-lang="en">{{ post.body.en | markdownify }}</div>
             <div data-lang="cy" style="display:none;">{{ post.body.cy | markdownify }}</div>
