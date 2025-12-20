@@ -1,0 +1,35 @@
+# WEPN Blog Posts
+# Store blog posts here. Each post includes an ISO sort_date plus localized fields.
+- slug: ai-policy
+  sort_date: 2025-12-14
+  date:
+    en: December 14, 2025
+    cy: 14 Rhagfyr 2025
+  title:
+    en: WEPN policy on AI-generated content
+    cy: Polisi WEPN ar gynnwys a gynhyrchir gan AI
+  body:
+    en: |
+      No tool is inherently evil, but if someone is using a knife to cut your heart out you are probably going to regret that our ancestors learned how to sharpen metal. Similarly, if AI is going to eat the soul of humanity (it certainly would if OpenAI could use souls for training data), then we are probably going to wish we had stopped it when we had the chance.
+
+      Take this as a firm declaration of WEPN’s policy on AI generated “content”. For the avoidance of doubt, WEPN does not and will not promote music made by AI. AI is never going to make a creative decision. It will only regurgitate what it thinks you might find pleasing, based on a vast calculation involving every stolen datapoint on the internet. Fuck, the results might sound “pleasing” – they may even sound “great” at some point… but it will never actually mean anything.
+
+      I can’t think of how many times a happy accident has triggered a response and evolved into a whole track, far different to any intention that began the process. Human decisions and emotions guide these things. With AI there is no intention, the are no accidents and there is not a single human decision involved in the process… except for a decision to cheat and take a shortcut. I would be far more interested to hear someone’s inexpert fumbling towards something meaningful with a set of tools they barely understand than to hear a machine’s impression of an outcome. Give me a human mess over falsified perfection.
+
+      In our own small way we need to stand against this incoming tide. No to AI content replacing human art. No to a diet of slop and poverty. If you hear a track and find it’s AI, call it out and turn that shit off. If you’re reading and learn that the text is AI, call it out and disregard it. Using a machine to replace the creative output of a human should be as shameful as plagiarism and fraud. Except that there aren’t any billionaire sociopaths trying to persuade you to commit fraud right now.
+
+      This isn’t about money – my own income vs expenditure for music production is firmly in the red and very likely to stay there. This is about love. Everything we put out is made by a human sitting down and wanting to create something purely out of love for creating it. Machines can’t love… so we can’t let them win.
+
+      New music coming on WEPN in 2026… and maybe some events. Watch this space.
+    cy: |
+      Nid yw unrhyw offeryn yn wrthryfelgar yn ei natur, ond os yw rhywun yn defnyddio cyllell i dorri eich calon allan mae'n debyg y byddech chi'n difaru i'n hynafiaid ddysgu sut i gylchu metel. Yn debyg, os yw AI yn mynd i fwyta enaid dynoliaeth (byddai'n sicr pe bai OpenAI yn gallu defnyddio enaidau fel data hyfforddi), yna mae'n debyg y byddem yn dymuno ein bod wedi'i atal pan gafodd y cyfle.
+
+      Cymerwch hyn fel datganiad pendant o bolisi WEPN ar “gyfieithu” cynnwys a gynhyrchir gan AI. Er mwyn osgoi unrhyw amheuaeth, nid yw WEPN yn hyrwyddo ac nid yw’n mynd i hyrwyddo cerddoriaeth a wnaed gan AI. Nid yw AI byth yn gwneud penderfyniad creadigol. Dim ond ailadrodd y bydd yn ei wneud o'r hyn y mae'n credu y gallech ei fwynhau, yn seiliedig ar gyfrifiad enfawr sy'n cynnwys pob pwynt data wedi'i dwyn o'r rhyngrwyd. Mae'r canlyniadau efallai'n swnio'n “braf” – efallai hyd yn oed y byddent yn swnio'n “arddangosol” ar adeg, ond ni fyddant byth yn golygu unrhyw beth mewn gwirionedd.
+
+      Ni allaf feddwl sawl gwaith y mae damwain hapus wedi sbarduno ymateb a datblygu i fod yn drac cyfan, llawer yn wahanol i unrhyw fwriad a ddechreuodd y broses. Mae penderfyniadau a theimladau dynol yn llywio'r pethau hyn. Gyda AI nid oes fwriad, nid oes damweiniau ac nid oes un penderfyniad dynol yn y broses... heblaw am benderfyniad i dwyllio a chymryd byrddo arall. Byddwn yn llawer mwy diddordeb clywed ceisio amhrofiadol rhywun tuag at rywbeth ystyrlon gyda set o offer y maent bron â'u deall na chlywed argraff peiriant o ganlyniad. Rhowch i mi gymysgedd dynol dros berffeithrwydd ffug.
+
+      Yn ein ffordd fach ni yn unig mae angen sefyll yn erbyn y tonnau hyn sy'n dod. Na i gynnwys AI yn disodli celf dynol. Na i ddeiet o swb a thlodi. Os clywch drac ac yn darganfod ei fod yn AI, galwch ef allan a diffoddwch y peth hwnnw. Os ydych yn darllen ac yn dysgu bod y testun yn AI, galwch ef allan a'i anwybyddu. Dylai defnyddio peiriant i ddisodli allbwn creadigol dyn fod mor yrwog â llofruddiaeth ac twyll. Heblaw nad oes unrhyw sociopathiaid biliynydd yn ceisio eich perswadio i gyflawni twyll ar hyn o bryd.
+
+      Nid yw hyn yn ymwneud â arian – mae fy incwm fy hun yn erbyn treuliau ar gyfer cynhyrchu cerddoriaeth yn sicr yn y coch ac mae'n debygol o aros felly. Mae hyn yn ymwneud â chariad. Mae popeth a gyhoeddwn yn cael ei wneud gan berson sy'n eistedd i lawr ac yn dymuno creu rhywbeth o gariad pur at wneud hynny. Ni all peiriannau garu... felly ni allwn adael iddynt ennill.
+
+      Cerddoriaeth newydd yn dod ar WEPN yn 2026… a efallai rhai digwyddiadau. Gwyliwch y gofod hwn.

@@ -20,6 +20,35 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
         <!-- Upcoming release will be loaded dynamically here -->
       </div>
     </div>
+
+    <!-- Blog preview panel -->
+    <div id="blog-preview-panel" class="blog-preview-panel">
+      <h2 class="blog-preview-title">
+        <a href="#blog">
+          <span data-lang="en">Latest from the Blog</span>
+          <span data-lang="cy" style="display:none;">Diweddaraf o'r Blog</span>
+        </a>
+      </h2>
+      {% assign latest = site.data.posts | sort: 'sort_date' | last %}
+      {% if latest %}
+        <div class="blog-preview-content">
+          <h3>
+            <span data-lang="en">{{ latest.title.en }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.title.cy }}</span>
+          </h3>
+          <time class="blog-preview-date">
+            <span data-lang="en">{{ latest.date.en }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.date.cy }}</span>
+          </time>
+          <p>
+            <span data-lang="en">{{ latest.body.en | markdownify | strip_html | truncatewords: 30 }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.body.cy | markdownify | strip_html | truncatewords: 30 }}</span>
+          </p>
+          <a href="#blog" class="btn">Read more</a>
+        </div>
+      {% endif %}
+    </div>
+
     <div id="featured-release-panel" class="featured-release-panel">
       <h2 class="featured-section-title" data-i18n="hero.featured">Featured Release</h2>
       <div id="featured-release" class="featured-release">
@@ -98,5 +127,35 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
     <p data-i18n="privacy.text">
       We don't use cookies or process your data (beyond what your browser sends to our servers), but Bandcamp's embedded player does. Please see the Bandcamp site for more info.
     </p>
+  </div>
+</section>
+
+<!-- Blog section -->
+<section id="blog" class="tab-content">
+  <div class="container">
+    <div class="blog-section-header">
+      <h2 data-i18n="nav.blog">Blog</h2>
+    </div>
+    <div class="posts-list">
+      {% assign posts = site.data.posts | sort: 'sort_date' | reverse %}
+      {% for post in posts %}
+        <article id="post-{{ post.slug }}" class="post-item full-post">
+          <div class="post-header">
+            <h3>
+              <span data-lang="en">{{ post.title.en }}</span>
+              <span data-lang="cy" style="display:none;">{{ post.title.cy }}</span>
+            </h3>
+            <time class="post-date">
+              <span data-lang="en">{{ post.date.en }}</span>
+              <span data-lang="cy" style="display:none;">{{ post.date.cy }}</span>
+            </time>
+          </div>
+          <div class="post-body">
+            <div data-lang="en">{{ post.body.en | markdownify }}</div>
+            <div data-lang="cy" style="display:none;">{{ post.body.cy | markdownify }}</div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
