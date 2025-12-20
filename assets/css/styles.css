@@ -2174,3 +2174,16 @@ a.upcoming-release-title-main:focus {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
+
+/* Additional home preview styling */
+.blog-preview-home {
+    margin-top: 2rem;
+}
+
+.blog-preview-home .blog-preview {
+    background: #222;
+    padding: 1rem;
+    border-radius: 6px;
+    max-width: 720px;
+    margin: 0 auto;
+}

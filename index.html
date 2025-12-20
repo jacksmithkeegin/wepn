@@ -34,6 +34,30 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
         <!-- Mini releases will be loaded dynamically here -->
       </div>
     </div>
+
+    <!-- Blog small preview shown on the home tab -->
+    <div id="home-blog-preview" class="blog-preview-home">
+      {% assign latest = site.data.posts | sort: 'sort_date' | last %}
+      {% if latest %}
+        <div class="blog-preview">
+          <h3>
+            <a href="#blog">
+              <span data-lang="en">{{ latest.title.en }}</span>
+              <span data-lang="cy" style="display:none;">{{ latest.title.cy }}</span>
+            </a>
+          </h3>
+          <time class="blog-preview-date">
+            <span data-lang="en">{{ latest.date.en }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.date.cy }}</span>
+          </time>
+          <p>
+            <span data-lang="en">{{ latest.body.en | markdownify | strip_html | truncatewords: 30 }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.body.cy | markdownify | strip_html | truncatewords: 30 }}</span>
+          </p>
+          <a href="#blog" class="btn">Read all posts</a>
+        </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -102,30 +126,29 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
 </section>
 
 <!-- Blog preview section -->
-<section id="blog-preview" class="tab-content">
+<section id="blog" class="tab-content hidden">
   <div class="container">
     <h2 data-i18n="nav.blog">Blog</h2>
-    {% assign latest = site.data.posts | sort: 'sort_date' | last %}
-    {% if latest %}
-      <div class="blog-preview">
-        <h3>
-          <a href="#blog" data-no-tab>
-            <span data-lang="en">{{ latest.title.en }}</span>
-            <span data-lang="cy" style="display:none;">{{ latest.title.cy }}</span>
-          </a>
-        </h3>
-        <time datetime="{{ latest.sort_date }}" class="blog-preview-date">
-          <span data-lang="en">{{ latest.date.en }}</span>
-          <span data-lang="cy" style="display:none;">{{ latest.date.cy }}</span>
-        </time>
-        <p>
-          <span data-lang="en">{{ latest.body.en | markdownify | strip_html | truncatewords: 30 }}</span>
-          <span data-lang="cy" style="display:none;">{{ latest.body.cy | markdownify | strip_html | truncatewords: 30 }}</span>
-        </p>
-        <a href="#blog" class="btn" data-no-tab>Read all posts</a>
-      </div>
-    {% else %}
-      <p>No posts yet.</p>
-    {% endif %}
+    <div class="posts-list">
+      {% assign posts = site.data.posts | sort: 'sort_date' | reverse %}
+      {% for post in posts %}
+        <article id="post-{{ post.slug }}" class="post-item full-post">
+          <header class="post-header">
+            <h2>
+              <span data-lang="en">{{ post.title.en }}</span>
+              <span data-lang="cy" style="display:none;">{{ post.title.cy }}</span>
+            </h2>
+            <time class="post-date">
+              <span data-lang="en">{{ post.date.en }}</span>
+              <span data-lang="cy" style="display:none;">{{ post.date.cy }}</span>
+            </time>
+          </header>
+          <div class="post-body">
+            <div data-lang="en">{{ post.body.en | markdownify }}</div>
+            <div data-lang="cy" style="display:none;">{{ post.body.cy | markdownify }}</div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
