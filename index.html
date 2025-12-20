@@ -104,14 +104,25 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
 <!-- Blog preview section -->
 <section id="blog-preview" class="tab-content">
   <div class="container">
-    <h2>Blog</h2>
+    <h2 data-i18n="nav.blog">Blog</h2>
     {% assign latest = site.data.posts | sort: 'sort_date' | last %}
     {% if latest %}
       <div class="blog-preview">
-        <h3><a href="{{ site.baseurl }}/blog.html#post-{{ latest.slug }}">{{ latest.title[site.locale] }}</a></h3>
-        <time datetime="{{ latest.sort_date }}">{{ latest.date[site.locale] }}</time>
-        <p>{{ latest.body[site.locale] | markdownify | strip_html | truncatewords: 30 }}</p>
-        <a href="{{ site.baseurl }}/blog.html" class="btn">Read all posts</a>
+        <h3>
+          <a href="#blog" data-no-tab>
+            <span data-lang="en">{{ latest.title.en }}</span>
+            <span data-lang="cy" style="display:none;">{{ latest.title.cy }}</span>
+          </a>
+        </h3>
+        <time datetime="{{ latest.sort_date }}" class="blog-preview-date">
+          <span data-lang="en">{{ latest.date.en }}</span>
+          <span data-lang="cy" style="display:none;">{{ latest.date.cy }}</span>
+        </time>
+        <p>
+          <span data-lang="en">{{ latest.body.en | markdownify | strip_html | truncatewords: 30 }}</span>
+          <span data-lang="cy" style="display:none;">{{ latest.body.cy | markdownify | strip_html | truncatewords: 30 }}</span>
+        </p>
+        <a href="#blog" class="btn" data-no-tab>Read all posts</a>
       </div>
     {% else %}
       <p>No posts yet.</p>

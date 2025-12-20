@@ -2131,3 +2131,46 @@ a.upcoming-release-title-main:focus {
         flex-wrap: wrap;
     }
 }
+
+/* Blog styles */
+.posts-list {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.post-item.full-post {
+    background: #222; /* mid-dark grey against black background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+.post-header h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.post-date {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.post-body {
+    color: rgba(255,255,255,0.95);
+    line-height: 1.7;
+}
+
+.blog-preview {
+    background: #222;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.blog-preview-date {
+    display: block;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
