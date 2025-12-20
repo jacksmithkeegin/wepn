@@ -3,24 +3,26 @@ layout: default
 title: Blog - WEPN
 ---
 
+{% assign locale = site.locale | default: 'en' %}
+
 <section class="container">
   <h1>Blog</h1>
   <div class="posts-list">
     {% assign posts = site.data.posts | sort: 'sort_date' | reverse %}
     {% for post in posts %}
       <article class="post-item">
-        <h2><a href="#post-{{ post.slug }}">{{ post.title[site.locale] }}</a></h2>
-        <time datetime="{{ post.sort_date }}">{{ post.date[site.locale] }}</time>
+        <h2><a href="#post-{{ post.slug }}">{{ post.title[locale] }}</a></h2>
+        <time datetime="{{ post.sort_date }}">{{ post.date[locale] }}</time>
         <div class="post-excerpt">
-          {{ post.body[site.locale] | markdownify | truncatewords: 50 }}
+          {{ post.body[locale] | markdownify | truncatewords: 50 }}
         </div>
         <a class="read-more" href="#post-{{ post.slug }}">Read more</a>
       </article>
       <!-- full post rendered below anchor to allow single-page behaviour -->
       <article id="post-{{ post.slug }}" class="full-post">
-        <h3>{{ post.title[site.locale] }}</h3>
-        <time datetime="{{ post.sort_date }}">{{ post.date[site.locale] }}</time>
-        <div class="post-body">{{ post.body[site.locale] | markdownify }}</div>
+        <h3>{{ post.title[locale] }}</h3>
+        <time datetime="{{ post.sort_date }}">{{ post.date[locale] }}</time>
+        <div class="post-body">{{ post.body[locale] | markdownify }}</div>
       </article>
     {% endfor %}
   </div>
