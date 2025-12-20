@@ -100,3 +100,21 @@ description: Wales Electronic Producers Network (WEPN) - Electronic music from W
     </p>
   </div>
 </section>
+
+<!-- Blog preview section -->
+<section id="blog-preview" class="tab-content">
+  <div class="container">
+    <h2>Blog</h2>
+    {% assign latest = site.data.posts | sort: 'sort_date' | last %}
+    {% if latest %}
+      <div class="blog-preview">
+        <h3><a href="{{ site.baseurl }}/blog.html#post-{{ latest.slug }}">{{ latest.title[site.locale] }}</a></h3>
+        <time datetime="{{ latest.sort_date }}">{{ latest.date[site.locale] }}</time>
+        <p>{{ latest.body[site.locale] | markdownify | strip_html | truncatewords: 30 }}</p>
+        <a href="{{ site.baseurl }}/blog.html" class="btn">Read all posts</a>
+      </div>
+    {% else %}
+      <p>No posts yet.</p>
+    {% endif %}
+  </div>
+</section>
