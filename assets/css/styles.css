@@ -2162,6 +2162,10 @@ a.upcoming-release-title-main:focus {
     line-height: 1.7;
 }
 
+.post-body p {
+    margin-bottom: var(--spacing-md);
+}
+
 /* Blog preview panel on home tab */
 .blog-preview-panel {
     margin: 3rem 0;
@@ -2203,7 +2207,7 @@ a.upcoming-release-title-main:focus {
 
 .blog-preview-content p {
     color: rgba(255,255,255,0.9);
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
     line-height: 1.6;
 }
 
