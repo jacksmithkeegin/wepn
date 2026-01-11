@@ -1,5 +1,30 @@
 # WEPN Blog Posts
 # Store blog posts here. Each post includes an ISO sort_date plus localized fields.
+- slug: kavalcade-green-tomorrows
+  sort_date: 2026-01-25
+  date:
+    en: January 25, 2026
+    cy: 25 Ionawr 2026
+  title:
+    en: Kavalcade – Green Tomorrows
+    cy: Kavalcade – Green Tomorrows
+  body:
+    en: |
+      Our first release of 2026, from the artist previously known as Pope John Paul Van Damme – he has dropped the name for something a little more direct and descriptive, but the gorgeous evolving synth-scapes and Warped (capital intended) IDM drum-batteries remain firmly in-tact.
+
+      WEPN has been hosting Kavalcade at gigs since before the pandemic and every time I see him I’m blown away and even a little humbled. It’s always good to share space with artists who push you to raise your game and as well as releasing some of my favourite electronica of the last few years, he’s also been a big inspiration in developing my AV skills. Check out his excellent tutorial series on zwobot for more of that side of life.
+
+      This release opens with a gorgeous ambient drift before shifting gears to raise the question “what would Richard do if he was trying to make the world more lush?” The answer; verdant synths scrape through an era of reverb to paint a lustrous picture of a world in harmony.
+
+      Proud to be putting this one out.
+    cy: |
+      Our first release of 2026, from the artist previously known as Pope John Paul Van Damme – he has dropped the name for something a little more direct and descriptive, but the gorgeous evolving synth-scapes and Warped (capital intended) IDM drum-batteries remain firmly in-tact.
+
+      WEPN has been hosting Kavalcade at gigs since before the pandemic and every time I see him I’m blown away and even a little humbled. It’s always good to share space with artists who push you to raise your game and as well as releasing some of my favourite electronica of the last few years, he’s also been a big inspiration in developing my AV skills. Check out his excellent tutorial series on zwobot for more of that side of life.
+
+      This release opens with a gorgeous ambient drift before shifting gears to raise the question “what would Richard do if he was trying to make the world more lush?” The answer; verdant synths scrape through an era of reverb to paint a lustrous picture of a world in harmony.
+
+      Proud to be putting this one out.
 - slug: ai-policy
   sort_date: 2025-12-14
   date:

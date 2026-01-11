@@ -4,6 +4,34 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
+    en: PRODUCT_E002
+  title:
+    en: GREEN TOMORROWS
+  artists:
+    en: Kavalcade
+  release_date:
+    en: January 25, 2026
+    cy: 25 Ionawr 2026
+  description:
+    en: Kavalcade's Green Tomorrows — an EP of lush evolving synth-scapes and Warped IDM rhythms.
+    cy: Kavalcade's Green Tomorrows — EP o synth-scapes esmwyth a rhythmau IDM Warped.
+  detailed_description:
+    en: |
+      Our first release of 2026, from the artist previously known as Pope John Paul Van Damme – he has dropped the name for something a little more direct and descriptive, but the gorgeous evolving synth-scapes and Warped (capital intended) IDM drum-batteries remain firmly in-tact.
+
+      WEPN has been hosting Kavalcade at gigs since before the pandemic and every time I see him I’m blown away and even a little humbled. It’s always good to share space with artists who push you to raise your game and as well as releasing some of my favourite electronica of the last few years, he’s also been a big inspiration in developing my AV skills. Check out his excellent tutorial series on zwobot for more of that side of life.
+
+      This release opens with a gorgeous ambient drift before shifting gears to raise the question “what would Richard do if he was trying to make the world more lush?” The answer; verdant synths scrape through an era of reverb to paint a lustrous picture of a world in harmony.
+
+      Proud to be putting this one out.
+    cy: |
+      Our first release of 2026, from the artist previously known as Pope John Paul Van Damme – he has dropped the name for something a little more direct and descriptive, but the gorgeous evolving synth-scapes and Warped (capital intended) IDM drum-batteries remain firmly in-tact.
+  link:
+    en: https://wales-epn.bandcamp.com/album/green-tomorrows
+  artwork_url: assets/images/releases/big/PRODUCT_E002_GREEN_TOMORROWS_big.jpg
+  artwork_small_url: assets/images/releases/small/PRODUCT_E002_GREEN_TOMORROWS_small.jpg
+  bandcampEmbedUrl: https://bandcamp.com/EmbeddedPlayer/album=3594145500/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/
+- release_code:
     en: PRODUCT_006
   title:
     en: PRODUCT_006_SOLACE
