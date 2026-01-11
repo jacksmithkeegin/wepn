@@ -1,10 +1,10 @@
 # WEPN Blog Posts
 # Store blog posts here. Each post includes an ISO sort_date plus localized fields.
 - slug: kavalcade-green-tomorrows
-  sort_date: 2026-01-25
+  sort_date: 2026-01-11
   date:
-    en: January 25, 2026
-    cy: 25 Ionawr 2026
+    en: January 11, 2026
+    cy: 11 Ionawr 2026
   title:
     en: Kavalcade – Green Tomorrows
     cy: Kavalcade – Tomorau Gwyrdd
