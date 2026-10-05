@@ -4,6 +4,36 @@
 # Jekyll processes this YAML to generate the JSON file at /assets/js/releases-data.json
 # Edit this file, not the JSON directly.
 - release_code:
+    en: PRODUCT_007
+  title:
+    en: PRODUCT_007_PASSAGE
+  artists:
+    en: Various Artists
+  release_date:
+    en: November 6, 2026
+    cy: 6 Tachwedd 2026
+  description:
+    en: PRODUCT_007_PASSAGE — 23-track compilation from Welsh electronic artists, supporting Oasis Cardiff.
+    cy: PRODUCT_007_PASSAGE — casgliad 23 trac gan artistiaid electronig o Gymru, er budd Oasis Caerdydd.
+  detailed_description:
+    en: |
+      Wales Electronic Producers Network (WEPN) are proud to present the latest in our PRODUCT compilation series.
+
+      PRODUCT_007_PASSAGE is a collection of 23 tracks from electronic artists around Wales, featuring A Strange and Monstrous Gladness, Where She Goes, J-LOWER, Cosi Cosi, Foel, Clear Air Turbulence, Great Circles, Feenix, Sound Warrior, Atonmai and many more.
+
+      All proceeds from this release go to Oasis Cardiff. Oasis Cardiff support refugees, asylum seekers and migrants in the city, offering a warm welcome, practical help, and classes and activities that help people to rebuild their lives and feel part of the community.
+    cy: |
+      Mae Wales Electronic Producers Network (WEPN) yn falch o gyflwyno'r diweddaraf yn ein cyfres gasgliadau PRODUCT.
+
+      Mae PRODUCT_007_PASSAGE yn casglu 23 trac gan artistiaid electronig o bob cwr o Gymru, gan gynnwys A Strange and Monstrous Gladness, Where She Goes, J-LOWER, Cosi Cosi, Foel, Clear Air Turbulence, Great Circles, Feenix, Sound Warrior, Atonmai a llawer mwy.
+
+      Bydd yr holl elw o'r rhyddhad hwn yn mynd at Oasis Caerdydd. Mae Oasis Caerdydd yn cefnogi ffoaduriaid, ceiswyr lloches a mudwyr yn y ddinas, gan gynnig croeso cynnes, cymorth ymarferol, a dosbarthiadau a gweithgareddau sy'n helpu pobl i ailadeiladu eu bywydau a theimlo'n rhan o'r gymuned.
+  link:
+    en: https://wales-epn.bandcamp.com/album/product-007-passage
+  artwork_url: assets/images/releases/big/PRODUCT_007_PASSAGE_big.jpg
+  artwork_small_url: assets/images/releases/small/PRODUCT_007_PASSAGE_small.jpg
+
+- release_code:
     en: PRODUCT_S006
   title:
     en: SLIPSTREAM / SLEEP
